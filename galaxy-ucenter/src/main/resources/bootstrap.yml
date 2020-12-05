@@ -1,9 +1,9 @@
 # 服务端口号
 server:
-  port: 9400
+  port: 9600
 spring:
   application:
-    name: galaxy-gateway
+    name: galaxy-ucenter
   cloud:
     bus:
       enabled: true

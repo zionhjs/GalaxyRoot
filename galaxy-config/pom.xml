@@ -12,7 +12,7 @@
     <artifactId>galaxy-config</artifactId>
     <packaging>jar</packaging>
 
-    <description>wanwan 配置中心，基于spring cloud config</description>
+    <description>galaxy 配置中心，基于spring cloud config</description>
 
     <dependencies>
         <!--eureka 客户端-->
