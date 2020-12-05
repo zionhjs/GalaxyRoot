@@ -33,5 +33,4 @@ galaxy
 Spring Boot |  2.1.3.RELEASE
 Spring Cloud | Greenwich.RELEASE
 hutool | 4.5.0
-Avue | 2.3.9
-mybatis-plus / 3.1.0 
+Mybatis Plus | 3.1.0 
