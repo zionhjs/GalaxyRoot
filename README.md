@@ -24,6 +24,7 @@ galaxy
 (2) GalaxyConfigApplication  
 (3) GalaxyGatewayApplication 
 (4) GalaxyUcenterApplication 
+(5) 启动完毕之后在本地浏览器访问 http://localhost:9000 
 ```
 
 
