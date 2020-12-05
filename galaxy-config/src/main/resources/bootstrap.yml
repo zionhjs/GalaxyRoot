@@ -1,0 +1,36 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: galaxy-config
+  # 配置中心
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://codeup.aliyun.com/5f4d0c35db0493ecef90edda/wantu/wanwan-config-center.git
+          clone-on-start: true        #注意 启动时克隆可以快速定位错误的配置源（如无效的仓库URI）。若cloneOnStart为false，那么服务可能会在配置源错误的情况下顺利启动，并在应用请求的时候才发现配置源错误了
+          username: chenjinming79
+          password: sz5211314#
+          search-paths: /**   #生产环境 开发 测试  生产
+
+  # 配置rabbitmq的地址以及用户密码
+  rabbitmq:
+    host: 47.93.113.143
+    username: letucloud
+    password: letucloud123
+
+# 允许/actuator/bus-refresh接口被外部调用
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+# 注册中心配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
