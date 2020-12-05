@@ -38,6 +38,7 @@
 
     <modules>
         <module>galaxy-common</module>
+        <module>galaxy-eureka</module>
     </modules>
 
     <!-- 依赖管理 -->
