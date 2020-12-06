@@ -10,7 +10,7 @@ spring:
     config:
       server:
         git:
-          uri: https://codeup.aliyun.com/5f4d0c35db0493ecef90edda/wantu/wanwan-config-center.git
+          uri: https://codeup.aliyun.com/5fcc591a02e2a6b0410e7e27/galaxy-config-center.git
           clone-on-start: true        #注意 启动时克隆可以快速定位错误的配置源（如无效的仓库URI）。若cloneOnStart为false，那么服务可能会在配置源错误的情况下顺利启动，并在应用请求的时候才发现配置源错误了
           username: chenjinming79
           password: sz5211314#
