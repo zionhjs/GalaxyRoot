@@ -3,11 +3,47 @@
 <mapper namespace="com.galaxy.ucenter.module.mapper.UserMapper" >
 
     <resultMap id="BaseResultMap" type="com.galaxy.ucenter.module.model.User" >
-	  <id column="id" property="id" jdbcType="VARCHAR" />
+		<!--
+            WARNING - @mbg.generated
+          -->
+		<id column="id" jdbcType="BIGINT" property="id"/>
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+		<result column="create_user_id" jdbcType="VARCHAR" property="createUserId"/>
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+		<result column="update_user_id" jdbcType="VARCHAR" property="updateUserId"/>
+		<result column="is_delete" jdbcType="BIT" property="isDelete"/>
+		<result column="version" jdbcType="INTEGER" property="version"/>
+		<result column="status" jdbcType="INTEGER" property="status"/>
+		<result column="user_name" jdbcType="VARCHAR" property="userName"/>
+		<result column="password" jdbcType="VARCHAR" property="password"/>
+		<result column="remark_name" jdbcType="VARCHAR" property="remarkName"/>
+		<result column="phone" jdbcType="VARCHAR" property="phone"/>
+		<result column="email" jdbcType="VARCHAR" property="email"/>
+		<result column="register_time" jdbcType="TIMESTAMP" property="registerTime"/>
+		<result column="register_ip" jdbcType="VARCHAR" property="registerIp"/>
+		<result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
+		<result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp"/>
+		<result column="avatar" jdbcType="VARCHAR" property="avatar"/>
     </resultMap>
 
 	<select id="selectUser" resultMap="BaseResultMap">
 		select id from t_user where id = #{id}
 	</select>
+
+	<select id="findUserByPhone" resultMap="BaseResultMap">
+        select id,status,user_name,password,remark_name,
+                phone,email,register_time,register_ip,last_login_time,last_login_ip,avatar
+        from t_user
+        where is_delete = 0
+        and phone = #{phone}
+    </select>
+
+	<select id="findUserByEmail" resultMap="BaseResultMap">
+        select id,status,user_name,password,remark_name,
+                phone,email,register_time,register_ip,last_login_time,last_login_ip,avatar
+        from t_user
+        where is_delete = 0
+        and email = #{email}
+    </select>
 
 </mapper>
