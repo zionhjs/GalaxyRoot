@@ -1,11 +1,8 @@
 package com.galaxy.ucenter.module.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.ucenter.module.service.UserService;
-import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
