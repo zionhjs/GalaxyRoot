@@ -17,9 +17,10 @@ spring:
 
   # 配置rabbitmq的地址以及用户密码
   rabbitmq:
-    host: 47.93.113.143
-    username: letucloud
-    password: letucloud123
+    host: 47.100.17.12
+    username: galaxy
+    password: galaxy
+
 # 注册中心
 eureka:
   instance:
