@@ -1,5 +1,8 @@
 package com.galaxy.ucenter.module.model;
 
+import javax.persistence.Table;
+
+@Table(name = "t_user")
 public class User {
 
     private Long id;

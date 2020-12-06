@@ -18,7 +18,7 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
 
     @Override
     public Result list(Long id) {
-        User user = userMapper.selectUser(id);
+        User user = userMapper.selectByPrimaryKey(id);
 
         return ResultGenerator.genSuccessResult(user);
     }
