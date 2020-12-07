@@ -13,7 +13,10 @@ import com.galaxy.common.core.vo.SysUserVo;
 import com.galaxy.ucenter.module.mapper.UserMapper;
 import com.galaxy.ucenter.module.model.User;
 import com.galaxy.ucenter.module.service.UserService;
+import com.galaxy.ucenter.module.vo.CaptchaVo;
 import com.galaxy.ucenter.module.vo.LoginVo;
+import com.galaxy.ucenter.module.vo.VerfiyCodeVo;
+import com.wf.captcha.GifCaptcha;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -97,5 +100,42 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
             throw new RuntimeException("存入redis异常");
         }
         return ResultGenerator.genSuccessResult(sysUserVo);
+    }
+
+    @Override
+    public Result logout(Long userId) {
+        SysUserVo sysUserVo = null;
+        String token=(String)redisService.get(userId+"USERID");
+        try {
+            sysUserVo = (SysUserVo)redisService.get(Constant.REDIS_KEY_LOGIN + token);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException("redis异常");
+        }
+
+        redisService.delete(userId+"USERID");
+
+        if (sysUserVo != null){
+            redisService.delete(Constant.REDIS_KEY_LOGIN + token);
+
+            return ResultGenerator.genSuccessResult();
+        }
+
+        return ResultGenerator.genFailResult(ResultCode.NOT_LOGIN_EXCEPTION,"用户未登录,请重新登录");
+    }
+
+    @Override
+    public Result captcha() {
+        GifCaptcha specCaptcha = new GifCaptcha(130, 48, 5);
+        String verCode = specCaptcha.text().toLowerCase();
+        System.out.print("登录验证码" + verCode);
+        String verifyToken = TokenUtil.getToken();
+        // 存入redis并设置过期时间为30秒
+        redisService.setWithExpire(Constant.REDIS_KEY_VERFIY + verifyToken, new VerfiyCodeVo(verCode,System.currentTimeMillis() + Constant.verifyCodeForTempValidTime)  , Constant.verifyCodeForTempValidTime);
+        CaptchaVo captchaVo = new CaptchaVo();
+        captchaVo.setVerifyToken(verifyToken);
+        captchaVo.setData(specCaptcha.toBase64());
+        // 将key和base64返回给前端
+        return ResultGenerator.genSuccessResult(captchaVo);
     }
 }

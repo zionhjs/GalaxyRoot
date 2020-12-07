@@ -10,4 +10,8 @@ public interface UserService extends Service<User> {
     Result list(Long id);
 
     Result login(LoginVo vo);
+
+    Result logout(Long userId);
+
+    Result captcha();
 }

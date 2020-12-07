@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
 
@@ -30,10 +31,23 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userService;
 
+    @ApiOperation(value = "用户退出", notes = "用户退出")
+    @RequestMapping(value = "/logout", method = {RequestMethod.POST,RequestMethod.GET})
+    public Result logout(@RequestParam Long userId) {
+        Logger.info(this,"/galaxy/user/logout 用户退出接口入参 : " + userId);
+        return userService.logout(userId);
+    }
+
+    @ApiOperation(value = "生成验证码", notes = "生成验证码")
+    @RequestMapping(value = "/captcha", method = {RequestMethod.POST,RequestMethod.GET})
+    public Result captcha(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return userService.captcha();
+    }
+
     @ApiOperation(value = "用户登录", notes = "用户登录")
     @RequestMapping(value = "/login", method = {RequestMethod.POST,RequestMethod.GET})
     public Result login(@RequestBody LoginVo vo, HttpServletRequest request) {
-        Logger.info(this, "/xc/user/login 用户登录接口入参 :" + vo);
+        Logger.info(this, "/galaxy/user/login 用户登录接口入参 :" + vo);
         return userService.login(vo);
     }
 
