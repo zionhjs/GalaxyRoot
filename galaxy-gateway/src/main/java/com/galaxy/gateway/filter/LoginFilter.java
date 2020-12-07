@@ -1,8 +1,6 @@
 package com.galaxy.gateway.filter;
 
 import com.netflix.zuul.exception.ZuulException;
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Component;
 
 //增加该注解让过滤器生效
 //简单使用ZuulFilter实现网关，后续优化
