@@ -1,5 +1,6 @@
 package com.galaxy.ucenter.module.controller;
 
+import com.galaxy.common.core.controller.BaseController;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultGenerator;
 import com.galaxy.common.core.utils.Logger;
@@ -15,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
 
@@ -25,7 +25,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/galaxy/user")
 @Api(tags = {"/galaxy/user"}, description = "用户管理模块")
-public class UserController {
+public class UserController extends BaseController {
 
     @Autowired
     private UserService userService;

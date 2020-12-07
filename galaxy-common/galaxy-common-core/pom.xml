@@ -54,6 +54,12 @@
             <version>${io.springfox.version}</version>
         </dependency>
 
+        <!--server-api-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+
         <!--redis依赖-->
         <dependency>
             <groupId>org.springframework.data</groupId>

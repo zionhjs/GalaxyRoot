@@ -47,6 +47,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+        <!--引用公共服务-->
         <dependency>
             <groupId>com.galaxy</groupId>
             <artifactId>galaxy-common-core</artifactId>

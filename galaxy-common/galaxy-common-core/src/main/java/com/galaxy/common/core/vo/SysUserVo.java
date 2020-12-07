@@ -1,4 +1,4 @@
-package com.galaxy.ucenter.module.vo;
+package com.galaxy.common.core.vo;
 
 import java.io.Serializable;
 
