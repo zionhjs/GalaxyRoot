@@ -42,6 +42,7 @@
         <module>galaxy-config</module>
         <module>galaxy-gateway</module>
         <module>galaxy-ucenter</module>
+        <module>galaxy-admin-server</module>
     </modules>
 
     <!-- 依赖管理 -->

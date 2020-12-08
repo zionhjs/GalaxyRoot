@@ -54,6 +54,18 @@
             <artifactId>galaxy-common-core</artifactId>
             <version>1.0.0</version>
         </dependency>
+
+        <!--admin-client得引用-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
+        <!--spirng boot下全部安全端口-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

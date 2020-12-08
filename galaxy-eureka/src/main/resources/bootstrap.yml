@@ -18,3 +18,9 @@ eureka:
     fetch-registry: false
     # 是否把自己作为服务注册到其他服务注册中心
     register-with-eureka: false
+#eureka暴露全部安全端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

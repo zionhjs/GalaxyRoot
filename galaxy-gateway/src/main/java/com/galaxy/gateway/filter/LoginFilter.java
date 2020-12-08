@@ -1,5 +1,6 @@
 package com.galaxy.gateway.filter;
 
+import com.galaxy.common.core.UserContext;
 import com.galaxy.common.core.constants.Constant;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultCode;
@@ -65,7 +66,7 @@ public class LoginFilter extends ZuulFilter {
 
 		String[] s = url.split("/");
 
-		if ("/swagger-ui.*,/static.*,/a2billing.*,/favicon.*,/webjars/springfox-swagger-ui.*,/v2/api-docs.*".
+		if ("/swagger-ui.*,/static.*,/a2billing.*,/favicon.*,/webjars/springfox-swagger-ui.*,/v2/api-docs.*,/galaxy/user/login".
 				contains(s[s.length-1])) {
 			return false;
 		}else {
@@ -105,7 +106,7 @@ public class LoginFilter extends ZuulFilter {
 				} else {
 					//校验通过
 					//存入本地线程变量
-					//UserContext.init(userVo);
+					UserContext.init(sysUserVo);
 				}
 			}else {
 				Result result = new Result();
