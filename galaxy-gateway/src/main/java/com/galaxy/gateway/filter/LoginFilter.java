@@ -5,21 +5,19 @@ import com.galaxy.common.core.constants.Constant;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultCode;
 import com.galaxy.common.core.response.ResultGenerator;
-import com.galaxy.common.core.service.RedisService;
 import com.galaxy.common.core.utils.Logger;
+import com.galaxy.common.core.utils.RedisUtils;
 import com.galaxy.common.core.vo.SysUserVo;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import lombok.AllArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import java.math.BigDecimal;
 
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.PRE_TYPE;
 
@@ -30,32 +28,19 @@ import static org.springframework.cloud.netflix.zuul.filters.support.FilterConst
 @AllArgsConstructor
 public class LoginFilter extends ZuulFilter {
 
-	@Autowired
-	private RedisService redisService;
+	@Resource
+	private RedisUtils redisUtils;
 
-
-	/**
-	 * 过滤器类型，前置过滤器
-	 * @return
-	 */
 	@Override
 	public String filterType() {
 		return PRE_TYPE;
 	}
 
-	/**
-	 * 过滤器顺序，越小越先执行
-	 * @return
-	 */
 	@Override
 	public int filterOrder() {
 		return 0;
 	}
 
-	/**
-	 * 返回true代表需要权限校验，false代表不需要用户校验即可访问
-	 * @return
-	 */
 	@Override
 	public boolean shouldFilter() {
 
@@ -66,7 +51,7 @@ public class LoginFilter extends ZuulFilter {
 
 		String[] s = url.split("/");
 
-		if ("/swagger-ui.*,/static.*,/a2billing.*,/favicon.*,/webjars/springfox-swagger-ui.*,/v2/api-docs.*,/galaxy/user/login".
+		if ("/swagger-ui.*,/static.*,/a2billing.*,/favicon.*,/webjars/springfox-swagger-ui.*,/v2/api-docs.*,/galaxy/user/login,/galaxy/user/logout".
 				contains(s[s.length-1])) {
 			return false;
 		}else {
@@ -74,12 +59,6 @@ public class LoginFilter extends ZuulFilter {
 		}
 	}
 
-	/**
-	 * 业务逻辑
-	 * 只有上面返回true的时候，才会进入到该方法
-	 * @return
-	 * @throws ZuulException
-	 */
 	@Override
 	public Object run()  {
 		Logger.info(this,"网关过滤器进来了");
@@ -90,7 +69,7 @@ public class LoginFilter extends ZuulFilter {
 		String accessToken = request.getHeader("accessToken");
 
 		if (null != accessToken){
-			SysUserVo sysUserVo = (SysUserVo) redisService.get(Constant.REDIS_KEY_LOGIN + accessToken);
+			SysUserVo sysUserVo = (SysUserVo) redisUtils.get(Constant.REDIS_KEY_LOGIN + accessToken);
 			if (null != sysUserVo){
 				long curTime = System.currentTimeMillis();
 				if (curTime > sysUserVo.getExpireTime()) {

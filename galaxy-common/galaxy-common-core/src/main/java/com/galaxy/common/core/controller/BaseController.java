@@ -1,10 +1,11 @@
 package com.galaxy.common.core.controller;
 
 import com.galaxy.common.core.constants.Constant;
-import com.galaxy.common.core.service.RedisService;
+import com.galaxy.common.core.utils.RedisUtils;
 import com.galaxy.common.core.vo.SysUserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -15,14 +16,14 @@ public class BaseController {
 	@Autowired
 	private HttpServletRequest request;
 
-	@Autowired
-	private RedisService redisService;
+	@Resource
+	private RedisUtils redisUtils;
 
 	public Long getUserId() {
 		String token = request.getHeader(Constant.TOKEN_NAME);
 		SysUserVo sysUserVo;
 		try {
-			sysUserVo = (SysUserVo)redisService.get(Constant.REDIS_KEY_LOGIN + token);
+			sysUserVo = (SysUserVo) redisUtils.get(Constant.REDIS_KEY_LOGIN + token);
 		}catch (Exception e){
 			return null;
 			//throw new RedisException();
@@ -37,7 +38,7 @@ public class BaseController {
 		String token = request.getHeader(Constant.TOKEN_NAME);
 		SysUserVo sysUserVo;
 		try {
-			sysUserVo = (SysUserVo)redisService.get(Constant.REDIS_KEY_LOGIN + token);
+			sysUserVo = (SysUserVo) redisUtils.get(Constant.REDIS_KEY_LOGIN + token);
 		}catch (Exception e){
 			return null;
 			//throw new RedisException();
