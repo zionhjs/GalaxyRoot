@@ -19,4 +19,12 @@
     <result column="sort_id" jdbcType="INTEGER" property="sortId" />
     <result column="version" jdbcType="INTEGER" property="version" />
   </resultMap>
+
+    <select id="selectMenuByRoleId" resultMap="BaseResultMap">
+        select id,created_at,created_by,updated_at,updated_by,parent_id,name,link_url,image_url,enable_flag,sort_id
+        from t_sys_menu
+        where is_delete = 0
+        and parent_id = #{sysRoleId}
+    </select>
+
 </mapper>

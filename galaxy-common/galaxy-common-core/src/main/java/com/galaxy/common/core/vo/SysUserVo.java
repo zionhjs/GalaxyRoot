@@ -1,6 +1,7 @@
 package com.galaxy.common.core.vo;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @ClassName UserVo
@@ -27,11 +28,14 @@ public class SysUserVo implements Serializable {
 
     private String userName;
 
+    private List<Object> sysMenuList;
+
     public SysUserVo() {
         super();
     }
 
-    public SysUserVo(Long userId, String phone, String email, String token, Long expireTime, String roleId, String channel, String userName) {
+    public SysUserVo(Long userId, String phone, String email, String token,
+                     Long expireTime, String roleId, String channel, String userName,List<Object> sysMenuList) {
         this.userId = userId;
         this.phone = phone;
         this.email = email;
@@ -40,6 +44,7 @@ public class SysUserVo implements Serializable {
         this.roleId = roleId;
         this.channel = channel;
         this.userName = userName;
+        this.sysMenuList = sysMenuList;
     }
 
     public Long getUserId() {
@@ -104,5 +109,13 @@ public class SysUserVo implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public List<Object> getSysMenuList() {
+        return sysMenuList;
+    }
+
+    public void setSysMenuList(List<Object> sysMenuList) {
+        this.sysMenuList = sysMenuList;
     }
 }

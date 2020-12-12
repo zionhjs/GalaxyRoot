@@ -17,26 +17,26 @@ public class User {
     /**
      * 创建时间
      */
-    @Column(name = "create_time")
-    private Date createTime;
+    @Column(name = "created_at")
+    private Date createdAt;
 
     /**
      * 创建人
      */
-    @Column(name = "create_user_id")
-    private String createUserId;
+    @Column(name = "created_by")
+    private String createdBy;
 
     /**
      * 更新时间
      */
-    @Column(name = "update_time")
-    private Date updateTime;
+    @Column(name = "updated_at")
+    private Date updatedAt;
 
     /**
-     * 修改人
+     * 更新人
      */
-    @Column(name = "update_user_id")
-    private String updateUserId;
+    @Column(name = "updated_by")
+    private String updatedBy;
 
     /**
      * 是否删除(0false未删除 1true已删除)
@@ -129,29 +129,10 @@ public class User {
     private String nationality;
 
     /**
-     * ASC余额
+     * 国籍
      */
-    @Transient
-    private BigDecimal ascBalance;
-
-    /**
-     * USDT余额
-     */
-    @Transient
-    private BigDecimal usdtBalance;
-
-    /**
-     * BTC余额
-     */
-    @Transient
-    private BigDecimal btcBalance;
-
-    /**
-     * ETH余额
-     */
-    @Transient
-    private BigDecimal ethBalance;
-
+    @Column(name = "sys_role_id")
+    private String sysRoleId;
 
     /**
      * 获取记录ID
@@ -171,76 +152,36 @@ public class User {
         this.id = id;
     }
 
-    /**
-     * 获取创建时间
-     *
-     * @return create_time - 创建时间
-     */
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    /**
-     * 设置创建时间
-     *
-     * @param createTime 创建时间
-     */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    /**
-     * 获取创建人
-     *
-     * @return create_user_id - 创建人
-     */
-    public String getCreateUserId() {
-        return createUserId;
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    /**
-     * 设置创建人
-     *
-     * @param createUserId 创建人
-     */
-    public void setCreateUserId(String createUserId) {
-        this.createUserId = createUserId;
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
-    /**
-     * 获取更新时间
-     *
-     * @return update_time - 更新时间
-     */
-    public Date getUpdateTime() {
-        return updateTime;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    /**
-     * 设置更新时间
-     *
-     * @param updateTime 更新时间
-     */
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
-    /**
-     * 获取修改人
-     *
-     * @return update_user_id - 修改人
-     */
-    public String getUpdateUserId() {
-        return updateUserId;
+    public String getUpdatedBy() {
+        return updatedBy;
     }
 
-    /**
-     * 设置修改人
-     *
-     * @param updateUserId 修改人
-     */
-    public void setUpdateUserId(String updateUserId) {
-        this.updateUserId = updateUserId;
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
     /**
@@ -491,35 +432,11 @@ public class User {
         this.nationality = nationality;
     }
 
-    public BigDecimal getAscBalance() {
-        return ascBalance;
+    public String getSysRoleId() {
+        return sysRoleId;
     }
 
-    public void setAscBalance(BigDecimal ascBalance) {
-        this.ascBalance = ascBalance;
-    }
-
-    public BigDecimal getUsdtBalance() {
-        return usdtBalance;
-    }
-
-    public void setUsdtBalance(BigDecimal usdtBalance) {
-        this.usdtBalance = usdtBalance;
-    }
-
-    public BigDecimal getBtcBalance() {
-        return btcBalance;
-    }
-
-    public void setBtcBalance(BigDecimal btcBalance) {
-        this.btcBalance = btcBalance;
-    }
-
-    public BigDecimal getEthBalance() {
-        return ethBalance;
-    }
-
-    public void setEthBalance(BigDecimal ethBalance) {
-        this.ethBalance = ethBalance;
+    public void setSysRoleId(String sysRoleId) {
+        this.sysRoleId = sysRoleId;
     }
 }

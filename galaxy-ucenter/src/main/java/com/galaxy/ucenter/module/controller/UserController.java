@@ -54,7 +54,7 @@ public class UserController extends BaseController {
     @ApiOperation(value = "用户注册", notes = "用户注册")
     @RequestMapping(value = "/add", method = {RequestMethod.POST,RequestMethod.GET})
     public Result add(@RequestBody User user) {
-        user.setCreateTime(new Date());
+        user.setCreatedAt(new Date());
         user.setStatus(1);
         user.setRegisterTime(new Date());
         user.setPassword(Md5Utils.getMd5(user.getPassword()));

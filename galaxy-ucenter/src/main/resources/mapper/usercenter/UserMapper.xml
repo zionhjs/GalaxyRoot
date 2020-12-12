@@ -7,10 +7,10 @@
             WARNING - @mbg.generated
           -->
 		<id column="id" jdbcType="BIGINT" property="id"/>
-		<result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
-		<result column="create_user_id" jdbcType="VARCHAR" property="createUserId"/>
-		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
-		<result column="update_user_id" jdbcType="VARCHAR" property="updateUserId"/>
+		<result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+		<result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+		<result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+		<result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
 		<result column="is_delete" jdbcType="BIT" property="isDelete"/>
 		<result column="version" jdbcType="INTEGER" property="version"/>
 		<result column="status" jdbcType="INTEGER" property="status"/>
@@ -24,6 +24,7 @@
 		<result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
 		<result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp"/>
 		<result column="avatar" jdbcType="VARCHAR" property="avatar"/>
+		<result column="sys_role_id" jdbcType="VARCHAR" property="sysRoleId"/>
     </resultMap>
 
 	<select id="selectUser" resultMap="BaseResultMap">
@@ -32,7 +33,7 @@
 
 	<select id="findUserByPhone" resultMap="BaseResultMap">
         select id,status,user_name,password,remark_name,
-                phone,email,register_time,register_ip,last_login_time,last_login_ip,avatar
+                phone,email,register_time,register_ip,last_login_time,last_login_ip,avatar,sys_role_id
         from t_user
         where is_delete = 0
         and phone = #{phone}
@@ -40,7 +41,7 @@
 
 	<select id="findUserByEmail" resultMap="BaseResultMap">
         select id,status,user_name,password,remark_name,
-                phone,email,register_time,register_ip,last_login_time,last_login_ip,avatar
+                phone,email,register_time,register_ip,last_login_time,last_login_ip,avatar,sys_role_id
         from t_user
         where is_delete = 0
         and email = #{email}

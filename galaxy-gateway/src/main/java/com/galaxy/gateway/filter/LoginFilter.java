@@ -1,5 +1,6 @@
 package com.galaxy.gateway.filter;
 
+import com.alibaba.fastjson.JSONObject;
 import com.galaxy.common.core.UserContext;
 import com.galaxy.common.core.constants.Constant;
 import com.galaxy.common.core.response.Result;
@@ -69,7 +70,8 @@ public class LoginFilter extends ZuulFilter {
 		String accessToken = request.getHeader("accessToken");
 
 		if (null != accessToken){
-			SysUserVo sysUserVo = (SysUserVo) redisUtils.get(Constant.REDIS_KEY_LOGIN + accessToken);
+			SysUserVo sysUserVo = JSONObject.parseObject((String) redisUtils.get(Constant.REDIS_KEY_LOGIN + accessToken),SysUserVo.class);
+			//SysUserVo sysUserVo = (SysUserVo) redisUtils.get(Constant.REDIS_KEY_LOGIN + accessToken);
 			if (null != sysUserVo){
 				long curTime = System.currentTimeMillis();
 				if (curTime > sysUserVo.getExpireTime()) {
