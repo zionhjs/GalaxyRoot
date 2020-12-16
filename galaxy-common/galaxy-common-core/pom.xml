@@ -23,6 +23,13 @@
             <artifactId>spring-webmvc</artifactId>
         </dependency>
 
+        <!--AWS-->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk</artifactId>
+            <version>1.11.133</version>
+        </dependency>
+
         <!--日志依赖-->
         <dependency>
             <groupId>log4j</groupId>
