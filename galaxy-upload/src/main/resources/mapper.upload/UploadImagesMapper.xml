@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.galaxy.upload.module.mapper.UploadImagesMapper">
+  <resultMap id="BaseResultMap" type="com.galaxy.upload.module.module.Images">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="is_delete" jdbcType="BIT" property="isDelete" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="image_name" jdbcType="VARCHAR" property="imageName" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="content_type" jdbcType="VARCHAR" property="contentType" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
+    <result column="suffix" jdbcType="VARCHAR" property="suffix" />
+    <result column="size" jdbcType="BIGINT" property="size" />
+    <result column="s3_bucket_name" jdbcType="VARCHAR" property="s3BucketName" />
+    <result column="s3_key_240" jdbcType="VARCHAR" property="s3Key240" />
+    <result column="s3_key_480" jdbcType="VARCHAR" property="s3Key480" />
+    <result column="s3_key_1080" jdbcType="VARCHAR" property="s3Key1080" />
+    <result column="object_url_240" jdbcType="VARCHAR" property="objectUrl240" />
+    <result column="object_url_480" jdbcType="VARCHAR" property="objectUrl480" />
+    <result column="object_url_1080" jdbcType="VARCHAR" property="objectUrl1080" />
+    <result column="rating" jdbcType="BIGINT" property="rating" />
+    <result column="tmp_rating" jdbcType="BIGINT" property="tmpRating" />
+  </resultMap>
+</mapper>

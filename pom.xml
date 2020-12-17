@@ -43,6 +43,7 @@
         <module>galaxy-gateway</module>
         <module>galaxy-ucenter</module>
         <module>galaxy-admin-server</module>
+        <module>galaxy-upload</module>
     </modules>
 
     <!-- 依赖管理 -->
