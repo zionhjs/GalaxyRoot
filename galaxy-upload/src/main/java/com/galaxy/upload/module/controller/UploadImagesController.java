@@ -1,8 +1,13 @@
 package com.galaxy.upload.module.controller;
 
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.PutObjectResult;
+import com.amazonaws.services.s3.model.S3Object;
 import com.galaxy.common.core.controller.BaseController;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultGenerator;
+import com.galaxy.common.core.utils.ImageUtil;
 import com.galaxy.upload.module.module.Images;
 import com.galaxy.upload.module.service.UploadImagesService;
 import com.github.pagehelper.PageHelper;
@@ -11,17 +16,33 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/galaxy/uoload")
-@Api(tags = {"/galaxy/uoload"}, description = "图片管理管理")
+@RequestMapping(value = "/galaxy")
+@Api(tags = {"/galaxy"}, description = "图片管理管理")
 public class UploadImagesController extends BaseController {
 
     @Autowired
+    private AmazonS3 amazonS3Client;
+
+    @Autowired
     private UploadImagesService uploadImagesService;
+
+    @ApiOperation(value = "上传图片", notes = "上传图片")
+    @RequestMapping(value = "/images", method = RequestMethod.POST)
+    public Result uploadImages(@RequestParam MultipartFile multipartFile,
+                               @RequestParam(value="title") String title,
+                               @RequestParam(value="description") String description,
+                               @RequestParam(value = "suffix") String suffix,
+                               @RequestParam(value="level") String level){
+        return uploadImagesService.uploadImages(multipartFile,title,description,suffix,level);
+    }
 
     @ApiOperation(value = "新增", notes = "新增")
     @RequestMapping(value = "/add", method = {RequestMethod.POST,RequestMethod.GET})

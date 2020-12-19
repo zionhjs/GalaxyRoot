@@ -10,6 +10,8 @@ public enum ResultCode {
     NOT_FOUND(404),//接口不存在
     INTERNAL_SERVER_ERROR(500),//服务器内部错误
 
+    IMAGEAS_ERROR(800014),//上传图片失败
+    IMAGEAS_NOT_EXIST(800013),//文件不存在
     OUT_TIME_TOKEN(800012),//token 失效
     NOT_EXIST_TOKEN_EXCEPTION(800011),//token不存在(请重新登录再访问)
     PARAM_ERROR(800010),//手机号或者邮箱必须输入一个
