@@ -10,9 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>galaxy-upload</artifactId>
-
-
-    <description>galaxy 用户中心服务</description>
+    <description>galaxy 上传服务</description>
 
     <dependencies>
         <!--web 模块-->
