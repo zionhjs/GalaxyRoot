@@ -7,7 +7,6 @@ public class Md5Utils {
 
 	public static String getMd5(String msg){
 		MessageDigest md5 = null;
-		msg = "abcdefghjklqwertyiopzxcvbnm";
 		try {
 			md5 = MessageDigest.getInstance("MD5");
 			byte[] md5Bytes = md5.digest(msg.getBytes());

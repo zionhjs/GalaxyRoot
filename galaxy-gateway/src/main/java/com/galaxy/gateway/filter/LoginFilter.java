@@ -52,7 +52,7 @@ public class LoginFilter extends ZuulFilter {
 
 		String[] s = url.split("/");
 
-		if ("/swagger-ui.*,/static.*,/a2billing.*,/favicon.*,/webjars/springfox-swagger-ui.*,/v2/api-docs.*,/galaxy/user/login,/galaxy/user/logout".
+		if ("/swagger-ui.*,/static.*,/a2billing.*,/favicon.*,/webjars/springfox-swagger-ui.*,/v2/api-docs.*,/galaxy/user/login,/galaxy/user/logout,/galaxy/user/add".
 				contains(s[s.length-1])) {
 			return false;
 		}else {
