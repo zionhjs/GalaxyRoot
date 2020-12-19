@@ -45,7 +45,7 @@ public class ImageUtil {
             markPic(bufImg, img, mark, imgWidth / 4, (imgWidth * markHeight) / (4 * markWidth),
                     imgWidth - imgWidth / 4, imgHeight - (imgWidth * markHeight) / (4 * markWidth));
 
-            File outFile = new File("d:\\out_pic.png");
+            File outFile = new File("out_pic.png");
             ImageIO.write(bufImg, "png", outFile);//写图片
             /*ByteArrayOutputStream bs = new ByteArrayOutputStream();
             ImageOutputStream imOut = ImageIO.createImageOutputStream(bs);

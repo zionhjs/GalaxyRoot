@@ -10,6 +10,7 @@ public enum ResultCode {
     NOT_FOUND(404),//接口不存在
     INTERNAL_SERVER_ERROR(500),//服务器内部错误
 
+    IMAGEAS_LOGO_ERROR(800015),//增加Logo错误，请重新上传图片
     IMAGEAS_ERROR(800014),//上传图片失败
     IMAGEAS_NOT_EXIST(800013),//文件不存在
     OUT_TIME_TOKEN(800012),//token 失效

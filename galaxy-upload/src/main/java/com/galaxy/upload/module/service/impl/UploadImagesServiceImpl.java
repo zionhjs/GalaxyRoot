@@ -13,6 +13,7 @@ import com.galaxy.upload.module.module.Images;
 import com.galaxy.upload.module.service.UploadImagesService;
 import com.galaxy.upload.module.utils.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,7 +23,10 @@ import java.time.LocalDateTime;
 @Service
 public class UploadImagesServiceImpl extends AbstractService<Images> implements UploadImagesService {
 
-    private static String markImg = "D:\\targetLogoFile.png";
+    @Value("${galaxy.amazonProperties.imageBucketName}")
+    private String imageBucketName;
+
+    private static String markImg = "targetLogoFile.tmp";
 
     @Autowired
     private UploadImagesMapper uploadImagesMapper;
@@ -46,9 +50,15 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             //添加图片水印
             File file = ImageUtil.addPicMarkToMutipartFile(multipartFile, markImg);
 
+            if (null == file){
+                return ResultGenerator.genFailResult(ResultCode.IMAGEAS_LOGO_ERROR,"增加Logo错误，请重新上传图片");
+            }
+
             //上传图片
-            S3Object s3Object240 = uploadFileToS3Bucket("galaxy-image", file);
+            S3Object s3Object240 = uploadFileToS3Bucket(imageBucketName, file);
             images.setS3Key240("https://" + "galaxy-image" + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
+            //删除临时文件
+            file.delete();
             save(images);
             return ResultGenerator.genSuccessResult(images);
         }catch (Exception e){
