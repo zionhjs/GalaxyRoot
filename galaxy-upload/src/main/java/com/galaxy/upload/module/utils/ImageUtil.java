@@ -1,4 +1,4 @@
-package com.galaxy.common.core.utils;
+package com.galaxy.upload.module.utils;
 
 import org.springframework.web.multipart.MultipartFile;
 

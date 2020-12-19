@@ -8,14 +8,12 @@ import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultCode;
 import com.galaxy.common.core.response.ResultGenerator;
 import com.galaxy.common.core.service.AbstractService;
-import com.galaxy.common.core.utils.ImageUtil;
 import com.galaxy.upload.module.mapper.UploadImagesMapper;
 import com.galaxy.upload.module.module.Images;
 import com.galaxy.upload.module.service.UploadImagesService;
+import com.galaxy.upload.module.utils.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;

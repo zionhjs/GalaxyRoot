@@ -1,13 +1,8 @@
 package com.galaxy.upload.module.controller;
 
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectResult;
-import com.amazonaws.services.s3.model.S3Object;
 import com.galaxy.common.core.controller.BaseController;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultGenerator;
-import com.galaxy.common.core.utils.ImageUtil;
 import com.galaxy.upload.module.module.Images;
 import com.galaxy.upload.module.service.UploadImagesService;
 import com.github.pagehelper.PageHelper;
@@ -18,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -27,9 +20,6 @@ import java.util.List;
 @RequestMapping(value = "/galaxy")
 @Api(tags = {"/galaxy"}, description = "图片管理管理")
 public class UploadImagesController extends BaseController {
-
-    @Autowired
-    private AmazonS3 amazonS3Client;
 
     @Autowired
     private UploadImagesService uploadImagesService;
