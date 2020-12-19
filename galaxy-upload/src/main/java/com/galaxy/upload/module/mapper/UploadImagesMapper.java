@@ -5,4 +5,5 @@ import com.galaxy.upload.module.module.Images;
 
 public interface UploadImagesMapper extends Mapper<Images> {
 
+    Images getImagesDetailsById(Long id);
 }

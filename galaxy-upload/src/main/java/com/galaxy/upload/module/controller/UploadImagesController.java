@@ -34,6 +34,12 @@ public class UploadImagesController extends BaseController {
         return uploadImagesService.uploadImages(multipartFile,title,description,suffix,level);
     }
 
+    @ApiOperation(value = "修改图片", notes = "修改图片")
+    @RequestMapping(value = "/updateImages", method = {RequestMethod.POST,RequestMethod.GET})
+    public Result updateImages(@RequestBody Images images) {
+        return uploadImagesService.updateImages(images);
+    }
+
     @ApiOperation(value = "新增", notes = "新增")
     @RequestMapping(value = "/add", method = {RequestMethod.POST,RequestMethod.GET})
     public Result add(@RequestBody Images images) {
@@ -48,21 +54,7 @@ public class UploadImagesController extends BaseController {
     @ApiOperation(value = "删除", notes = "删除")
     @RequestMapping(value = "/delete", method = {RequestMethod.POST,RequestMethod.GET})
     public Result delete(@RequestParam Long id) {
-        Images images=new Images();
-        images.setId(id);
-        images.setIsDelete(true);
-        uploadImagesService.update(images);
-        return ResultGenerator.genSuccessResult();
-    }
-
-    @ApiOperation(value = "修改", notes = "修改")
-    @RequestMapping(value = "/update", method = {RequestMethod.POST,RequestMethod.GET})
-    public Result update(@RequestBody Images images) {
-        images.setUpdatedAt(new Date());
-        uploadImagesService.update(images);
-        Result result=ResultGenerator.genSuccessResult();
-        result.setData(images);
-        return result;
+        return uploadImagesService.delete(id);
     }
 
     @ApiOperation(value = "获取单个详情", notes = "获取单个详情")

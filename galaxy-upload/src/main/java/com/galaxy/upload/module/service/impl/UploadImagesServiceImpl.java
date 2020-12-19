@@ -1,6 +1,7 @@
 package com.galaxy.upload.module.service.impl;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Service
 public class UploadImagesServiceImpl extends AbstractService<Images> implements UploadImagesService {
@@ -36,6 +38,19 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
 
     @Override
     public Result uploadImages(MultipartFile multipartFile,String title,String description,String suffix,String level) {
+        if(title == null) {
+            title = "title";
+        }
+        if(description == null) {
+            description = "description";
+        }
+        if(suffix == null) {
+            suffix = "ex";
+        }
+        if(level == null) {
+            level = "star";
+        }
+
         Images images = new Images();
         images.setTitle(title);
         images.setDescription(description);
@@ -56,7 +71,10 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
 
             //上传图片
             S3Object s3Object240 = uploadFileToS3Bucket(imageBucketName, file);
-            images.setS3Key240("https://" + "galaxy-image" + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
+            //图片桶路径
+            images.setS3Key240(s3Object240.getKey());
+            //图片全路径
+            images.setObjectUrl240("https://" + "galaxy-image" + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
             //删除临时文件
             file.delete();
             save(images);
@@ -65,6 +83,45 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             e.printStackTrace();
             return ResultGenerator.genFailResult(ResultCode.IMAGEAS_ERROR,"上传图片失败");
         }
+    }
+
+    @Override
+    public Result updateImages(Images images) {
+        if(images.getTitle() == null) {
+            images.setTitle("title");
+        }
+        if(images.getDescription() == null) {
+            images.setDescription("description");
+        }
+        if(images.getSuffix() == null) {
+            images.setSuffix("ex");
+        }
+        if(images.getLevel() == null) {
+            images.setLevel("star");
+        }
+        images.setUpdatedAt(new Date());
+        update(images);
+        Result result = ResultGenerator.genSuccessResult();
+        result.setData(images);
+        return result;
+    }
+
+    @Override
+    public Result delete(Long id) {
+
+        Images images =  uploadImagesMapper.getImagesDetailsById(id);
+        if (null == images){
+            return ResultGenerator.genFailResult(ResultCode.IMAGEAS_NULL_ERROR,"图片不存在或者已删除");
+        }
+
+        images.setId(id);
+        images.setIsDelete(true);
+        update(images);
+
+        //删除远程图片
+        amazonS3Client.deleteObject(new DeleteObjectRequest(imageBucketName, images.getS3Key240()));
+
+        return ResultGenerator.genSuccessResult();
     }
 
     /**
