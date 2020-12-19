@@ -17,15 +17,15 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/galaxy")
-@Api(tags = {"/galaxy"}, description = "图片管理管理")
+@RequestMapping(value = "/galaxy/images")
+@Api(tags = {"/galaxy/images"}, description = "图片管理管理")
 public class UploadImagesController extends BaseController {
 
     @Autowired
     private UploadImagesService uploadImagesService;
 
     @ApiOperation(value = "上传图片", notes = "上传图片")
-    @RequestMapping(value = "/images", method = RequestMethod.POST)
+    @RequestMapping(value = "/uploadImages", method = RequestMethod.POST)
     public Result uploadImages(@RequestParam MultipartFile multipartFile,
                                @RequestParam(value="title") String title,
                                @RequestParam(value="description") String description,
@@ -51,7 +51,7 @@ public class UploadImagesController extends BaseController {
         return result;
     }
 
-    @ApiOperation(value = "删除", notes = "删除")
+    @ApiOperation(value = "删除图片", notes = "删除图片")
     @RequestMapping(value = "/delete", method = {RequestMethod.POST,RequestMethod.GET})
     public Result delete(@RequestParam Long id) {
         return uploadImagesService.delete(id);
