@@ -86,6 +86,14 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
         }
     }
 
+    @Override
+    public Result testUploadVideo(MultipartFile multipartFile) {
+        return null;
+        //S3Object s3Object480 = uploadFileToS3Bucket(videoBucketName, targetFile480);
+        /*System.out.println("https://" + videoBucketName + ".s3-us-west-1.amazonaws.com/" + s3Object480.getKey());
+        return ResultGenerator.genSuccessResult("https://" + videoBucketName + ".s3-us-west-1.amazonaws.com/" + s3Object480.getKey());*/
+    }
+
     public void uploadFile(final MultipartFile multipartFile, Video video){
         try {
             File sourceFile = convertMultiPartFileToFile(multipartFile);
@@ -129,25 +137,28 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
     private File encodeVideo(java.io.File source, java.io.File target, int width, int height){
         // Audio
         AudioAttributes audio = new AudioAttributes();
+        //设置编码器
         audio.setCodec("aac");
+        //设置比特率
         audio.setBitRate(64000);
         audio.setChannels(2);
+        //设置节录率
         audio.setSamplingRate(44100);
 
         // Video
         VideoAttributes video = new VideoAttributes();
+        //设置编码器
         video.setCodec("h264");
         video.setX264Profile(VideoAttributes.X264_PROFILE.BASELINE);
+        //设置大小
         video.setSize(new VideoSize(width,height));
         int rate = 64000;
-
+        //设置比特率
         video.setBitRate(rate * (int)(height/480)*(int)(height/480)*2);
-        // keep the frames based on mobile devices
-        video.setFrameRate(60);
-        // video.setSize(new VideoSize(width,height));
+        //设置帧率(越小越清晰)
+        video.setFrameRate(1);
 
-        // Attrs
-        // it.sauronsoftware.jave.EncodingAttributes attrs = new it.sauronsoftware.jave.EncodingAttributes();
+        //转换
         EncodingAttributes attrs = new EncodingAttributes();
         attrs.setFormat("mp4");
         attrs.setAudioAttributes(audio);

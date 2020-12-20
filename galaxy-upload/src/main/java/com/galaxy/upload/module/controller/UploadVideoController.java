@@ -25,6 +25,12 @@ public class UploadVideoController {
     private UploadVideoService uploadVideoService;
 
     @ApiOperation(value = "上传视频", notes = "上传视频")
+    @RequestMapping(value = "/testUploadVideo", method = {RequestMethod.POST,RequestMethod.GET})
+    public Result testUploadVideo(@RequestParam(value = "multipartFile") MultipartFile multipartFile){
+        return uploadVideoService.testUploadVideo(multipartFile);
+    }
+
+    @ApiOperation(value = "上传视频", notes = "上传视频")
     @RequestMapping(value = "/uploadVideo", method = {RequestMethod.POST,RequestMethod.GET})
     public Result uploadVideo(@RequestParam(value = "multipartFile") MultipartFile multipartFile,
                               @RequestParam(value = "title") String title,
