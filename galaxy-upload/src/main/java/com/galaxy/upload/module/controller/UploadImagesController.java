@@ -3,7 +3,7 @@ package com.galaxy.upload.module.controller;
 import com.galaxy.common.core.controller.BaseController;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultGenerator;
-import com.galaxy.upload.module.module.Images;
+import com.galaxy.upload.module.model.Images;
 import com.galaxy.upload.module.service.UploadImagesService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

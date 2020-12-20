@@ -1,4 +1,4 @@
-package com.galaxy.upload.module.module;
+package com.galaxy.upload.module.model;
 
 import java.util.Date;
 import javax.persistence.*;

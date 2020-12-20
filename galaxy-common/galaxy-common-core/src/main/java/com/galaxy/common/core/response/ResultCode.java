@@ -10,6 +10,8 @@ public enum ResultCode {
     NOT_FOUND(404),//接口不存在
     INTERNAL_SERVER_ERROR(500),//服务器内部错误
 
+    VIDEO_LOGO_ERROR(800018),//请重新上传视频
+    VIDEO_ERROR(800017),//上传视频失败
     IMAGEAS_NULL_ERROR(800016),//图片不存在或者已删除
     IMAGEAS_LOGO_ERROR(800015),//增加Logo错误，请重新上传图片
     IMAGEAS_ERROR(800014),//上传图片失败

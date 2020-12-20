@@ -10,7 +10,7 @@ import com.galaxy.common.core.response.ResultCode;
 import com.galaxy.common.core.response.ResultGenerator;
 import com.galaxy.common.core.service.AbstractService;
 import com.galaxy.upload.module.mapper.UploadImagesMapper;
-import com.galaxy.upload.module.module.Images;
+import com.galaxy.upload.module.model.Images;
 import com.galaxy.upload.module.service.UploadImagesService;
 import com.galaxy.upload.module.utils.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +38,11 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
 
     @Override
     public Result uploadImages(MultipartFile multipartFile,String title,String description,String suffix,String level) {
+
+        if (multipartFile.isEmpty()){
+            return ResultGenerator.genFailResult(ResultCode.IMAGEAS_NOT_EXIST,"文件不存在");
+        }
+
         if(title == null) {
             title = "title";
         }
@@ -56,11 +61,10 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         images.setDescription(description);
         images.setSuffix(suffix);
         images.setLevel(level);
+        images.setImageName(multipartFile.getOriginalFilename());
+        images.setContentType(multipartFile.getContentType());
+        images.setSize(multipartFile.getSize());
         try{
-            //判断文件是否存在
-            if (multipartFile == null){
-                return ResultGenerator.genFailResult(ResultCode.IMAGEAS_NOT_EXIST,"文件不存在");
-            }
 
             //添加图片水印
             File file = ImageUtil.addPicMarkToMutipartFile(multipartFile, markImg);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.galaxy.upload.module.mapper.UploadImagesMapper">
-  <resultMap id="BaseResultMap" type="com.galaxy.upload.module.model.Images">
+<mapper namespace="com.galaxy.upload.module.mapper.UploadVideoMapper">
+  <resultMap id="BaseResultMap" type="com.galaxy.upload.module.model.Video">
     <!--
       WARNING - @mbg.generated
     -->
@@ -13,30 +13,20 @@
     <result column="is_delete" jdbcType="BIT" property="isDelete" />
     <result column="version" jdbcType="INTEGER" property="version" />
     <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="image_name" jdbcType="VARCHAR" property="imageName" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="video_name" jdbcType="VARCHAR" property="videoName" />
+    <result column="thumbnail" jdbcType="VARCHAR" property="thumbnail" />
     <result column="content_type" jdbcType="VARCHAR" property="contentType" />
+    <result column="size" jdbcType="BIGINT" property="size" />
     <result column="level" jdbcType="VARCHAR" property="level" />
     <result column="suffix" jdbcType="VARCHAR" property="suffix" />
-    <result column="size" jdbcType="BIGINT" property="size" />
     <result column="s3_bucket_name" jdbcType="VARCHAR" property="s3BucketName" />
-    <result column="s3_key_240" jdbcType="VARCHAR" property="s3Key240" />
     <result column="s3_key_480" jdbcType="VARCHAR" property="s3Key480" />
     <result column="s3_key_1080" jdbcType="VARCHAR" property="s3Key1080" />
-    <result column="object_url_240" jdbcType="VARCHAR" property="objectUrl240" />
+    <result column="s3_key_2160" jdbcType="VARCHAR" property="s3Key2160" />
     <result column="object_url_480" jdbcType="VARCHAR" property="objectUrl480" />
     <result column="object_url_1080" jdbcType="VARCHAR" property="objectUrl1080" />
-    <result column="rating" jdbcType="BIGINT" property="rating" />
-    <result column="tmp_rating" jdbcType="BIGINT" property="tmpRating" />
+    <result column="object_url_2160" jdbcType="VARCHAR" property="objectUrl2160" />
   </resultMap>
-
-    <select id="getImagesDetailsById" resultMap="BaseResultMap">
-        select id,image_name,title,description,content_type,level,suffix,size,s3_bucket_name,
-                s3_key_240,s3_key_480,s3_key_1080,object_url_240,object_url_480,object_url_1080,rating,tmp_rating
-        from t_images
-        where is_delete = 0
-        and id = #{id}
-    </select>
-
 </mapper>
