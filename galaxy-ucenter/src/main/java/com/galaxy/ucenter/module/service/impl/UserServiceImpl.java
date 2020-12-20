@@ -1,6 +1,5 @@
 package com.galaxy.ucenter.module.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.galaxy.common.core.constants.Constant;
 import com.galaxy.common.core.response.Result;
@@ -9,12 +8,11 @@ import com.galaxy.common.core.response.ResultGenerator;
 import com.galaxy.common.core.service.AbstractService;
 import com.galaxy.common.core.utils.Logger;
 import com.galaxy.common.core.utils.Md5Utils;
-import com.galaxy.common.core.utils.RedisUtils;
+import com.galaxy.common.core.utils.RedisUtil;
 import com.galaxy.common.core.utils.TokenUtil;
 import com.galaxy.common.core.vo.SysUserVo;
 import com.galaxy.ucenter.module.mapper.SysMenuMapper;
 import com.galaxy.ucenter.module.mapper.UserMapper;
-import com.galaxy.ucenter.module.model.SysMenu;
 import com.galaxy.ucenter.module.model.User;
 import com.galaxy.ucenter.module.service.UserService;
 import com.galaxy.ucenter.module.vo.CaptchaVo;
@@ -47,7 +45,7 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     private SysMenuMapper sysMenuMapper;
 
     @Resource
-    private RedisUtils redisUtils;
+    private RedisUtil redisUtil;
 
     @Override
     public Result list(Long id) {
@@ -59,21 +57,21 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     @Override
     public Result logout(Long userId) {
         SysUserVo sysUserVo = null;
-        String token=(String)redisUtils.get(userId+"USERID");
+        String token=(String) redisUtil.get(userId+"USERID");
         try {
-            redisUtils.get(Constant.REDIS_KEY_LOGIN + token);
-            sysUserVo = JSONObject.parseObject((String) redisUtils.get(Constant.REDIS_KEY_LOGIN + token),SysUserVo.class);
-            System.out.println(JSONObject.parseObject((String) redisUtils.get(Constant.REDIS_KEY_LOGIN + token),SysUserVo.class));
+            redisUtil.get(Constant.REDIS_KEY_LOGIN + token);
+            sysUserVo = JSONObject.parseObject((String) redisUtil.get(Constant.REDIS_KEY_LOGIN + token),SysUserVo.class);
+            System.out.println(JSONObject.parseObject((String) redisUtil.get(Constant.REDIS_KEY_LOGIN + token),SysUserVo.class));
             //sysUserVo = JSONObject.toJavaObject((JSON) redisUtils.get(Constant.REDIS_KEY_LOGIN + token),SysUserVo.class);
         }catch (Exception e){
             e.printStackTrace();
             throw new RuntimeException("存入redis异常");
         }
 
-        redisUtils.delete(userId+"USERID");
+        redisUtil.delete(userId+"USERID");
 
         if (sysUserVo != null){
-            redisUtils.delete(Constant.REDIS_KEY_LOGIN + token);
+            redisUtil.delete(Constant.REDIS_KEY_LOGIN + token);
 
             return ResultGenerator.genSuccessResult();
         }
@@ -112,14 +110,14 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
         }
 
         //创建token
-        String token= (String) redisUtils.get(user.getId() + "USERID");
+        String token= (String) redisUtil.get(user.getId() + "USERID");
 
         Boolean loginFlag = false;
 
         if(StringUtils.isNotBlank(token)){
             //说明已登陆，或直接断网
-            redisUtils.delete(Constant.REDIS_KEY_LOGIN + token);
-            redisUtils.delete(user.getId()+"USERID");
+            redisUtil.delete(Constant.REDIS_KEY_LOGIN + token);
+            redisUtil.delete(user.getId()+"USERID");
         }else{
             //true首次
             loginFlag=true;
@@ -136,8 +134,8 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
             sysUserVo.setUserName(user.getUserName());
             sysUserVo.setSysMenuList(sysMenuList);
             //redisService.put(Constant.REDIS_KEY_LOGIN, token, new RedisModel(su.getId(), System.currentTimeMillis() + magConfig.getExpireTime()), magConfig.getExpireTime());
-            redisUtils.setWithExpire(Constant.REDIS_KEY_LOGIN + token, sysUserVo , 2505600000L);
-            redisUtils.set(user.getId()+"USERID",token);
+            redisUtil.setWithExpire(Constant.REDIS_KEY_LOGIN + token, sysUserVo , 2505600000L);
+            redisUtil.set(user.getId()+"USERID",token);
         }catch (Exception e){
             e.printStackTrace();
             Logger.info(this,"登录token存入redis产生异常："+e.getMessage());
@@ -153,7 +151,7 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
         System.out.print("登录验证码" + verCode);
         String verifyToken = TokenUtil.getToken();
         // 存入redis并设置过期时间为30秒
-        redisUtils.setWithExpire(Constant.REDIS_KEY_VERFIY + verifyToken, new VerfiyCodeVo(verCode,System.currentTimeMillis() + Constant.verifyCodeForTempValidTime)  , Constant.verifyCodeForTempValidTime);
+        redisUtil.setWithExpire(Constant.REDIS_KEY_VERFIY + verifyToken, new VerfiyCodeVo(verCode,System.currentTimeMillis() + Constant.verifyCodeForTempValidTime)  , Constant.verifyCodeForTempValidTime);
         CaptchaVo captchaVo = new CaptchaVo();
         captchaVo.setVerifyToken(verifyToken);
         captchaVo.setData(specCaptcha.toBase64());

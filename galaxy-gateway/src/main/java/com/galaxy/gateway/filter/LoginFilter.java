@@ -7,13 +7,11 @@ import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultCode;
 import com.galaxy.common.core.response.ResultGenerator;
 import com.galaxy.common.core.utils.Logger;
-import com.galaxy.common.core.utils.RedisUtils;
+import com.galaxy.common.core.utils.RedisUtil;
 import com.galaxy.common.core.vo.SysUserVo;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
-import com.netflix.zuul.exception.ZuulException;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -30,7 +28,7 @@ import static org.springframework.cloud.netflix.zuul.filters.support.FilterConst
 public class LoginFilter extends ZuulFilter {
 
 	@Resource
-	private RedisUtils redisUtils;
+	private RedisUtil redisUtil;
 
 	@Override
 	public String filterType() {
@@ -70,7 +68,7 @@ public class LoginFilter extends ZuulFilter {
 		String accessToken = request.getHeader("accessToken");
 
 		if (null != accessToken){
-			SysUserVo sysUserVo = JSONObject.parseObject((String) redisUtils.get(Constant.REDIS_KEY_LOGIN + accessToken),SysUserVo.class);
+			SysUserVo sysUserVo = JSONObject.parseObject((String) redisUtil.get(Constant.REDIS_KEY_LOGIN + accessToken),SysUserVo.class);
 			//SysUserVo sysUserVo = (SysUserVo) redisUtils.get(Constant.REDIS_KEY_LOGIN + accessToken);
 			if (null != sysUserVo){
 				long curTime = System.currentTimeMillis();
