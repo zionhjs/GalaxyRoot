@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/galaxy/images")
-@Api(tags = {"/galaxy/images"}, description = "图片管理管理")
+@Api(tags = {"/galaxy/images"}, description = "图片管理模块")
 public class UploadImagesController extends BaseController {
 
     @Autowired
