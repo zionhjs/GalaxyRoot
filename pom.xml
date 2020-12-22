@@ -44,6 +44,7 @@
         <module>galaxy-ucenter</module>
         <module>galaxy-admin-server</module>
         <module>galaxy-upload</module>
+        <module>galaxy-cms</module>
     </modules>
 
     <!-- 依赖管理 -->

@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: galaxy-cms
+  cloud:
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+    config:
+      discovery:
+        enabled: true
+        service-id: galaxy-config  #注册中心的服务名
+      profile: dev # 指定配置文件的环境
+
+# 注册中心
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka/
