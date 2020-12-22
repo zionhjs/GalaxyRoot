@@ -54,12 +54,8 @@ public class UserController extends BaseController {
     @ApiOperation(value = "用户注册", notes = "用户注册")
     @RequestMapping(value = "/add", method = {RequestMethod.POST,RequestMethod.GET})
     public Result add(@RequestBody User user) {
-        user.setCreatedAt(new Date());
-        user.setStatus(1);
-        user.setRegisterTime(new Date());
-        user.setPassword(Md5Utils.getMd5(user.getPassword()));
-        userService.save(user);
-        return ResultGenerator.genSuccessResult(user);
+        Logger.info(this, "/galaxy/user/add 用户注册接口入参 :" + user);
+        return userService.add(user);
     }
 
     @ApiOperation(value = "逻辑删除用户", notes = "逻辑删除用户")

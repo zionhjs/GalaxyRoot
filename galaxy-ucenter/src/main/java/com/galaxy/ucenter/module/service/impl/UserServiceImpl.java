@@ -26,6 +26,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -157,6 +158,22 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
         captchaVo.setData(specCaptcha.toBase64());
         // 将key和base64返回给前端
         return ResultGenerator.genSuccessResult(captchaVo);
+    }
+
+    @Override
+    public Result add(User user) {
+
+        User userVo = userMapper.findUserByPhone(user.getPhone());
+        if (null != userVo){
+            return ResultGenerator.genFailResult(ResultCode.PHONE_ERROR,"手机号已存在");
+        }
+
+        user.setCreatedAt(new Date());
+        user.setStatus(1);
+        user.setRegisterTime(new Date());
+        user.setPassword(Md5Utils.getMd5(user.getPassword()));
+        save(user);
+        return ResultGenerator.genSuccessResult(user);
     }
 
 }
