@@ -16,8 +16,8 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/galaxy/cms/team")
-@Api(tags = {"/galaxy/cms/team"}, description = "团队管理模块")
+@RequestMapping(value = "/team")
+@Api(tags = {"/team"}, description = "团队管理模块")
 public class CmsTeamController extends BaseController {
 
     @Resource

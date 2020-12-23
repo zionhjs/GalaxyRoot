@@ -24,8 +24,8 @@ import java.util.List;
  * 管理用户得好友
  */
 @RestController
-@RequestMapping(value = "/galaxy/user")
-@Api(tags = {"/galaxy/user"}, description = "用户管理模块")
+@RequestMapping(value = "/user")
+@Api(tags = {"/user"}, description = "用户管理模块")
 public class UserController extends BaseController {
 
     @Autowired

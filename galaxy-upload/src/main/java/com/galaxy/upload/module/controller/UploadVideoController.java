@@ -17,8 +17,8 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/galaxy/video")
-@Api(tags = {"/galaxy/video"}, description = "视频管理模块")
+@RequestMapping(value = "/video")
+@Api(tags = {"/video"}, description = "视频管理模块")
 public class UploadVideoController {
 
     @Autowired
