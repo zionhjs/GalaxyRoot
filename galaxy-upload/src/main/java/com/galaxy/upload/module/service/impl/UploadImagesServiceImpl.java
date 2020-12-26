@@ -94,6 +94,32 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
     }
 
     @Override
+    public Result uploadImagesUrl(MultipartFile multipartFile) {
+
+        if (multipartFile.isEmpty()){
+            return ResultGenerator.genFailResult(ResultCode.IMAGEAS_NOT_EXIST,"文件不存在");
+        }
+
+        try{
+            //添加图片水印
+            File file = ImageUtil.addPicMarkToMutipartFile(multipartFile, markImg);
+
+            if (null == file){
+                return ResultGenerator.genFailResult(ResultCode.IMAGEAS_LOGO_ERROR,"增加Logo错误，请重新上传图片");
+            }
+
+            //上传图片
+            S3Object s3Object240 = uploadFileToS3Bucket(imageBucketName, file);
+            //删除临时文件
+            file.delete();
+            return ResultGenerator.genSuccessResult("https://" + "galaxy-image" + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultGenerator.genFailResult(ResultCode.IMAGEAS_ERROR,"上传图片失败");
+        }
+    }
+
+    @Override
     public Result updateImages(Images images) {
         if(images.getTitle() == null) {
             images.setTitle("title");

@@ -24,6 +24,12 @@ public class UploadImagesController extends BaseController {
     @Autowired
     private UploadImagesService uploadImagesService;
 
+    @ApiOperation(value = "上传图片只返回url", notes = "上传图片只返回url")
+    @RequestMapping(value = "/uploadImagesUrl", method = RequestMethod.POST)
+    public Result uploadImagesUrl(@RequestBody MultipartFile multipartFile){
+        return uploadImagesService.uploadImagesUrl(multipartFile);
+    }
+
     @ApiOperation(value = "上传图片直接保存", notes = "上传图片直接保存")
     @RequestMapping(value = "/uploadImages", method = RequestMethod.POST)
     public Result uploadImages(@RequestParam MultipartFile multipartFile,
