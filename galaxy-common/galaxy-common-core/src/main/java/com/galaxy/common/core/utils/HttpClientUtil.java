@@ -11,6 +11,11 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -23,6 +28,27 @@ public class HttpClientUtil {
 
     // 从主机读取数据超时（3min）
     public static final int HTTP_READ_TIMEOUT_3MIN = 180 * 1000;
+
+    /**
+     * 模拟 http post请求
+     *
+     * @param httpUrl
+     * @return
+     * @throws IOException
+     */
+    public static InputStream dowloadFile(String httpUrl) throws IOException {
+        URL url = null;
+        try {
+            url = new URL(httpUrl);
+        } catch (MalformedURLException e1) {
+            e1.printStackTrace();
+        }
+
+        URLConnection conn = url.openConnection();
+        InputStream inStream = conn.getInputStream();
+        return inStream;
+    }
+
 
     /**
      * httpPost
