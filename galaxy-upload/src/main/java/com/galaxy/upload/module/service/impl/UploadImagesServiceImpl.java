@@ -13,6 +13,8 @@ import com.galaxy.upload.module.mapper.UploadImagesMapper;
 import com.galaxy.upload.module.model.Images;
 import com.galaxy.upload.module.service.UploadImagesService;
 import com.galaxy.upload.module.utils.ImageUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class UploadImagesServiceImpl extends AbstractService<Images> implements UploadImagesService {
@@ -57,6 +60,7 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         }
 
         Images images = new Images();
+        images.setCreatedAt(new Date());
         images.setTitle(title);
         images.setDescription(description);
         images.setSuffix(suffix);
@@ -126,6 +130,14 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         amazonS3Client.deleteObject(new DeleteObjectRequest(imageBucketName, images.getS3Key240()));
 
         return ResultGenerator.genSuccessResult();
+    }
+
+    @Override
+    public Result list(Integer page, Integer size, Images images) {
+        PageHelper.startPage(page, size);
+        List<Images> list = uploadImagesMapper.list(images);
+        PageInfo pageInfo = new PageInfo(list);
+        return ResultGenerator.genSuccessResult(pageInfo);
     }
 
     /**

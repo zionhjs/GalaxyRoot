@@ -39,4 +39,11 @@
         and id = #{id}
     </select>
 
+  <select id="list" resultMap="BaseResultMap">
+      select id,image_name,title,description,content_type,level,suffix,size,s3_bucket_name,
+              s3_key_240,s3_key_480,s3_key_1080,object_url_240,object_url_480,object_url_1080,ifnull(rating, 0) as rating,tmp_rating
+        from t_images
+        where is_delete = 0	order by rating
+  </select>
+
 </mapper>

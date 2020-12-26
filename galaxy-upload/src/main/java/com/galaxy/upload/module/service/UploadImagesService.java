@@ -12,4 +12,6 @@ public interface UploadImagesService extends Service<Images> {
     Result updateImages(Images images);
 
     Result delete(Long id);
+
+    Result list(Integer page, Integer size, Images images);
 }

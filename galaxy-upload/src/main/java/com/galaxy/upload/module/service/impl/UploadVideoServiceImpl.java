@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Service
 public class UploadVideoServiceImpl extends AbstractService<Video> implements UploadVideoService {
@@ -68,6 +69,7 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
         }
 
         Video video = new Video();
+        video.setCreatedAt(new Date());
         video.setTitle(title);
         video.setDescription(description);
         video.setSuffix(suffix);

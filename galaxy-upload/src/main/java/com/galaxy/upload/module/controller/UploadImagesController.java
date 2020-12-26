@@ -24,7 +24,7 @@ public class UploadImagesController extends BaseController {
     @Autowired
     private UploadImagesService uploadImagesService;
 
-    @ApiOperation(value = "上传图片", notes = "上传图片")
+    @ApiOperation(value = "上传图片直接保存", notes = "上传图片直接保存")
     @RequestMapping(value = "/uploadImages", method = RequestMethod.POST)
     public Result uploadImages(@RequestParam MultipartFile multipartFile,
                                @RequestParam(value="title") String title,
@@ -67,11 +67,7 @@ public class UploadImagesController extends BaseController {
     @ApiOperation(value = "分页查询", notes = "分页查询")
     @RequestMapping(value = "/findByModal", method = {RequestMethod.POST,RequestMethod.GET})
     public Result list(@RequestParam(defaultValue="1",required=false) Integer page,@RequestParam(defaultValue="20",required=false) Integer size, @RequestBody(required =false) Images images) {
-        PageHelper.startPage(page, size);
-        images.setIsDelete(false);
-        List<Images> list = uploadImagesService.findByModel(images);
-        PageInfo pageInfo = new PageInfo(list);
-        return ResultGenerator.genSuccessResult(pageInfo);
+        return uploadImagesService.list(page,size,images);
     }
 
 
