@@ -42,8 +42,8 @@ public class ImageUtil {
 
             BufferedImage bufImg = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_RGB);
             //水印的相对位置  ps：这里是右下角  水印宽为底片的四分之一  位置自己可以调整
-            markPic(bufImg, img, mark, imgWidth / 4, (imgWidth * markHeight) / (4 * markWidth),
-                    imgWidth - imgWidth / 4, imgHeight - (imgWidth * markHeight) / (4 * markWidth));
+            markPic(bufImg, img, mark, imgWidth / 16, (imgWidth * markHeight) / (16 * markWidth),
+                    imgWidth - imgWidth / 16, imgHeight - (imgWidth * markHeight) / (16 * markWidth));
 
             File outFile = new File("out_pic.png");
             ImageIO.write(bufImg, "png", outFile);//写图片
