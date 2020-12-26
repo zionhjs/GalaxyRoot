@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +25,18 @@ public class UploadImagesController extends BaseController {
 
     @Autowired
     private UploadImagesService uploadImagesService;
+
+    @ApiOperation(value = "单个文件下载", notes = "单个文件下载")
+    @RequestMapping(value = "/downloadImage", method = {RequestMethod.POST,RequestMethod.GET})
+    public Result downloadImage(@RequestParam String imageName, HttpServletRequest request, HttpServletResponse response){
+        return uploadImagesService.downloadImage(imageName,request,response);
+    }
+
+    @ApiOperation(value = "上传图片成功之后自动下载", notes = "上传图片只返回url")
+    @RequestMapping(value = "/uploadImagesDownload", method = RequestMethod.POST)
+    public Result uploadImagesDownload(@RequestBody MultipartFile multipartFile, HttpServletRequest request, HttpServletResponse response){
+        return uploadImagesService.uploadImagesDownload(multipartFile,request,response);
+    }
 
     @ApiOperation(value = "上传图片只返回url", notes = "上传图片只返回url")
     @RequestMapping(value = "/uploadImagesUrl", method = RequestMethod.POST)

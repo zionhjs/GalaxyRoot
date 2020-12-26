@@ -20,7 +20,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -117,6 +119,83 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             e.printStackTrace();
             return ResultGenerator.genFailResult(ResultCode.IMAGEAS_ERROR,"上传图片失败");
         }
+    }
+
+    @Override
+    public Result uploadImagesDownload(MultipartFile multipartFile,HttpServletRequest request, HttpServletResponse response) {
+        if (multipartFile.isEmpty()){
+            return ResultGenerator.genFailResult(ResultCode.IMAGEAS_NOT_EXIST,"文件不存在");
+        }
+
+        try{
+            //添加图片水印
+            File file = ImageUtil.addPicMarkToMutipartFile(multipartFile, markImg);
+
+            if (null == file){
+                return ResultGenerator.genFailResult(ResultCode.IMAGEAS_LOGO_ERROR,"增加Logo错误，请重新上传图片");
+            }
+
+            //上传图片
+            S3Object s3Object240 = uploadFileToS3Bucket(imageBucketName, file);
+
+            //下载图片到本地
+            downloadImage("https://" + "galaxy-image" + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey(),request,response);
+
+            //删除临时文件
+            file.delete();
+            return ResultGenerator.genSuccessResult("https://" + "galaxy-image" + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultGenerator.genFailResult(ResultCode.IMAGEAS_ERROR,"上传图片失败");
+        }
+    }
+
+    @Override
+    public Result downloadImage(String imageName, HttpServletRequest request, HttpServletResponse response) {
+        String fileUrl = imageName;
+        if (fileUrl != null) {
+            //当前是从该工程的WEB-INF//File//下获取文件(该目录可以在下面一行代码配置)然后下载到C:\\users\\downloads即本机的默认下载的目录
+           /* String realPath = request.getServletContext().getRealPath(
+                    "//WEB-INF//");*/
+            /*File file = new File(realPath, fileName);*/
+            File file = new File(fileUrl);
+            if (file.exists()) {
+                //response.setContentType("application/force-download");// 设置强制下载不打开
+                response.addHeader("Content-Disposition", "attachment;fileName=" + imageName);// 设置文件名
+                byte[] buffer = new byte[1024];
+                FileInputStream fis = null;
+                BufferedInputStream bis = null;
+                try {
+                    fis = new FileInputStream(file);
+                    bis = new BufferedInputStream(fis);
+                    OutputStream os = response.getOutputStream();
+                    int i = bis.read(buffer);
+                    while (i != -1) {
+                        os.write(buffer, 0, i);
+                        i = bis.read(buffer);
+                    }
+                    System.out.println("success");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    if (bis != null) {
+                        try {
+                            bis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (fis != null) {
+                        try {
+                            fis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }
+        return ResultGenerator.genFailResult(ResultCode.FILE_DOWNLOAD_ERROR,"文件下载失败");
     }
 
     @Override
