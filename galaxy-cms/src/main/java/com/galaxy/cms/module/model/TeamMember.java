@@ -2,10 +2,9 @@ package com.galaxy.cms.module.model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
-@Table(name = "t_team")
-public class Team {
+@Table(name = "t_team_member")
+public class TeamMember {
     /**
      * 记录ID
      */
@@ -54,12 +53,25 @@ public class Team {
     private Integer status;
 
     /**
-     * 团队名称
+     * 名字
      */
     private String name;
 
-    @Transient
-    private List<TeamMember> teamMemberList;
+    /**
+     * 邮箱
+     */
+    private String email;
+
+    /**
+     * 职位
+     */
+    private String title;
+
+    /**
+     * 团队ID
+     */
+    @Column(name = "team_id")
+    private String teamId;
 
     /**
      * 获取记录ID
@@ -206,28 +218,74 @@ public class Team {
     }
 
     /**
-     * 获取团队名称
+     * 获取名字
      *
-     * @return name - 团队名称
+     * @return name - 名字
      */
     public String getName() {
         return name;
     }
 
     /**
-     * 设置团队名称
+     * 设置名字
      *
-     * @param name 团队名称
+     * @param name 名字
      */
     public void setName(String name) {
         this.name = name;
     }
 
-    public List<TeamMember> getTeamMemberList() {
-        return teamMemberList;
+    /**
+     * 获取邮箱
+     *
+     * @return email - 邮箱
+     */
+    public String getEmail() {
+        return email;
     }
 
-    public void setTeamMemberList(List<TeamMember> teamMemberList) {
-        this.teamMemberList = teamMemberList;
+    /**
+     * 设置邮箱
+     *
+     * @param email 邮箱
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * 获取职位
+     *
+     * @return title - 职位
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * 设置职位
+     *
+     * @param title 职位
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
+     * 获取团队ID
+     *
+     * @return team_id - 团队ID
+     */
+    public String getTeamId() {
+        return teamId;
+    }
+
+    /**
+     * 设置团队ID
+     *
+     * @param teamId 团队ID
+     */
+    public void setTeamId(String teamId) {
+        this.teamId = teamId;
     }
 }

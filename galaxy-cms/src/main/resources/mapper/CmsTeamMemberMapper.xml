@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.galaxy.cms.module.mapper.CmsTeamMapper">
-  <resultMap id="BaseResultMap" type="com.galaxy.cms.module.model.Team">
+<mapper namespace="com.galaxy.cms.module.mapper.CmsTeamMemberMapper">
+  <resultMap id="BaseResultMap" type="com.galaxy.cms.module.model.TeamMember">
     <!--
       WARNING - @mbg.generated
     -->
@@ -14,12 +14,16 @@
     <result column="version" jdbcType="INTEGER" property="version" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="team_id" jdbcType="VARCHAR" property="teamId" />
   </resultMap>
 
-    <select id="list" resultMap="BaseResultMap">
-        select id,created_at,created_by,updated_at,updated_by,status,name
-        from t_team
+    <select id="selectTeamMemberByTeamId" resultMap="BaseResultMap">
+        select id,created_at,created_by,updated_at,updated_by,name,email,title,team_id
+        from t_team_member
         where is_delete = 0
+        and team_id = #{teamId}
     </select>
 
 </mapper>

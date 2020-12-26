@@ -26,12 +26,7 @@ public class CmsTeamController extends BaseController {
     @ApiOperation(value = "新增团队", notes = "新增团队")
     @RequestMapping(value = "/add", method = {RequestMethod.POST,RequestMethod.GET})
     public Result add(@RequestBody Team team) {
-        team.setCreatedAt(new Date());
-        team.setIsDelete(false);
-        cmsTeamService.save(team);
-        Result result= ResultGenerator.genSuccessResult();
-        result.setData(team);
-        return result;
+        return cmsTeamService.add(team);
     }
 
     @ApiOperation(value = "删除团队", notes = "删除团队")
@@ -56,18 +51,13 @@ public class CmsTeamController extends BaseController {
     @ApiOperation(value = "获取团队单个详情", notes = "获取团队单个详情")
     @RequestMapping(value = "/detail", method = {RequestMethod.POST,RequestMethod.GET})
     public Result detail(@RequestParam Long id) {
-        Team team = cmsTeamService.findById(id);
-        return ResultGenerator.genSuccessResult(team);
+        return cmsTeamService.detail(id);
     }
 
     @ApiOperation(value = "分页查询团队", notes = "分页查询团队")
     @RequestMapping(value = "/findByModal", method = {RequestMethod.POST,RequestMethod.GET})
     public Result list(@RequestParam(defaultValue="1",required=false) Integer page,@RequestParam(defaultValue="20",required=false) Integer size, @RequestBody(required =false) Team team) {
-        PageHelper.startPage(page, size);
-        team.setIsDelete(false);
-        List<Team> list = cmsTeamService.findByModel(team);
-        PageInfo pageInfo = new PageInfo(list);
-        return ResultGenerator.genSuccessResult(pageInfo);
+        return cmsTeamService.list(page,size,team);
     }
 
 }
