@@ -137,6 +137,12 @@ public class Video {
     private String objectUrl2160;
 
     /**
+     * 视频首页图片
+     */
+    @Column(name = "frame_images")
+    private String frameImages;
+
+    /**
      * 获取记录ID
      *
      * @return id - 记录ID
@@ -548,5 +554,13 @@ public class Video {
      */
     public void setObjectUrl2160(String objectUrl2160) {
         this.objectUrl2160 = objectUrl2160;
+    }
+
+    public String getFrameImages() {
+        return frameImages;
+    }
+
+    public void setFrameImages(String frameImages) {
+        this.frameImages = frameImages;
     }
 }

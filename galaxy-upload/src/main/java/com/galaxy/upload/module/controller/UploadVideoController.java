@@ -24,10 +24,16 @@ public class UploadVideoController {
     @Autowired
     private UploadVideoService uploadVideoService;
 
-    @ApiOperation(value = "上传视频", notes = "上传视频")
-    @RequestMapping(value = "/testUploadVideo", method = {RequestMethod.POST,RequestMethod.GET})
-    public Result testUploadVideo(@RequestParam(value = "multipartFile") MultipartFile multipartFile){
-        return uploadVideoService.testUploadVideo(multipartFile);
+    @ApiOperation(value = "截取帧数图片", notes = "截取帧数图片")
+    @RequestMapping(value = "/fetchFrame", method = RequestMethod.POST)
+    public Result fetchFrame(@RequestParam String videofile,@RequestBody Video video){
+        return uploadVideoService.fetchFrame(videofile,video);
+    }
+
+    @ApiOperation(value = "上传视频只返回url", notes = "上传视频只返回url")
+    @RequestMapping(value = "/uploadVideoUrl", method = RequestMethod.POST)
+    public Result uploadVideoUrl(@RequestBody MultipartFile multipartFile){
+        return uploadVideoService.uploadVideoUrl(multipartFile);
     }
 
     @ApiOperation(value = "上传视频", notes = "上传视频")

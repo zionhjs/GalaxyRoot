@@ -28,5 +28,6 @@
     <result column="object_url_480" jdbcType="VARCHAR" property="objectUrl480" />
     <result column="object_url_1080" jdbcType="VARCHAR" property="objectUrl1080" />
     <result column="object_url_2160" jdbcType="VARCHAR" property="objectUrl2160" />
+    <result column="frame_images" jdbcType="VARCHAR" property="frameImages" />
   </resultMap>
 </mapper>

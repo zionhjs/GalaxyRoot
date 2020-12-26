@@ -10,6 +10,7 @@ public enum ResultCode {
     NOT_FOUND(404),//接口不存在
     INTERNAL_SERVER_ERROR(500),//服务器内部错误
 
+    VIDEO_FRAME_IMAGEAS_ERROR(800021),//截取帧数图片失败
     USER_PERMISSION_ERROR(800020),//暂无权限使用此功能
     PHONE_ERROR(800019),//手机号已存在
     VIDEO_LOGO_ERROR(800018),//请重新上传视频

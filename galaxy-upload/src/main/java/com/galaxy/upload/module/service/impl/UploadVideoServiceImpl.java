@@ -14,6 +14,9 @@ import com.galaxy.common.core.utils.Logger;
 import com.galaxy.upload.module.mapper.UploadVideoMapper;
 import com.galaxy.upload.module.model.Video;
 import com.galaxy.upload.module.service.UploadVideoService;
+import org.bytedeco.javacv.FFmpegFrameGrabber;
+import org.bytedeco.javacv.Frame;
+import org.bytedeco.javacv.Java2DFrameConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
@@ -21,6 +24,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ws.schild.jave.*;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -32,6 +37,9 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
 
     @Autowired
     private UploadVideoMapper uploadVideoMapper;
+
+    @Value("${galaxy.amazonProperties.imageBucketName}")
+    private String imageBucketName;
 
     @Autowired
     private AmazonS3 amazonS3Client;
@@ -89,11 +97,71 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
     }
 
     @Override
-    public Result testUploadVideo(MultipartFile multipartFile) {
-        return null;
-        //S3Object s3Object480 = uploadFileToS3Bucket(videoBucketName, targetFile480);
-        /*System.out.println("https://" + videoBucketName + ".s3-us-west-1.amazonaws.com/" + s3Object480.getKey());
-        return ResultGenerator.genSuccessResult("https://" + videoBucketName + ".s3-us-west-1.amazonaws.com/" + s3Object480.getKey());*/
+    public Result uploadVideoUrl(MultipartFile multipartFile) {
+        if (multipartFile.isEmpty()){
+            return ResultGenerator.genFailResult(ResultCode.IMAGEAS_NOT_EXIST,"文件不存在");
+        }
+
+        try{
+            File sourceFile = convertMultiPartFileToFile(multipartFile);
+
+
+            // for encode Video to 480p / 720p / 1080p
+            File targetFile480 = new File("target480.mp4");
+
+            targetFile480 = encodeVideo(sourceFile, targetFile480, 854, 480);
+            S3Object s3Object480 = uploadFileToS3Bucket(videoBucketName, targetFile480);
+
+            //删除本地临时文件
+            sourceFile.delete();
+            targetFile480.delete();
+            return ResultGenerator.genSuccessResult("https://" + videoBucketName + ".s3-us-west-1.amazonaws.com/" + s3Object480.getKey());
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultGenerator.genFailResult(ResultCode.VIDEO_ERROR,"上传视频失败");
+        }
+    }
+
+    //参数：视频路径和缩略图保存路径
+    public Result fetchFrame(String videofile,Video video) {
+        try {
+            long start = System.currentTimeMillis();
+            File targetFile = new File("out_frame_pic.png");
+            FFmpegFrameGrabber ff = new FFmpegFrameGrabber(videofile);
+            ff.start();
+            int length = ff.getLengthInFrames();
+            int i = 0;
+            Frame f = null;
+            while (i < length) {
+                // 去掉前5帧，避免出现全黑的图片，依自己情况而定
+                f = ff.grabImage();
+                if ((i > 5) && (f.image != null)) {
+                    break;
+                }
+                i++;
+            }
+            ImageIO.write(FrameToBufferedImage(f), "jpg", targetFile);
+            //上传图片
+            S3Object s3Object240 = uploadFileToS3Bucket(imageBucketName, targetFile);
+            //删除临时文件
+            targetFile.delete();
+            //ff.flush();
+            ff.stop();
+            System.out.println(System.currentTimeMillis() - start);
+            //同步修改视频得封面推片
+            update(video);
+            return ResultGenerator.genSuccessResult("https://" + "galaxy-image" + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultGenerator.genFailResult(ResultCode.VIDEO_FRAME_IMAGEAS_ERROR,"截取帧数图片失败");
+        }
+    }
+
+    public static BufferedImage FrameToBufferedImage(Frame frame) {
+        //创建BufferedImage对象
+        Java2DFrameConverter converter = new Java2DFrameConverter();
+        BufferedImage bufferedImage = converter.getBufferedImage(frame);
+        return bufferedImage;
     }
 
     public void uploadFile(final MultipartFile multipartFile, Video video){

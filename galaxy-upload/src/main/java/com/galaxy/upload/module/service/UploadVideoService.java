@@ -9,5 +9,7 @@ public interface UploadVideoService extends Service<Video> {
 
     Result uploadVideo(MultipartFile multipartFile, String title, String description, String suffix, String level);
 
-    Result testUploadVideo(MultipartFile multipartFile);
+    Result uploadVideoUrl(MultipartFile multipartFile);
+
+    Result fetchFrame(String videofile,Video video);
 }
