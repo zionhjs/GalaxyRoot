@@ -20,9 +20,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -122,7 +127,7 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
     }
 
     @Override
-    public Result uploadImagesDownload(MultipartFile multipartFile,HttpServletRequest request, HttpServletResponse response) {
+    public Result uploadImagesDownload(MultipartFile multipartFile) {
         if (multipartFile.isEmpty()){
             return ResultGenerator.genFailResult(ResultCode.IMAGEAS_NOT_EXIST,"文件不存在");
         }
@@ -139,11 +144,11 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             S3Object s3Object240 = uploadFileToS3Bucket(imageBucketName, file);
 
             //下载图片到本地
-            downloadImage("https://" + "galaxy-image" + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey(),request,response);
+            saveImg("https://" + "galaxy-image" + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
 
             //删除临时文件
             file.delete();
-            return ResultGenerator.genSuccessResult("https://" + "galaxy-image" + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
+            return ResultGenerator.genSuccessResult("下载图片地址 D:\\out.png");
         }catch (Exception e){
             e.printStackTrace();
             return ResultGenerator.genFailResult(ResultCode.IMAGEAS_ERROR,"上传图片失败");
@@ -196,6 +201,90 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             }
         }
         return ResultGenerator.genFailResult(ResultCode.FILE_DOWNLOAD_ERROR,"文件下载失败");
+    }
+
+    @Override
+    public Result testUploadImages(MultipartFile multipartFile) {
+        if (multipartFile.isEmpty()){
+            return ResultGenerator.genFailResult(ResultCode.IMAGEAS_NOT_EXIST,"文件不存在");
+        }
+
+        try{
+
+            //添加图片水印
+            File file = ImageUtil.addPicMarkToMutipartFile(multipartFile, markImg);
+
+            if (null == file){
+                return ResultGenerator.genFailResult(ResultCode.IMAGEAS_LOGO_ERROR,"增加Logo错误，请重新上传图片");
+            }
+
+            //上传图片
+            S3Object s3Object240 = uploadFileToS3Bucket(imageBucketName, file);
+
+            saveImg("https://" + "galaxy-image" + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
+
+            //删除临时文件
+            file.delete();
+            return ResultGenerator.genSuccessResult("https://" + "galaxy-image" + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultGenerator.genFailResult(ResultCode.IMAGEAS_ERROR,"上传图片失败");
+        }
+    }
+
+    /**
+     * 根据url下载图片到本地
+     * @param imgUrl 图片的路径
+     */
+    public Result saveImg(String imgeUrl) {
+        BufferedImage bufferedImage = null;
+        try {
+            URL url=new URL(imgeUrl);
+            URLConnection urlConnection=url.openConnection();
+            HttpURLConnection httpURLConnection=(HttpURLConnection)urlConnection;
+            httpURLConnection.connect();
+            if (httpURLConnection.getResponseCode()== HttpURLConnection.HTTP_OK){
+                InputStream inputStream=httpURLConnection.getInputStream();
+
+                bufferedImage= ImageIO.read(inputStream);
+                //参数二设置保存图片的格式
+                //参数三设置图片保存地址
+                ImageIO.write(bufferedImage,"png",new File("D:\\out.png"));
+            }else {
+                System.out.println("连接失败");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static byte[] readInputStream(InputStream inStream) throws Exception {
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        while ((len = inStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, len);
+        }
+        inStream.close();
+        // 把outStream里的数据写入内存
+        return outStream.toByteArray();
+    }
+
+    /**
+     * 根据url获取图片的路径
+     */
+    private String getImgPath(String imgUrl) {
+        return imgUrl.substring(imgUrl.indexOf("n/") + 1, imgUrl.lastIndexOf("/"));
+    }
+
+    /**
+     * 根据url获取图片的名称
+     */
+    private String getImgFileName(String imgUrl) {
+        return imgUrl.substring(imgUrl.lastIndexOf("/") + 1);
     }
 
     @Override

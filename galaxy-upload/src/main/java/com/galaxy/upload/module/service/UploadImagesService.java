@@ -20,7 +20,11 @@ public interface UploadImagesService extends Service<Images> {
 
     Result uploadImagesUrl(MultipartFile multipartFile);
 
-    Result uploadImagesDownload(MultipartFile multipartFile,HttpServletRequest request, HttpServletResponse response);
+    Result uploadImagesDownload(MultipartFile multipartFile);
 
     Result downloadImage(String imageName, HttpServletRequest request, HttpServletResponse response);
+
+    Result testUploadImages(MultipartFile multipartFile);
+
+    Result saveImg(String url);
 }

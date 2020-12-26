@@ -26,16 +26,28 @@ public class UploadImagesController extends BaseController {
     @Autowired
     private UploadImagesService uploadImagesService;
 
+    @ApiOperation(value = "根据url下载图片", notes = "根据url下载图片")
+    @RequestMapping(value = "/saveImg", method = RequestMethod.POST)
+    public Result saveImg(@RequestParam String url){
+        return uploadImagesService.saveImg(url);
+    }
+
+    @ApiOperation(value = "测试上传图片", notes = "测试上传图片")
+    @RequestMapping(value = "/testUploadImages", method = RequestMethod.POST)
+    public Result testUploadImages(@RequestParam MultipartFile multipartFile){
+        return uploadImagesService.testUploadImages(multipartFile);
+    }
+
     @ApiOperation(value = "单个文件下载", notes = "单个文件下载")
     @RequestMapping(value = "/downloadImage", method = {RequestMethod.POST,RequestMethod.GET})
     public Result downloadImage(@RequestParam String imageName, HttpServletRequest request, HttpServletResponse response){
         return uploadImagesService.downloadImage(imageName,request,response);
     }
 
-    @ApiOperation(value = "上传图片成功之后自动下载", notes = "上传图片只返回url")
+    @ApiOperation(value = "上传图片成功之后自动下载", notes = "上传图片成功之后自动下载")
     @RequestMapping(value = "/uploadImagesDownload", method = RequestMethod.POST)
     public Result uploadImagesDownload(@RequestBody MultipartFile multipartFile, HttpServletRequest request, HttpServletResponse response){
-        return uploadImagesService.uploadImagesDownload(multipartFile,request,response);
+        return uploadImagesService.uploadImagesDownload(multipartFile);
     }
 
     @ApiOperation(value = "上传图片只返回url", notes = "上传图片只返回url")
