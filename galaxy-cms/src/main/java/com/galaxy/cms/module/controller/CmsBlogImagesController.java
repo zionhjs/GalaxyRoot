@@ -19,12 +19,21 @@ import java.util.List;
 */
 @RestController
 @RequestMapping("/blog/images")
-@Api(tags = {"/blog/images"}, description = "管理模块")
+@Api(tags = {"/blog/images"}, description = "博客图片管理模块")
 public class CmsBlogImagesController {
     @Resource
     private CmsBlogImagesService cmsBlogImagesService;
 
-    @ApiOperation(value = "新增", notes = "新增")
+    @ApiOperation(value = "批量添加博客图片", notes = "批量添加博客图片")
+    @RequestMapping(value = "/batch", method = {RequestMethod.POST, RequestMethod.GET})
+    public Result batch(@RequestBody List<BlogImages> blogImagesList) {
+        cmsBlogImagesService.saveList(blogImagesList);
+        Result result= ResultGenerator.genSuccessResult();
+        result.setData(blogImagesList);
+        return result;
+    }
+
+    @ApiOperation(value = "新增博客图片", notes = "新增博客图片")
     @RequestMapping(value = "/add", method = {RequestMethod.POST, RequestMethod.GET})
     public Result add(@RequestBody BlogImages blogImages) {
         blogImages.setCreatedAt(new Date());
@@ -35,7 +44,7 @@ public class CmsBlogImagesController {
         return result;
     }
 
-    @ApiOperation(value = "删除", notes = "删除")
+    @ApiOperation(value = "删除博客图片", notes = "删除博客图片")
     @RequestMapping(value = "/delete", method = {RequestMethod.POST, RequestMethod.GET})
     public Result delete(@RequestParam Long id) {
         BlogImages blogImages=new BlogImages();
@@ -45,7 +54,7 @@ public class CmsBlogImagesController {
         return ResultGenerator.genSuccessResult();
     }
 
-    @ApiOperation(value = "修改", notes = "修改")
+    @ApiOperation(value = "修改博客图片", notes = "修改博客图片")
     @RequestMapping(value = "/update", method = {RequestMethod.POST, RequestMethod.GET})
     public Result update(@RequestBody BlogImages blogImages) {
         blogImages.setUpdatedAt(new Date());
@@ -55,14 +64,14 @@ public class CmsBlogImagesController {
         return result;
     }
 
-    @ApiOperation(value = "获取单个详情", notes = "获取单个详情")
+    @ApiOperation(value = "获取博客图片单个详情", notes = "获取博客图片单个详情")
     @RequestMapping(value = "/detail", method = {RequestMethod.POST, RequestMethod.GET})
     public Result detail(@RequestParam Long id) {
         BlogImages blogImages = cmsBlogImagesService.findById(id);
         return ResultGenerator.genSuccessResult(blogImages);
     }
 
-    @ApiOperation(value = "分页查询", notes = "分页查询")
+    @ApiOperation(value = "分页查询博客图片", notes = "分页查询博客图片")
     @RequestMapping(value = "/findByModal", method = {RequestMethod.POST, RequestMethod.GET})
     public Result list(@RequestParam(defaultValue="1",required=false) Integer page, @RequestParam(defaultValue="20",required=false) Integer size, @RequestBody(required =false) BlogImages blogImages) {
         PageHelper.startPage(page, size);

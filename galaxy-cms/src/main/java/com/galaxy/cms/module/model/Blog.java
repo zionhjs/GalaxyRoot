@@ -2,6 +2,7 @@ package com.galaxy.cms.module.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "t_blog")
 public class Blog {
@@ -87,6 +88,8 @@ public class Blog {
 
     @Transient
     private String tagName;
+
+    private List<BlogImages> blogImagesList;
 
     /**
      * 获取记录ID
@@ -296,5 +299,13 @@ public class Blog {
 
     public void setTagName(String tagName) {
         this.tagName = tagName;
+    }
+
+    public List<BlogImages> getBlogImagesList() {
+        return blogImagesList;
+    }
+
+    public void setBlogImagesList(List<BlogImages> blogImagesList) {
+        this.blogImagesList = blogImagesList;
     }
 }

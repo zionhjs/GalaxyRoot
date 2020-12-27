@@ -16,4 +16,12 @@
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="blog_id" jdbcType="BIGINT" property="blogId" />
   </resultMap>
+
+    <select id="selectBlogImagesByBlogId" resultMap="BaseResultMap">
+        select id,created_at,created_by,updated_at,updated_by,status,url,blog_id
+        from t_blog_images
+        where is_delete = 0
+        and blog_id = #{blogId}
+    </select>
+
 </mapper>
