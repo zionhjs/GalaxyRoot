@@ -10,6 +10,15 @@ public enum ResultCode {
     NOT_FOUND(404),//接口不存在
     INTERNAL_SERVER_ERROR(500),//服务器内部错误
 
+    CANCEL_BLOG_LIKE_ERROR(800030),//为博客取消点赞失败，请重新点赞!
+    CANCEL_COMMENT_LIKE_ERROR(800029),//为评论取消点赞失败，请重新取消点赞!
+    CANCEL_LIKE_ERROR(800028),//取消点赞失败!
+    LIKE_ERROR_ERROR(800027),//点赞记录不存在，或者已删除!
+    LIKE_ERROR(800026),//点赞失败!
+    LIKE_DETAILS_ERROR(800025),//增加点赞详情失败!
+    COMMENT_MOMENT_LIKE_ERROR(800024),//为评论点赞失败，请重新点赞!
+    BLOG_LIKE_ERROR(800023),//为博客点赞失败，请重新点赞!
+    MOMENT_LIKE_ERROR(800022),//不可重复点赞!
     VIDEO_FRAME_IMAGEAS_ERROR(800021),//截取帧数图片失败
     USER_PERMISSION_ERROR(800020),//暂无权限使用此功能
     PHONE_ERROR(800019),//手机号已存在

@@ -39,7 +39,7 @@ public class MomentLike {
     /**
      * 点赞类型 1-博客 2-评论
      */
-    private Boolean type;
+    private Integer type;
 
     /**
      * 业务状态：
@@ -136,21 +136,11 @@ public class MomentLike {
         this.subjectId = subjectId;
     }
 
-    /**
-     * 获取点赞类型 1-博客 2-评论
-     *
-     * @return type - 点赞类型 1-博客 2-评论
-     */
-    public Boolean getType() {
+    public Integer getType() {
         return type;
     }
 
-    /**
-     * 设置点赞类型 1-博客 2-评论
-     *
-     * @param type 点赞类型 1-博客 2-评论
-     */
-    public void setType(Boolean type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 

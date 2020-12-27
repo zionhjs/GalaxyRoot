@@ -1,6 +1,7 @@
 package com.galaxy.cms.module.service;
 
 import com.galaxy.cms.module.model.MomentLike;
+import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.service.Service;
 
 
@@ -9,4 +10,7 @@ import com.galaxy.common.core.service.Service;
 */
 public interface CmsMomentLikeService extends Service<MomentLike> {
 
+    Result add(MomentLike momentLike);
+
+    Result updateLike(MomentLike momentLike);
 }

@@ -10,7 +10,47 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
     <result column="subject_id" jdbcType="BIGINT" property="subjectId" />
-    <result column="type" jdbcType="BIT" property="type" />
+    <result column="type" jdbcType="INTEGER" property="type" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
+
+    <sql id="Base_Details_Column">
+		id,create_by,create_time,subject_id,type,status
+	</sql>
+
+    <select id="findMomentLikeById" resultType="java.lang.Integer">
+        select count(1)
+        from t_moment_like
+		where is_delete = 0
+		and subject_id = #{subjectId}
+		and create_by = #{createBy}
+    </select>
+
+    <update id="updateBlogMomentLikeById">
+        update t_blog
+        set like_num = ifnull(like_num,0) + #{num}
+        where id = #{subjectId}
+    </update>
+
+    <update id="updateMomentCommentLikeById">
+        update t_moment_comment
+        set like_num = ifnull(like_num,0) + #{num}
+        where id = #{subjectId}
+    </update>
+
+    <select id="selectByIdAndIsDelete" resultMap="BaseResultMap">
+        select <include refid="Base_Details_Column"></include>
+        from t_moment_like
+        where is_delete = 0
+        and subject_id = #{subjectId}
+        and create_by = #{createBy}
+    </select>
+
+    <update id="updateLike">
+        update t_moment_like
+		set is_delete = 1
+		where subject_id = #{subjectId}
+		and create_by = #{createBy}
+    </update>
+
 </mapper>

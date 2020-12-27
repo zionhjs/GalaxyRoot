@@ -2,6 +2,7 @@ package com.galaxy.cms.module.controller;
 
 import com.galaxy.cms.module.model.MomentComment;
 import com.galaxy.cms.module.service.CmsMomentCommentService;
+import com.galaxy.common.core.controller.BaseController;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultGenerator;
 import com.github.pagehelper.PageHelper;
@@ -19,15 +20,16 @@ import java.util.List;
 */
 @RestController
 @RequestMapping("/moment/comment")
-@Api(tags = {"/moment/comment"}, description = "管理模块")
-public class CmsMomentCommentController {
+@Api(tags = {"/moment/comment"}, description = "评论管理模块")
+public class CmsMomentCommentController extends BaseController {
     @Resource
     private CmsMomentCommentService cmsMomentCommentService;
 
-    @ApiOperation(value = "新增", notes = "新增")
+    @ApiOperation(value = "新增评论", notes = "新增评论")
     @RequestMapping(value = "/add", method = {RequestMethod.POST, RequestMethod.GET})
     public Result add(@RequestBody MomentComment momentComment) {
         momentComment.setCreatedAt(new Date());
+        momentComment.setCreatedBy(String.valueOf(super.getUserId()));
         momentComment.setIsDelete(false);
         cmsMomentCommentService.save(momentComment);
         Result result= ResultGenerator.genSuccessResult();
@@ -35,7 +37,7 @@ public class CmsMomentCommentController {
         return result;
     }
 
-    @ApiOperation(value = "删除", notes = "删除")
+    @ApiOperation(value = "删除评论", notes = "删除评论")
     @RequestMapping(value = "/delete", method = {RequestMethod.POST, RequestMethod.GET})
     public Result delete(@RequestParam Long id) {
         MomentComment momentComment=new MomentComment();
@@ -45,7 +47,7 @@ public class CmsMomentCommentController {
         return ResultGenerator.genSuccessResult();
     }
 
-    @ApiOperation(value = "修改", notes = "修改")
+    @ApiOperation(value = "修改评论", notes = "修改评论")
     @RequestMapping(value = "/update", method = {RequestMethod.POST, RequestMethod.GET})
     public Result update(@RequestBody MomentComment momentComment) {
         momentComment.setUpdatedAt(new Date());
@@ -55,14 +57,14 @@ public class CmsMomentCommentController {
         return result;
     }
 
-    @ApiOperation(value = "获取单个详情", notes = "获取单个详情")
+    @ApiOperation(value = "获取评论单个详情", notes = "获取评论单个详情")
     @RequestMapping(value = "/detail", method = {RequestMethod.POST, RequestMethod.GET})
     public Result detail(@RequestParam Long id) {
         MomentComment momentComment = cmsMomentCommentService.findById(id);
         return ResultGenerator.genSuccessResult(momentComment);
     }
 
-    @ApiOperation(value = "分页查询", notes = "分页查询")
+    @ApiOperation(value = "分页查询评论", notes = "分页查询评论")
     @RequestMapping(value = "/findByModal", method = {RequestMethod.POST, RequestMethod.GET})
     public Result list(@RequestParam(defaultValue="1",required=false) Integer page, @RequestParam(defaultValue="20",required=false) Integer size, @RequestBody(required =false) MomentComment momentComment) {
         PageHelper.startPage(page, size);

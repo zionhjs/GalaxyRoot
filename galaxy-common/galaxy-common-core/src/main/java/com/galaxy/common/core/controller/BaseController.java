@@ -1,5 +1,6 @@
 package com.galaxy.common.core.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.galaxy.common.core.constants.Constant;
 import com.galaxy.common.core.utils.RedisUtil;
 import com.galaxy.common.core.vo.SysUserVo;
@@ -20,10 +21,10 @@ public class BaseController {
 	private RedisUtil redisUtil;
 
 	public Long getUserId() {
-		String token = request.getHeader(Constant.TOKEN_NAME);
+		String accessToken = request.getHeader(Constant.TOKEN_NAME);
 		SysUserVo sysUserVo;
 		try {
-			sysUserVo = (SysUserVo) redisUtil.get(Constant.REDIS_KEY_LOGIN + token);
+			sysUserVo = JSONObject.parseObject((String) redisUtil.get(Constant.REDIS_KEY_LOGIN + accessToken),SysUserVo.class);
 		}catch (Exception e){
 			return null;
 			//throw new RedisException();
@@ -35,10 +36,10 @@ public class BaseController {
 	}
 
 	public SysUserVo getUser() {
-		String token = request.getHeader(Constant.TOKEN_NAME);
+		String accessToken = request.getHeader(Constant.TOKEN_NAME);
 		SysUserVo sysUserVo;
 		try {
-			sysUserVo = (SysUserVo) redisUtil.get(Constant.REDIS_KEY_LOGIN + token);
+			sysUserVo = JSONObject.parseObject((String) redisUtil.get(Constant.REDIS_KEY_LOGIN + accessToken),SysUserVo.class);
 		}catch (Exception e){
 			return null;
 			//throw new RedisException();
