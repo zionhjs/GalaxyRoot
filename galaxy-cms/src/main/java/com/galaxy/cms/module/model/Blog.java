@@ -53,6 +53,16 @@ public class Blog {
     private Integer status;
 
     /**
+     * 标题
+     */
+    private String title;
+
+    /**
+     * 作者
+     */
+    private String author;
+
+    /**
      * 文字内容
      */
     private String content;
@@ -61,13 +71,13 @@ public class Blog {
      * 点赞数
      */
     @Column(name = "like_num")
-    private Integer likeNum;
+    private Long likeNum;
 
     /**
-     * 图片地址，多个逗号分隔
+     * 浏览数
      */
-    @Column(name = "image_urls")
-    private String imageUrls;
+    @Column(name = "browse_num")
+    private Long browseNum;
 
     /**
      * 获取记录ID
@@ -231,39 +241,35 @@ public class Blog {
         this.content = content;
     }
 
-    /**
-     * 获取点赞数
-     *
-     * @return like_num - 点赞数
-     */
-    public Integer getLikeNum() {
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public Long getLikeNum() {
         return likeNum;
     }
 
-    /**
-     * 设置点赞数
-     *
-     * @param likeNum 点赞数
-     */
-    public void setLikeNum(Integer likeNum) {
+    public void setLikeNum(Long likeNum) {
         this.likeNum = likeNum;
     }
 
-    /**
-     * 获取图片地址，多个逗号分隔
-     *
-     * @return image_urls - 图片地址，多个逗号分隔
-     */
-    public String getImageUrls() {
-        return imageUrls;
+    public Long getBrowseNum() {
+        return browseNum;
     }
 
-    /**
-     * 设置图片地址，多个逗号分隔
-     *
-     * @param imageUrls 图片地址，多个逗号分隔
-     */
-    public void setImageUrls(String imageUrls) {
-        this.imageUrls = imageUrls;
+    public void setBrowseNum(Long browseNum) {
+        this.browseNum = browseNum;
     }
 }

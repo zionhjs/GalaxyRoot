@@ -3,11 +3,16 @@ package com.galaxy.cms.module.service.impl;
 import com.galaxy.cms.module.mapper.CmsBlogMapper;
 import com.galaxy.cms.module.model.Blog;
 import com.galaxy.cms.module.service.CmsBlogService;
+import com.galaxy.common.core.response.Result;
+import com.galaxy.common.core.response.ResultGenerator;
 import com.galaxy.common.core.service.AbstractService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -20,4 +25,21 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
     @Resource
     private CmsBlogMapper cmsBlogMapper;
 
+    @Override
+    public Result detail(Long id) {
+
+        cmsBlogMapper.updateBlogBrowseNum(id);
+
+        Blog blog = cmsBlogMapper.detail(id);
+        return ResultGenerator.genSuccessResult(blog);
+    }
+
+    @Override
+    public Result list(Integer page, Integer size, Blog blog) {
+        PageHelper.startPage(page, size);
+        blog.setIsDelete(false);
+        List<Blog> list = cmsBlogMapper.list(blog);
+        PageInfo pageInfo = new PageInfo(list);
+        return ResultGenerator.genSuccessResult(pageInfo);
+    }
 }

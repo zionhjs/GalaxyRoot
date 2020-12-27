@@ -58,17 +58,12 @@ public class CmsBlogController {
     @ApiOperation(value = "获取博客单个详情", notes = "获取博客单个详情")
     @RequestMapping(value = "/detail", method = {RequestMethod.POST, RequestMethod.GET})
     public Result detail(@RequestParam Long id) {
-        Blog blog = cmsBlogService.findById(id);
-        return ResultGenerator.genSuccessResult(blog);
+        return cmsBlogService.detail(id);
     }
 
     @ApiOperation(value = "分页查询博客", notes = "分页查询博客")
     @RequestMapping(value = "/findByModal", method = {RequestMethod.POST, RequestMethod.GET})
     public Result list(@RequestParam(defaultValue="1",required=false) Integer page, @RequestParam(defaultValue="20",required=false) Integer size, @RequestBody(required =false) Blog blog) {
-        PageHelper.startPage(page, size);
-        blog.setIsDelete(false);
-        List<Blog> list = cmsBlogService.findByModel(blog);
-        PageInfo pageInfo = new PageInfo(list);
-        return ResultGenerator.genSuccessResult(pageInfo);
+        return cmsBlogService.list(page, size,blog);
     }
 }

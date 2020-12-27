@@ -13,8 +13,38 @@
     <result column="is_delete" jdbcType="BIT" property="isDelete" />
     <result column="version" jdbcType="INTEGER" property="version" />
     <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
     <result column="content" jdbcType="VARCHAR" property="content" />
-    <result column="like_num" jdbcType="INTEGER" property="likeNum" />
-    <result column="image_urls" jdbcType="LONGVARCHAR" property="imageUrls" />
+    <result column="like_num" jdbcType="BIGINT" property="likeNum" />
+    <result column="browse_num" jdbcType="BIGINT" property="browseNum" />
   </resultMap>
+
+    <select id="list" resultMap="BaseResultMap">
+        select id,created_at,created_by,updated_at,updated_by,title,author,content,
+                ifnull(like_num,0) as like_num,ifnull(browse_num,0)as browse_num
+        from t_blog
+        where is_delete = 0
+        <if test="title != null and title != ''">
+            and title LIKE concat(concat('%',#{title}),'%')
+        </if>
+        <if test="content != null and content != ''">
+            and content LIKE concat(concat('%',#{content}),'%')
+        </if>
+    </select>
+
+    <update id="updateBlogBrowseNum">
+        update t_blog
+        set browse_num = ifnull(browse_num,0) + 1
+        where id = #{id}
+    </update>
+
+    <select id="detail" resultMap="BaseResultMap">
+        select id,created_at,created_by,updated_at,updated_by,title,author,content,
+                ifnull(like_num,0) as like_num,ifnull(browse_num,0)as browse_num
+        from t_blog
+        where is_delete = 0
+        and id = #{id}
+    </select>
+
 </mapper>
