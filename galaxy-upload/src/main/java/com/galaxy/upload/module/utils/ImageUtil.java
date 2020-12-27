@@ -15,8 +15,55 @@ public class ImageUtil {
      * @param markImg  本地水印绝对路径
      * @throws IOException
      */
-    public static File addPicMarkToMutipartFile(MultipartFile multipartFile,
-                                                String markImg) throws IOException {
+    public static File uploadImagesNotLogo(MultipartFile multipartFile, String markImg) throws IOException {
+        // 获取图片文件名
+        String originFileName = multipartFile.getOriginalFilename();
+        // 获取原图片后缀
+        int lastSplit = originFileName.lastIndexOf(".");
+        String suffix = originFileName.substring(lastSplit + 1);
+        // 获取图片原始信息
+        String dOriginFileName = multipartFile.getOriginalFilename();
+        String dContentType = multipartFile.getContentType();
+        // 是图片且不是gif才加水印
+        if (!suffix.equalsIgnoreCase("gif")) {
+            // 获取水印图片
+            InputStream inputImg = multipartFile.getInputStream();
+            Image img = ImageIO.read(inputImg);
+            File file = new File(markImg);
+            BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
+            Image mark = ImageIO.read(bis);
+            //加图片水印
+            int imgWidth = img.getWidth(null);
+            int imgHeight = img.getHeight(null);
+
+            int markWidth = mark.getWidth(null);
+            int markHeight = mark.getHeight(null);
+
+            BufferedImage bufImg = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_RGB);
+            //水印的相对位置  ps：这里是右下角  水印宽为底片的四分之一  位置自己可以调整
+            markPic(bufImg, img, mark, imgWidth / 64, (imgWidth * markHeight) / (64 * markWidth),
+                    imgWidth - imgWidth / 64, imgHeight - (imgWidth * markHeight) / (64 * markWidth));
+
+            File outFile = new File("out_pic.png");
+            ImageIO.write(bufImg, "png", outFile);//写图片
+            /*ByteArrayOutputStream bs = new ByteArrayOutputStream();
+            ImageOutputStream imOut = ImageIO.createImageOutputStream(bs);
+            ImageIO.write(bufImg, suffix, imOut);
+            InputStream is = new ByteArrayInputStream(bs.toByteArray());*/
+            // 加水印后的文件上传
+            return outFile;
+        }
+        //返回加了水印的上传对象
+        return null;
+    }
+
+    /**
+     * 给multipartFile加上图片水印
+     * @param multipartFile  需要上传的文件
+     * @param markImg  本地水印绝对路径
+     * @throws IOException
+     */
+    public static File addPicMarkToMutipartFile(MultipartFile multipartFile, String markImg) throws IOException {
         // 获取图片文件名
         String originFileName = multipartFile.getOriginalFilename();
         // 获取原图片后缀
@@ -42,8 +89,8 @@ public class ImageUtil {
 
             BufferedImage bufImg = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_RGB);
             //水印的相对位置  ps：这里是右下角  水印宽为底片的四分之一  位置自己可以调整
-            markPic(bufImg, img, mark, imgWidth / 16, (imgWidth * markHeight) / (16 * markWidth),
-                    imgWidth - imgWidth / 16, imgHeight - (imgWidth * markHeight) / (16 * markWidth));
+            markPic(bufImg, img, mark, imgWidth / 64, (imgWidth * markHeight) / (64 * markWidth),
+                    imgWidth - imgWidth / 64, imgHeight - (imgWidth * markHeight) / (64 * markWidth));
 
             File outFile = new File("out_pic.png");
             ImageIO.write(bufImg, "png", outFile);//写图片

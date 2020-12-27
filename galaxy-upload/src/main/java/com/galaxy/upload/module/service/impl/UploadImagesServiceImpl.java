@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -39,6 +40,8 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
     private String imageBucketName;
 
     private static String markImg = "targetLogoFile.tmp";
+
+    private static String notLogo = "notLogo.tmp";
 
     @Autowired
     private UploadImagesMapper uploadImagesMapper;
@@ -259,6 +262,41 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public Result uploadImagesNotLogo(MultipartFile multipartFile) {
+        if (multipartFile.isEmpty()){
+            return ResultGenerator.genFailResult(ResultCode.IMAGEAS_NOT_EXIST,"文件不存在");
+        }
+
+        try{
+            InputStream inputImg = multipartFile.getInputStream();
+            Image img = ImageIO.read(inputImg);
+            int imgWidth = img.getWidth(null);
+            int imgHeight = img.getHeight(null);
+            BufferedImage bufImg = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_RGB);
+            //取到画笔
+            Graphics2D g = bufImg.createGraphics();
+            //画底片
+            g.drawImage(img, 0, 0, bufImg.getWidth(), bufImg.getHeight(), null);
+            g.dispose();
+            File outFile = new File("out_pic.png");
+            ImageIO.write(bufImg, "png", outFile);//写图片
+
+            if (null == outFile){
+                return ResultGenerator.genFailResult(ResultCode.IMAGEAS_LOGO_ERROR,"增加Logo错误，请重新上传图片");
+            }
+
+            //上传图片
+            S3Object s3Object240 = uploadFileToS3Bucket(imageBucketName, outFile);
+            //删除临时文件
+            //file.delete();
+            return ResultGenerator.genSuccessResult("https://" + "galaxy-image" + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultGenerator.genFailResult(ResultCode.IMAGEAS_ERROR,"上传图片失败");
+        }
     }
 
     private static byte[] readInputStream(InputStream inStream) throws Exception {

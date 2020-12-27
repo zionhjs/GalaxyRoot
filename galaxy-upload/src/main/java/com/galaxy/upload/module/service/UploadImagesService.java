@@ -27,4 +27,6 @@ public interface UploadImagesService extends Service<Images> {
     Result testUploadImages(MultipartFile multipartFile);
 
     Result saveImg(String url);
+
+    Result uploadImagesNotLogo(MultipartFile multipartFile);
 }

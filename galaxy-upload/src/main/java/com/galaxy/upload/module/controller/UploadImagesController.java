@@ -129,6 +129,12 @@ public class UploadImagesController extends BaseController {
         return uploadImagesService.uploadImagesUrl(multipartFile);
     }
 
+    @ApiOperation(value = "上传图片不增加Logo", notes = "上传图片不增加Logo")
+    @RequestMapping(value = "/uploadImagesNotLogo", method = RequestMethod.POST)
+    public Result uploadImagesNotLogo(@RequestBody MultipartFile multipartFile){
+        return uploadImagesService.uploadImagesNotLogo(multipartFile);
+    }
+
     @ApiOperation(value = "上传图片直接保存", notes = "上传图片直接保存")
     @RequestMapping(value = "/uploadImages", method = RequestMethod.POST)
     public Result uploadImages(@RequestParam MultipartFile multipartFile,
