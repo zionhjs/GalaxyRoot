@@ -291,7 +291,7 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             //上传图片
             S3Object s3Object240 = uploadFileToS3Bucket(imageBucketName, outFile);
             //删除临时文件
-            //file.delete();
+            outFile.delete();
             return ResultGenerator.genSuccessResult("https://" + "galaxy-image" + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
         }catch (Exception e){
             e.printStackTrace();
