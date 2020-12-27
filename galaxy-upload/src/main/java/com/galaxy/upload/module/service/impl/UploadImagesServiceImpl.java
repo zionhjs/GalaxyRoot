@@ -266,7 +266,7 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
 
     @Override
     public Result uploadImagesNotLogo(MultipartFile multipartFile) {
-        if (multipartFile.isEmpty()){
+        if (null == multipartFile){
             return ResultGenerator.genFailResult(ResultCode.IMAGEAS_NOT_EXIST,"文件不存在");
         }
 

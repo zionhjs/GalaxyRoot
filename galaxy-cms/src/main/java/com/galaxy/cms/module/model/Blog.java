@@ -91,6 +91,8 @@ public class Blog {
 
     private List<BlogImages> blogImagesList;
 
+    private List<MomentComment> momentCommentList;
+
     /**
      * 获取记录ID
      *
@@ -307,5 +309,13 @@ public class Blog {
 
     public void setBlogImagesList(List<BlogImages> blogImagesList) {
         this.blogImagesList = blogImagesList;
+    }
+
+    public List<MomentComment> getMomentCommentList() {
+        return momentCommentList;
+    }
+
+    public void setMomentCommentList(List<MomentComment> momentCommentList) {
+        this.momentCommentList = momentCommentList;
     }
 }

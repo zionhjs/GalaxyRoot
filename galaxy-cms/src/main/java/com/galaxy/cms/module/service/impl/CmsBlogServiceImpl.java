@@ -2,6 +2,7 @@ package com.galaxy.cms.module.service.impl;
 
 import com.galaxy.cms.module.mapper.CmsBlogImagesMapper;
 import com.galaxy.cms.module.mapper.CmsBlogMapper;
+import com.galaxy.cms.module.mapper.CmsMomentCommentMapper;
 import com.galaxy.cms.module.model.Blog;
 import com.galaxy.cms.module.service.CmsBlogService;
 import com.galaxy.common.core.response.Result;
@@ -29,6 +30,9 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
     @Resource
     private CmsBlogImagesMapper cmsBlogImagesMapper;
 
+    @Resource
+    private CmsMomentCommentMapper cmsMomentCommentMapper;
+
     @Override
     public Result detail(Long id) {
 
@@ -36,7 +40,7 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
 
         Blog blog = cmsBlogMapper.detail(id);
         blog.setBlogImagesList(cmsBlogImagesMapper.selectBlogImagesByBlogId(id));
-
+        blog.setMomentCommentList(cmsMomentCommentMapper.selectMomentCommentByBlogId(id));
         return ResultGenerator.genSuccessResult(blog);
     }
 
@@ -47,6 +51,7 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
         List<Blog> list = cmsBlogMapper.list(blog);
         for (Blog d:list) {
             d.setBlogImagesList(cmsBlogImagesMapper.selectBlogImagesByBlogId(d.getId()));
+            d.setMomentCommentList(cmsMomentCommentMapper.selectMomentCommentByBlogId(d.getId()));
         }
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);

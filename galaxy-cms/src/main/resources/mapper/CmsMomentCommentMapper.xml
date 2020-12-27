@@ -19,4 +19,12 @@
     <result column="like_num" jdbcType="INTEGER" property="likeNum" />
     <result column="image_urls" jdbcType="LONGVARCHAR" property="imageUrls" />
   </resultMap>
+
+    <select id="selectMomentCommentByBlogId" resultMap="BaseResultMap">
+        select id,created_at,created_by,updated_at,updated_by,comment,image_urls,ifnull(like_num,0) as like_num
+        from t_moment_comment
+        where is_delete = 0
+        and moment_id = #{momentId}
+    </select>
+
 </mapper>
