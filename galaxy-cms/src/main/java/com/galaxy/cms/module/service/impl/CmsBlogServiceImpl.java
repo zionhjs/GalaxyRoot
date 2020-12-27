@@ -100,6 +100,8 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
         if (blog.getBlogImagesList().size() > 0){
             for (BlogImages d:blog.getBlogImagesList()) {
                 d.setBlogId(blog.getId());
+                d.setCreatedAt(new Date());
+                d.setIsDelete(false);
             }
             cmsBlogImagesService.saveList(blog.getBlogImagesList());
         }
