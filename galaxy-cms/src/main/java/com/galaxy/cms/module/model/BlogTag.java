@@ -3,8 +3,8 @@ package com.galaxy.cms.module.model;
 import javax.persistence.*;
 import java.util.Date;
 
-@Table(name = "t_blog")
-public class Blog {
+@Table(name = "t_blog_tag")
+public class BlogTag {
     /**
      * 记录ID
      */
@@ -53,39 +53,9 @@ public class Blog {
     private Integer status;
 
     /**
-     * 标题
+     * 类别名称
      */
-    private String title;
-
-    /**
-     * 作者
-     */
-    private String author;
-
-    /**
-     * 文字内容
-     */
-    private String content;
-
-    /**
-     * 点赞数
-     */
-    @Column(name = "like_num")
-    private Long likeNum;
-
-    /**
-     * 浏览数
-     */
-    @Column(name = "browse_num")
-    private Long browseNum;
-
-    /**
-     * 标签ID
-     */
-    @Column(name = "tag_id")
-    private Long tagId;
-
-    @Transient
+    @Column(name = "tag_name")
     private String tagName;
 
     /**
@@ -233,67 +203,19 @@ public class Blog {
     }
 
     /**
-     * 获取文字内容
+     * 获取类别名称
      *
-     * @return content - 文字内容
+     * @return tag_name - 类别名称
      */
-    public String getContent() {
-        return content;
-    }
-
-    /**
-     * 设置文字内容
-     *
-     * @param content 文字内容
-     */
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public Long getLikeNum() {
-        return likeNum;
-    }
-
-    public void setLikeNum(Long likeNum) {
-        this.likeNum = likeNum;
-    }
-
-    public Long getBrowseNum() {
-        return browseNum;
-    }
-
-    public void setBrowseNum(Long browseNum) {
-        this.browseNum = browseNum;
-    }
-
-    public Long getTagId() {
-        return tagId;
-    }
-
-    public void setTagId(Long tagId) {
-        this.tagId = tagId;
-    }
-
     public String getTagName() {
         return tagName;
     }
 
+    /**
+     * 设置类别名称
+     *
+     * @param tagName 类别名称
+     */
     public void setTagName(String tagName) {
         this.tagName = tagName;
     }

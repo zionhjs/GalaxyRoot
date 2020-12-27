@@ -18,18 +18,23 @@
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="like_num" jdbcType="BIGINT" property="likeNum" />
     <result column="browse_num" jdbcType="BIGINT" property="browseNum" />
+    <result column="tag_id" jdbcType="BIGINT" property="tagId" />
   </resultMap>
 
-    <select id="list" resultMap="BaseResultMap">
-        select id,created_at,created_by,updated_at,updated_by,title,author,content,
-                ifnull(like_num,0) as like_num,ifnull(browse_num,0)as browse_num
-        from t_blog
-        where is_delete = 0
+    <select id="list" resultType="com.galaxy.cms.module.model.Blog">
+        select b.id as id,b.created_at as createdAt,b.created_by as createdBy,b.updated_at as updatedAt,
+                b.updated_by as updatedBy,b.title as title,b.author as author,b.content as content,
+                ifnull(b.like_num,0) as likeNum,ifnull(b.browse_num,0) as browseNum,b.tag_id as tagId,
+                t.tag_name as tagName
+        from t_blog b
+        inner join t_blog_tag t on b.tag_id = t.id
+        where b.is_delete = 0
+        and t.is_delete = 0
         <if test="title != null and title != ''">
-            and title LIKE concat(concat('%',#{title}),'%')
+            and b.title LIKE concat(concat('%',#{title}),'%')
         </if>
         <if test="content != null and content != ''">
-            and content LIKE concat(concat('%',#{content}),'%')
+            and b.content LIKE concat(concat('%',#{content}),'%')
         </if>
     </select>
 
@@ -39,12 +44,16 @@
         where id = #{id}
     </update>
 
-    <select id="detail" resultMap="BaseResultMap">
-        select id,created_at,created_by,updated_at,updated_by,title,author,content,
-                ifnull(like_num,0) as like_num,ifnull(browse_num,0)as browse_num
-        from t_blog
-        where is_delete = 0
-        and id = #{id}
+    <select id="detail" resultType="com.galaxy.cms.module.model.Blog">
+        select b.id as id,b.created_at as createdAt,b.created_by as createdBy,b.updated_at as updatedAt,
+                b.updated_by as updatedBy,b.title as title,b.author as author,b.content as content,
+                ifnull(b.like_num,0) as likeNum,ifnull(b.browse_num,0) as browseNum,b.tag_id as tagId,
+                t.tag_name as tagName
+        from t_blog b
+        inner join t_blog_tag t on b.tag_id = t.id
+        where b.is_delete = 0
+        and t.is_delete = 0
+        and b.id = #{id}
     </select>
 
 </mapper>
