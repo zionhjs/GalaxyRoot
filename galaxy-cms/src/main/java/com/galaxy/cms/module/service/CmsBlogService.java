@@ -12,4 +12,6 @@ public interface CmsBlogService extends Service<Blog> {
     Result detail(Long id);
 
     Result list(Integer page, Integer size, Blog blog);
+
+    Result homeFindByTitle(Integer page, Integer size, String title);
 }

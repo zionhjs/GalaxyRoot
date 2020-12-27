@@ -21,8 +21,17 @@ import java.util.List;
 @RequestMapping("/blog")
 @Api(tags = {"/blog"}, description = "博客管理模块")
 public class CmsBlogController {
+
     @Resource
     private CmsBlogService cmsBlogService;
+
+    @ApiOperation(value = "首页统一查询", notes = "首页统一查询")
+    @RequestMapping(value = "/homeFindByTitle", method = {RequestMethod.POST, RequestMethod.GET})
+    public Result homeFindByTitle(@RequestParam(defaultValue="1",required = false) Integer page,
+                       @RequestParam(defaultValue="20",required = false) Integer size,
+                       @RequestBody(required = false) String title) {
+        return cmsBlogService.homeFindByTitle(page, size , title);
+    }
 
     @ApiOperation(value = "新增博客", notes = "新增博客")
     @RequestMapping(value = "/add", method = {RequestMethod.POST, RequestMethod.GET})
