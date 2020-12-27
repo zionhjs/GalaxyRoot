@@ -36,12 +36,7 @@ public class CmsBlogController {
     @ApiOperation(value = "新增博客", notes = "新增博客")
     @RequestMapping(value = "/add", method = {RequestMethod.POST, RequestMethod.GET})
     public Result add(@RequestBody Blog blog) {
-        blog.setCreatedAt(new Date());
-        blog.setIsDelete(false);
-        cmsBlogService.save(blog);
-        Result result=ResultGenerator.genSuccessResult();
-        result.setData(blog);
-        return result;
+        return cmsBlogService.add(blog);
     }
 
     @ApiOperation(value = "删除博客", notes = "删除博客")

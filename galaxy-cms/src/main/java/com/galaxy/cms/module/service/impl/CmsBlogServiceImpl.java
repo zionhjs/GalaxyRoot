@@ -4,17 +4,21 @@ import com.galaxy.cms.module.mapper.CmsBlogImagesMapper;
 import com.galaxy.cms.module.mapper.CmsBlogMapper;
 import com.galaxy.cms.module.mapper.CmsMomentCommentMapper;
 import com.galaxy.cms.module.model.Blog;
+import com.galaxy.cms.module.model.BlogImages;
+import com.galaxy.cms.module.service.CmsBlogImagesService;
 import com.galaxy.cms.module.service.CmsBlogService;
 import com.galaxy.cms.module.vo.HomeListVo;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultGenerator;
 import com.galaxy.common.core.service.AbstractService;
+import com.galaxy.common.core.utils.DigitUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 
@@ -33,6 +37,9 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
 
     @Resource
     private CmsMomentCommentMapper cmsMomentCommentMapper;
+
+    @Resource
+    private CmsBlogImagesService cmsBlogImagesService;
 
     @Override
     public Result detail(Long id) {
@@ -81,5 +88,24 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
 
 
         return ResultGenerator.genSuccessResult(homeListVo);
+    }
+
+    @Override
+    public Result add(Blog blog) {
+        blog.setId(DigitUtil.generatorLongId());
+        blog.setCreatedAt(new Date());
+        blog.setIsDelete(false);
+        save(blog);
+
+        if (blog.getBlogImagesList().size() > 0){
+            for (BlogImages d:blog.getBlogImagesList()) {
+                d.setBlogId(blog.getId());
+            }
+            cmsBlogImagesService.saveList(blog.getBlogImagesList());
+        }
+
+        Result result = ResultGenerator.genSuccessResult();
+        result.setData(blog);
+        return result;
     }
 }
