@@ -15,4 +15,6 @@ public interface CmsTeamService extends Service<Team> {
     Result list(Integer page, Integer size, Team team);
 
     Result detail(Long id);
+
+    Result deleteTeamMember(Long id);
 }

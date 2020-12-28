@@ -178,9 +178,14 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
             video.setS3Key480(s3Object480.getKey());
             video.setObjectUrl480("https://" + videoBucketName + ".s3-us-west-1.amazonaws.com/" + s3Object480.getKey());
 
+            //视频添加封面图片
+            Result result = fetchFrame("D:\\1577613410347.mp4",new Video());
+
             //删除本地临时文件
             sourceFile.delete();
             targetFile480.delete();
+
+            video.setFrameImages(result.getData().toString());
             //添加视频记录
             save(video);
         } catch (final AmazonServiceException ex) {

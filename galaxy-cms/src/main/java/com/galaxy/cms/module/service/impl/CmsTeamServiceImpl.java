@@ -69,4 +69,17 @@ public class CmsTeamServiceImpl extends AbstractService<Team> implements CmsTeam
         team.setTeamMemberList(cmsTeamMemberMapper.selectTeamMemberByTeamId(team.getId()));
         return ResultGenerator.genSuccessResult(team);
     }
+
+    @Override
+    public Result deleteTeamMember(Long id) {
+        Team team = new Team();
+        team.setId(id);
+        team.setIsDelete(true);
+        update(team);
+
+        //批量删除成员
+        cmsTeamMemberMapper.updateTeamMemberByTeamId(id);
+
+        return ResultGenerator.genSuccessResult();
+    }
 }

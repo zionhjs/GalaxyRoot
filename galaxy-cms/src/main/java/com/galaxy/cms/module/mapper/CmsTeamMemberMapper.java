@@ -8,4 +8,6 @@ import java.util.List;
 public interface CmsTeamMemberMapper extends Mapper<TeamMember> {
 
     List<TeamMember> selectTeamMemberByTeamId(Long teamId);
+
+    void updateTeamMemberByTeamId(Long teamId);
 }

@@ -19,6 +19,12 @@
     <result column="team_id" jdbcType="VARCHAR" property="teamId" />
   </resultMap>
 
+    <update id="updateTeamMemberByTeamId">
+        update t_team_member
+        set is_delete = 1
+        where team_id = #{teamId}
+    </update>
+
     <select id="selectTeamMemberByTeamId" resultMap="BaseResultMap">
         select id,created_at,created_by,updated_at,updated_by,name,email,title,team_id
         from t_team_member
