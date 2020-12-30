@@ -166,6 +166,7 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
 
     public void uploadFile(final MultipartFile multipartFile, Video video){
         try {
+            //这个是原视频
             File sourceFile = convertMultiPartFileToFile(multipartFile);
 
             video.setS3BucketName(videoBucketName);
@@ -179,7 +180,7 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
             video.setObjectUrl480("https://" + videoBucketName + ".s3-us-west-1.amazonaws.com/" + s3Object480.getKey());
 
             //视频添加封面图片
-            Result result = fetchFrame("D:\\1577613410347.mp4",new Video());
+            Result result = fetchFrame(sourceFile.getName(),new Video());
 
             //删除本地临时文件
             sourceFile.delete();

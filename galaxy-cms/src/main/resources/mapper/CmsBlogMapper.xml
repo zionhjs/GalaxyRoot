@@ -29,7 +29,6 @@
         from t_blog b
         left join t_blog_tag t on b.tag_id = t.id
         where b.is_delete = 0
-        and t.is_delete = 0
         <if test="title != null and title != '' and title != '{}'">
             and b.title LIKE concat(concat('%',#{title}),'%')
         </if>
