@@ -14,6 +14,8 @@ import com.galaxy.common.core.utils.Logger;
 import com.galaxy.upload.module.mapper.UploadVideoMapper;
 import com.galaxy.upload.module.model.Video;
 import com.galaxy.upload.module.service.UploadVideoService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.bytedeco.javacv.FFmpegFrameGrabber;
 import org.bytedeco.javacv.Frame;
 import org.bytedeco.javacv.Java2DFrameConverter;
@@ -31,6 +33,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class UploadVideoServiceImpl extends AbstractService<Video> implements UploadVideoService {
@@ -47,6 +50,9 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
     @Value("${galaxy.amazonProperties.videoBucketName}")
     private String videoBucketName;
 
+    @Value("${galaxy.amazonProperties.video360BucketName}")
+    private String video360BucketName;
+
     /**
      * 上传视频
      * @param multipartFile
@@ -57,26 +63,30 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
      * @return
      */
     @Override
-    public Result uploadVideo(MultipartFile multipartFile, String title, String description, String suffix, String level) {
+    public Result uploadVideo(MultipartFile multipartFile, String title, String description, String suffix, String level,Integer status) {
 
         if (multipartFile.isEmpty()){
             return ResultGenerator.genFailResult(ResultCode.IMAGEAS_NOT_EXIST,"文件不存在");
         }
 
-        if(title == null) {
+        if(null == title) {
             title = "title";
         }
-        if(description == null) {
+        if(null == description) {
             description = "description";
         }
-        if(suffix == null) {
+        if(null == suffix) {
             suffix = "ex";
         }
-        if(level == null) {
+        if(null == level) {
             level = "star";
+        }
+        if(null == status) {
+            status = 1;
         }
 
         Video video = new Video();
+        video.setStatus(status);
         video.setCreatedAt(new Date());
         video.setTitle(title);
         video.setDescription(description);
@@ -157,6 +167,15 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
         }
     }
 
+    @Override
+    public Result list(Integer page, Integer size, Video video) {
+        PageHelper.startPage(page, size);
+        video.setIsDelete(false);
+        List<Video> list = uploadVideoMapper.list(video);
+        PageInfo pageInfo = new PageInfo(list);
+        return ResultGenerator.genSuccessResult(pageInfo);
+    }
+
     public static BufferedImage FrameToBufferedImage(Frame frame) {
         //创建BufferedImage对象
         Java2DFrameConverter converter = new Java2DFrameConverter();
@@ -169,15 +188,24 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
             //这个是原视频
             File sourceFile = convertMultiPartFileToFile(multipartFile);
 
-            video.setS3BucketName(videoBucketName);
+            String bucketName = new String();
+
+            //业务状态(1普通图片:2为360°图片)
+            if (1 == video.getStatus()){
+                bucketName = videoBucketName;
+            }else if (2 == video.getStatus()){
+                bucketName = video360BucketName;
+            }
+
+            video.setS3BucketName(bucketName);
 
             // for encode Video to 480p / 720p / 1080p
             File targetFile480 = new File("target480.mp4");
 
             targetFile480 = encodeVideo(sourceFile, targetFile480, 854, 480);
-            S3Object s3Object480 = uploadFileToS3Bucket(videoBucketName, targetFile480);
+            S3Object s3Object480 = uploadFileToS3Bucket(bucketName, targetFile480);
             video.setS3Key480(s3Object480.getKey());
-            video.setObjectUrl480("https://" + videoBucketName + ".s3-us-west-1.amazonaws.com/" + s3Object480.getKey());
+            video.setObjectUrl480("https://" + bucketName + ".s3-us-west-1.amazonaws.com/" + s3Object480.getKey());
 
             //视频添加封面图片
             Result result = fetchFrame(sourceFile.getName(),new Video());

@@ -30,4 +30,15 @@
     <result column="object_url_2160" jdbcType="VARCHAR" property="objectUrl2160" />
     <result column="frame_images" jdbcType="VARCHAR" property="frameImages" />
   </resultMap>
+
+    <select id="list" resultMap="BaseResultMap">
+        select  id,created_at,created_by,updated_at,updated_by,status,title,description,video_name,thumbnail,content_type,
+                 size,level,suffix,s3_bucket_name,s3_key_480,s3_key_1080,s3_key_2160,object_url_480,object_url_1080,object_url_2160,
+                 frame_images
+        from t_video
+        where is_delete = 0
+        <if test="status != null and status != ''">
+            and status = #{status}
+        </if>
+    </select>
 </mapper>

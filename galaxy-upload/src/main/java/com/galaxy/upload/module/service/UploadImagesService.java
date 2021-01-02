@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface UploadImagesService extends Service<Images> {
 
-    Result uploadImages(MultipartFile multipartFile,String title,String description,String suffix,String level);
+    Result uploadImages(MultipartFile multipartFile,String title,String description,String suffix,String level,Integer status);
 
     Result updateImages(Images images);
 

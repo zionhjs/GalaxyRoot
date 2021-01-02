@@ -9,6 +9,7 @@ import com.galaxy.cms.module.service.CmsBlogImagesService;
 import com.galaxy.cms.module.service.CmsBlogService;
 import com.galaxy.cms.module.vo.HomeListVo;
 import com.galaxy.common.core.response.Result;
+import com.galaxy.common.core.response.ResultCode;
 import com.galaxy.common.core.response.ResultGenerator;
 import com.galaxy.common.core.service.AbstractService;
 import com.galaxy.common.core.utils.DigitUtil;
@@ -44,9 +45,13 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
     @Override
     public Result detail(Long id) {
 
+        Blog blog = cmsBlogMapper.detail(id);
+        if (null == blog){
+            return ResultGenerator.genFailResult(ResultCode.BLOG_DETAIL_ERROR,"博客不存在或者已删除");
+        }
+
         cmsBlogMapper.updateBlogBrowseNum(id);
 
-        Blog blog = cmsBlogMapper.detail(id);
         blog.setBlogImagesList(cmsBlogImagesMapper.selectBlogImagesByBlogId(id));
         blog.setMomentCommentList(cmsMomentCommentMapper.selectMomentCommentByBlogId(id));
         return ResultGenerator.genSuccessResult(blog);

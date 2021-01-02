@@ -49,9 +49,8 @@
                 ifnull(b.like_num,0) as likeNum,ifnull(b.browse_num,0) as browseNum,b.tag_id as tagId,
                 t.tag_name as tagName
         from t_blog b
-        inner join t_blog_tag t on b.tag_id = t.id
+        left join t_blog_tag t on b.tag_id = t.id
         where b.is_delete = 0
-        and t.is_delete = 0
         and b.id = #{id}
     </select>
 

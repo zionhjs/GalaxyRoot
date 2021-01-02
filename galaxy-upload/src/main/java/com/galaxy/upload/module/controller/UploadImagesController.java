@@ -138,11 +138,12 @@ public class UploadImagesController extends BaseController {
     @ApiOperation(value = "上传图片直接保存", notes = "上传图片直接保存")
     @RequestMapping(value = "/uploadImages", method = RequestMethod.POST)
     public Result uploadImages(@RequestParam MultipartFile multipartFile,
-                               @RequestParam(value="title") String title,
-                               @RequestParam(value="description") String description,
-                               @RequestParam(value = "suffix") String suffix,
-                               @RequestParam(value="level") String level){
-        return uploadImagesService.uploadImages(multipartFile,title,description,suffix,level);
+                               @RequestParam(value="title",required = false) String title,
+                               @RequestParam(value="description",required = false) String description,
+                               @RequestParam(value = "suffix",required = false) String suffix,
+                               @RequestParam(value="level",required = false) String level,
+                               @RequestParam(value="status",required = false) Integer status){
+        return uploadImagesService.uploadImages(multipartFile,title,description,suffix,level,status);
     }
 
     @ApiOperation(value = "修改图片", notes = "修改图片")

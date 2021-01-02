@@ -39,11 +39,12 @@ public class UploadVideoController {
     @ApiOperation(value = "上传视频", notes = "上传视频")
     @RequestMapping(value = "/uploadVideo", method = {RequestMethod.POST,RequestMethod.GET})
     public Result uploadVideo(@RequestParam(value = "multipartFile") MultipartFile multipartFile,
-                              @RequestParam(value = "title") String title,
-                              @RequestParam(value="description") String description,
-                              @RequestParam(value = "suffix") String suffix,
-                              @RequestParam(value="level") String level){
-        return uploadVideoService.uploadVideo(multipartFile,title,description,suffix,level);
+                              @RequestParam(value = "title",required = false) String title,
+                              @RequestParam(value="description",required = false) String description,
+                              @RequestParam(value = "suffix",required = false) String suffix,
+                              @RequestParam(value="level",required = false) String level,
+                              @RequestParam(value="status",required = false) Integer status){
+        return uploadVideoService.uploadVideo(multipartFile,title,description,suffix,level,status);
     }
 
     @ApiOperation(value = "新增视频", notes = "新增视频")
@@ -85,12 +86,10 @@ public class UploadVideoController {
 
     @ApiOperation(value = "分页查询视频", notes = "分页查询视频")
     @RequestMapping(value = "/findByModal", method = {RequestMethod.POST,RequestMethod.GET})
-    public Result list(@RequestParam(defaultValue="1",required=false) Integer page,@RequestParam(defaultValue="20",required=false) Integer size, @RequestBody(required =false) Video video) {
-        PageHelper.startPage(page, size);
-        video.setIsDelete(false);
-        List<Video> list = uploadVideoService.findByModel(video);
-        PageInfo pageInfo = new PageInfo(list);
-        return ResultGenerator.genSuccessResult(pageInfo);
+    public Result list(@RequestParam(defaultValue="1",required=false) Integer page,
+                       @RequestParam(defaultValue="20",required=false) Integer size,
+                       @RequestBody(required =false) Video video) {
+        return uploadVideoService.list(page,size,video);
     }
 
 }

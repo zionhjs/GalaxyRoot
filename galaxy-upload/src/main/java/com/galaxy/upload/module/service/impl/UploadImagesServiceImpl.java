@@ -39,6 +39,9 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
     @Value("${galaxy.amazonProperties.imageBucketName}")
     private String imageBucketName;
 
+    @Value("${galaxy.amazonProperties.image360BucketName}")
+    private String image360BucketName;
+
     private static String markImg = "targetLogoFile.tmp";
 
     private static String notLogo = "notLogo.tmp";
@@ -50,7 +53,7 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
     private AmazonS3 amazonS3Client;
 
     @Override
-    public Result uploadImages(MultipartFile multipartFile,String title,String description,String suffix,String level) {
+    public Result uploadImages(MultipartFile multipartFile,String title,String description,String suffix,String level,Integer status) {
 
         if (multipartFile.isEmpty()){
             return ResultGenerator.genFailResult(ResultCode.IMAGEAS_NOT_EXIST,"文件不存在");
@@ -68,8 +71,13 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         if(level == null) {
             level = "star";
         }
+        if (null == status){
+            //业务状态(1普通图片:2为360°图片)
+            status = 1;
+        }
 
         Images images = new Images();
+        images.setStatus(status);
         images.setCreatedAt(new Date());
         images.setTitle(title);
         images.setDescription(description);
@@ -87,12 +95,21 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
                 return ResultGenerator.genFailResult(ResultCode.IMAGEAS_LOGO_ERROR,"增加Logo错误，请重新上传图片");
             }
 
+            String bucketName = new String();
+
+            //业务状态(1普通图片:2为360°图片)
+            if (1 == status){
+                bucketName = imageBucketName;
+            }else if (2 == status){
+                bucketName = image360BucketName;
+            }
+
             //上传图片
-            S3Object s3Object240 = uploadFileToS3Bucket(imageBucketName, file);
+            S3Object s3Object240 = uploadFileToS3Bucket(bucketName, file);
             //图片桶路径
             images.setS3Key240(s3Object240.getKey());
             //图片全路径
-            images.setObjectUrl240("https://" + "galaxy-image" + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
+            images.setObjectUrl240("https://" + bucketName + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
             //删除临时文件
             file.delete();
             save(images);
@@ -237,7 +254,7 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
 
     /**
      * 根据url下载图片到本地
-     * @param imgUrl 图片的路径
+     * @param imgeUrl 图片的路径
      */
     public Result saveImg(String imgeUrl) {
         BufferedImage bufferedImage = null;
