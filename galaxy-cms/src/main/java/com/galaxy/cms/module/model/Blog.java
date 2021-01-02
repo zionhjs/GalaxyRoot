@@ -86,7 +86,7 @@ public class Blog {
     @Column(name = "tag_id")
     private Long tagId;
 
-    @Transient
+    @Column(name = "tag_name")
     private String tagName;
 
     private List<BlogImages> blogImagesList;

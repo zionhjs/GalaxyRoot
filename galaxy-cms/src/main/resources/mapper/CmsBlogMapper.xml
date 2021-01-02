@@ -25,9 +25,8 @@
         select b.id as id,b.created_at as createdAt,b.created_by as createdBy,b.updated_at as updatedAt,
                 b.updated_by as updatedBy,b.title as title,b.author as author,b.content as content,
                 ifnull(b.like_num,0) as likeNum,ifnull(b.browse_num,0) as browseNum,b.tag_id as tagId,
-                t.tag_name as tagName
+                b.tag_name as tagName
         from t_blog b
-        left join t_blog_tag t on b.tag_id = t.id
         where b.is_delete = 0
         <if test="title != null and title != '' and title != '{}'">
             and b.title LIKE concat(concat('%',#{title}),'%')
@@ -47,9 +46,8 @@
         select b.id as id,b.created_at as createdAt,b.created_by as createdBy,b.updated_at as updatedAt,
                 b.updated_by as updatedBy,b.title as title,b.author as author,b.content as content,
                 ifnull(b.like_num,0) as likeNum,ifnull(b.browse_num,0) as browseNum,b.tag_id as tagId,
-                t.tag_name as tagName
+                b.tag_name as tagName
         from t_blog b
-        left join t_blog_tag t on b.tag_id = t.id
         where b.is_delete = 0
         and b.id = #{id}
     </select>
