@@ -9,6 +9,7 @@ galaxy
 ├── galaxy-ucenter -- 用户中心[9600]
 ├── galaxy-uoload -- 上传中心[9800]
 ├── galaxy-cms  -- 内容中心[9900]
+├── galaxy-jms  -- 消息中心[9500]
 ```
 
 
@@ -21,6 +22,7 @@ galaxy
 9600   用户中心
 9800   上传中心
 9900   内容中心
+9500   消息中心
 ```
 2. 启动顺序
 ```bash
@@ -30,7 +32,8 @@ galaxy
 (4) GalaxyUcenterApplication 
 (5) GalaxyUploadApplication 
 (6) GalaxyCmsApplication 
-(7) 启动完毕之后在本地浏览器访问 http://localhost:9000 
+(7) GalaxyJmsApplication 
+(8) 启动完毕之后在本地浏览器访问 http://localhost:9000 
 ```
 
 #### 核心依赖 
