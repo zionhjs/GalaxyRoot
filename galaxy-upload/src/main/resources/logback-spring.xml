@@ -87,7 +87,7 @@
 		<appender-ref ref="error"/>
 	</root>
 	<!--错误日志会输出一份到error中-->
-	<logger name="wanwan_log" level="INFO" additivity="false">
+	<logger name="galaxy_log" level="INFO" additivity="false">
 		<appender-ref ref="log_file"/>
 		<appender-ref ref="error"/>
 	</logger>

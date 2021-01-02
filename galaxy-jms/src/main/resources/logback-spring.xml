@@ -76,8 +76,7 @@
 		</filter>
 	</appender>
 
-
-	<logger name="com.galaxy.cms.module.mapper" level="debug"/>
+	<logger name="com.galaxy.jms.module.mapper" level="debug"/>
 
 	<!--  日志输出级别 -->
 	<!--TRACE\DEBUG\INFO\WARN\ERROR\FATAL\OFF-->

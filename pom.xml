@@ -45,6 +45,7 @@
         <module>galaxy-admin-server</module>
         <module>galaxy-upload</module>
         <module>galaxy-cms</module>
+        <module>galaxy-jms</module>
     </modules>
 
     <!-- 依赖管理 -->
