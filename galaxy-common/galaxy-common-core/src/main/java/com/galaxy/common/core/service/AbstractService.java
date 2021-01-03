@@ -34,6 +34,12 @@ public class AbstractService<T> implements Service<T>  {
     public void save(T model) {
         mapper.insertSelective(model);
     }
+
+    @Override
+    public int saveRows(T model) {
+        return mapper.insertSelective(model);
+    }
+
     @Override
     public int saveList(List<T> model) {
         return mapper.insertList(model);
@@ -80,6 +86,11 @@ public class AbstractService<T> implements Service<T>  {
     @Override
     public void update(T model) {
         mapper.updateByPrimaryKeySelective(model);
+    }
+
+    @Override
+    public int updateRows(T model) {
+        return mapper.updateByPrimaryKeySelective(model);
     }
 
     @Override

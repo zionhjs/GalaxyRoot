@@ -5,6 +5,7 @@ import com.galaxy.cms.module.service.CmsMomentCommentService;
 import com.galaxy.common.core.controller.BaseController;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultGenerator;
+import com.galaxy.common.core.utils.Logger;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -28,13 +29,9 @@ public class CmsMomentCommentController extends BaseController {
     @ApiOperation(value = "新增评论", notes = "新增评论")
     @RequestMapping(value = "/add", method = {RequestMethod.POST, RequestMethod.GET})
     public Result add(@RequestBody MomentComment momentComment) {
-        momentComment.setCreatedAt(new Date());
+        Logger.info(this, "/moment/comment/add 新增评论接口入参--->" + momentComment);
         momentComment.setCreatedBy(String.valueOf(super.getUserId()));
-        momentComment.setIsDelete(false);
-        cmsMomentCommentService.save(momentComment);
-        Result result= ResultGenerator.genSuccessResult();
-        result.setData(momentComment);
-        return result;
+        return cmsMomentCommentService.add(momentComment);
     }
 
     @ApiOperation(value = "删除评论", notes = "删除评论")

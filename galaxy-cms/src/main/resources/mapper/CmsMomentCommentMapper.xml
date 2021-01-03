@@ -18,10 +18,12 @@
     <result column="comment" jdbcType="VARCHAR" property="comment" />
     <result column="like_num" jdbcType="INTEGER" property="likeNum" />
     <result column="image_urls" jdbcType="LONGVARCHAR" property="imageUrls" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
   </resultMap>
 
     <select id="selectMomentCommentByBlogId" resultMap="BaseResultMap">
-        select id,created_at,created_by,updated_at,updated_by,comment,image_urls,ifnull(like_num,0) as like_num
+        select id,created_at,created_by,updated_at,updated_by,comment,image_urls,ifnull(like_num,0) as like_num,name,email
         from t_moment_comment
         where is_delete = 0
         and moment_id = #{momentId}

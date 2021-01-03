@@ -4,6 +4,7 @@ import com.galaxy.cms.module.model.Blog;
 import com.galaxy.cms.module.service.CmsBlogService;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultGenerator;
+import com.galaxy.common.core.utils.Logger;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -51,18 +52,24 @@ public class CmsBlogController {
 
     @ApiOperation(value = "修改博客", notes = "修改博客")
     @RequestMapping(value = "/update", method = {RequestMethod.POST, RequestMethod.GET})
-    public Result update(@RequestBody Blog blog) {
-        blog.setUpdatedAt(new Date());
-        cmsBlogService.update(blog);
-        Result result=ResultGenerator.genSuccessResult();
-        result.setData(blog);
-        return result;
+    public Result updateBlog(@RequestBody Blog blog) {
+        Logger.info(this, "/blog/updateBlog 修改博客接口入参--->" + blog);
+        return cmsBlogService.updateBlog(blog);
     }
 
     @ApiOperation(value = "获取博客单个详情", notes = "获取博客单个详情")
     @RequestMapping(value = "/detail", method = {RequestMethod.POST, RequestMethod.GET})
     public Result detail(@RequestParam Long id) {
         return cmsBlogService.detail(id);
+    }
+
+
+    @ApiOperation(value = "按照时间分页查询博客", notes = "按照时间分页查询博客")
+    @RequestMapping(value = "/findByModalOrderByTime", method = {RequestMethod.POST, RequestMethod.GET})
+    public Result findByModalOrderByTime(@RequestParam(defaultValue="1",required=false) Integer page,
+                                         @RequestParam(defaultValue="20",required=false) Integer size,
+                                         @RequestBody(required =false) Blog blog) {
+        return cmsBlogService.findByModalOrderByTime(page, size,blog);
     }
 
     @ApiOperation(value = "分页查询博客", notes = "分页查询博客")

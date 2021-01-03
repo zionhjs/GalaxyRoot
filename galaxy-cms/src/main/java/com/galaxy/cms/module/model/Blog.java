@@ -1,5 +1,7 @@
 package com.galaxy.cms.module.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -88,6 +90,12 @@ public class Blog {
 
     @Column(name = "tag_name")
     private String tagName;
+
+    /**
+     * 评论数
+     */
+    @Transient
+    private Integer commentNum;
 
     private List<BlogImages> blogImagesList;
 
@@ -317,5 +325,13 @@ public class Blog {
 
     public void setMomentCommentList(List<MomentComment> momentCommentList) {
         this.momentCommentList = momentCommentList;
+    }
+
+    public Integer getCommentNum() {
+        return commentNum;
+    }
+
+    public void setCommentNum(Integer commentNum) {
+        this.commentNum = commentNum;
     }
 }

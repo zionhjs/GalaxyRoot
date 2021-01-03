@@ -65,6 +65,21 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
         for (Blog d:list) {
             d.setBlogImagesList(cmsBlogImagesMapper.selectBlogImagesByBlogId(d.getId()));
             d.setMomentCommentList(cmsMomentCommentMapper.selectMomentCommentByBlogId(d.getId()));
+            d.setCommentNum(d.getMomentCommentList().size());
+        }
+        PageInfo pageInfo = new PageInfo(list);
+        return ResultGenerator.genSuccessResult(pageInfo);
+    }
+
+    @Override
+    public Result findByModalOrderByTime(Integer page, Integer size, Blog blog) {
+        PageHelper.startPage(page, size);
+        blog.setIsDelete(false);
+        List<Blog> list = cmsBlogMapper.findByModalOrderByTime(blog);
+        for (Blog d:list) {
+            d.setBlogImagesList(cmsBlogImagesMapper.selectBlogImagesByBlogId(d.getId()));
+            d.setMomentCommentList(cmsMomentCommentMapper.selectMomentCommentByBlogId(d.getId()));
+            d.setCommentNum(d.getMomentCommentList().size());
         }
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);
@@ -114,5 +129,23 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
         Result result = ResultGenerator.genSuccessResult();
         result.setData(blog);
         return result;
+    }
+
+    @Override
+    public Result updateBlog(Blog blog) {
+        Integer rows = cmsBlogMapper.getBlogCountById(blog.getId());
+        if (0 == rows){
+            return ResultGenerator.genFailResult(ResultCode.BLOG_NOT_EXIST,"博客不存在或者已删除");
+        }
+
+        blog.setUpdatedAt(new Date());
+        rows = updateRows(blog);
+        if (0 == rows){
+            return ResultGenerator.genFailResult(ResultCode.BLOG_UPDATE_ERROR,"更新博客失败，请重新更新");
+        }else {
+            Result result=ResultGenerator.genSuccessResult();
+            result.setData(blog);
+            return result;
+        }
     }
 }

@@ -16,4 +16,8 @@ public interface CmsBlogService extends Service<Blog> {
     Result homeFindByTitle(Integer page, Integer size, String title);
 
     Result add(Blog blog);
+
+    Result updateBlog(Blog blog);
+
+    Result findByModalOrderByTime(Integer page, Integer size, Blog blog);
 }

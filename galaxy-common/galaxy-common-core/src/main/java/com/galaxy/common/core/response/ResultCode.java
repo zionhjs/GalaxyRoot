@@ -10,6 +10,9 @@ public enum ResultCode {
     NOT_FOUND(404),//接口不存在
     INTERNAL_SERVER_ERROR(500),//服务器内部错误
 
+    COMMENT_SAVE_ERROR(800034),//新增评论失败，请重新添加
+    BLOG_UPDATE_ERROR(800033),//更新博客失败，请重新更新
+    BLOG_NOT_EXIST(800032),//博客不存在或者已删除
     BLOG_DETAIL_ERROR(800031),//博客不存在或者已删除
     CANCEL_BLOG_LIKE_ERROR(800030),//为博客取消点赞失败，请重新点赞!
     CANCEL_COMMENT_LIKE_ERROR(800029),//为评论取消点赞失败，请重新取消点赞!

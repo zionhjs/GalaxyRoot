@@ -12,4 +12,8 @@ public interface CmsBlogMapper extends Mapper<Blog> {
     void updateBlogBrowseNum(Long id);
 
     List<Blog> list(Blog blog);
+
+    Integer getBlogCountById(Long id);
+
+    List<Blog> findByModalOrderByTime(Blog blog);
 }

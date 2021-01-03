@@ -11,12 +11,14 @@ import java.util.List;
  */
 public interface Service<T> {
 
-    void save(T model);//持久化
+    void save(T model);//新增
+    int saveRows(T model);//新增返回受影响得行数
     int saveList(List<T> model);
     void save(List<T> models);//批量持久化
     void deleteById(Long id);//通过主鍵刪除
     void deleteByIds(String ids);//批量刪除 eg：ids -> “1,2,3,4”
     void update(T model);//更新
+    int updateRows(T model);//更新返回受影响得行数
     void changeStateById(Long id,Boolean isDelete,Long userId); //更新状态
     T findById(Long id);//通过ID查找
     T findDetail(Long id);//通过ID查找状态有效的数据

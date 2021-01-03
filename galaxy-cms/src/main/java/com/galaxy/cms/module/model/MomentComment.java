@@ -82,6 +82,16 @@ public class MomentComment {
     private String imageUrls;
 
     /**
+     * 用户名称
+     */
+    private String name;
+
+    /**
+     * 用户邮箱
+     */
+    private String email;
+
+    /**
      * 获取自增id
      *
      * @return id - 自增id
@@ -313,5 +323,21 @@ public class MomentComment {
      */
     public void setImageUrls(String imageUrls) {
         this.imageUrls = imageUrls;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
