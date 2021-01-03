@@ -9,9 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <!--版本依赖-->
     <properties>
         <java.version>1.8</java.version>
         <io.springfox.version>2.5.0</io.springfox.version>
+        <pagehelper-spring-boot-starter.version>1.2.10</pagehelper-spring-boot-starter.version>
     </properties>
 
     <artifactId>galaxy-common-core</artifactId>
@@ -69,7 +71,7 @@
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>1.2.3</version>
+            <version>${pagehelper-spring-boot-starter.version}</version>
         </dependency>
 
         <!--http client相关依赖-->
