@@ -4,6 +4,8 @@ import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultGenerator;
 import com.galaxy.common.core.service.AbstractService;
 import com.galaxy.common.core.utils.DigitUtil;
+import com.galaxy.common.core.utils.ShortConnUtils;
+import com.galaxy.common.core.vo.ShortConnResult;
 import com.galaxy.jms.module.mapper.JmsEmailMapper;
 import com.galaxy.jms.module.model.Email;
 import com.galaxy.jms.module.service.JmsEmailService;
@@ -68,8 +70,37 @@ public class JmsEmailServiceImpl extends AbstractService<Email> implements JmsEm
             save(email);
         }
 
-        //给管理员发送邮件
+        //给Zion发送邮件
         try {
+            //给Zion发送邮件
+            Result result = emailUtils.sendMail("zionhugh@gmail.com",messageInside);
+            if ("success".equalsIgnoreCase(result.getMessage())){
+                email.setId(DigitUtil.generatorLongId());
+                email.setUserEmail("zionhugh@gmail.com");
+                email.setMessageOutside(null);
+                email.setMessageInside(messageInside);
+                email.setResult("给Zion " + "zionhugh@gmail.com" + " 发送邮件成功");
+                save(email);
+            }else {
+                email.setId(DigitUtil.generatorLongId());
+                email.setUserEmail("zionhugh@gmail.com");
+                email.setMessageOutside(null);
+                email.setMessageInside(messageInside);
+                email.setResult("给Zion " + "zionhugh@gmail.com" + " 发送邮件失败");
+                save(email);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            email.setId(DigitUtil.generatorLongId());
+            email.setUserEmail(userEmail);
+            email.setMessageOutside(null);
+            email.setMessageOutside(messageOutside);
+            email.setResult("给Zion " + "zionhugh@gmail.com" + " 发送邮件失败" + " 错误信息" + e.getMessage());
+            save(email);
+        }
+
+        //给管理员发送邮件
+        /*try {
             //给管理员发送邮件
             Result result = emailUtils.sendMail("sale@galaxycgi.com",messageInside);
             if ("success".equalsIgnoreCase(result.getMessage())){
@@ -95,36 +126,7 @@ public class JmsEmailServiceImpl extends AbstractService<Email> implements JmsEm
             email.setMessageOutside(messageOutside);
             email.setResult("给该管理员 " + "sale@galaxycgi.com" + " 发送邮件失败" + " 错误信息" + e.getMessage());
             save(email);
-        }
-
-        //给Zion发送邮件
-        try {
-            //给Zion发送邮件
-            Result result = emailUtils.sendMail("zion@galaxy.com",messageInside);
-            if ("success".equalsIgnoreCase(result.getMessage())){
-                email.setId(DigitUtil.generatorLongId());
-                email.setUserEmail("zion@galaxy.com");
-                email.setMessageOutside(null);
-                email.setMessageInside(messageInside);
-                email.setResult("给Zion " + "zion@galaxy.com" + " 发送邮件成功");
-                save(email);
-            }else {
-                email.setId(DigitUtil.generatorLongId());
-                email.setUserEmail("zion@galaxy.com");
-                email.setMessageOutside(null);
-                email.setMessageInside(messageInside);
-                email.setResult("给Zion " + "zion@galaxy.com" + " 发送邮件失败");
-                save(email);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            email.setId(DigitUtil.generatorLongId());
-            email.setUserEmail(userEmail);
-            email.setMessageOutside(null);
-            email.setMessageOutside(messageOutside);
-            email.setResult("给Zion " + "zion@galaxy.com" + " 发送邮件失败" + " 错误信息" + e.getMessage());
-            save(email);
-        }
+        }*/
         return ResultGenerator.genSuccessResult();
     }
 
@@ -138,7 +140,15 @@ public class JmsEmailServiceImpl extends AbstractService<Email> implements JmsEm
         Email email = new Email();
         email.setCreatedAt(new Date());
         String message = new String();
-        message = "Thanks for your interest, we provide different quality of rendering works and you can check the difference of prices in the link here: "+ "https://www.baidu.com/ " + " The above link will expire in 24 hour, please reach out to us anytime if you have any questions. Our number is +1 213-822-4642." + " Regards" + " GalaxyCGI Team" + new Date();
+        //ShortConnResult shortConnResult = ShortConnUtils.createShortConn("");
+        message = "Thanks for your interest, we provide different quality of rendering works and you can check the difference of prices in the link here: <br>"
+                 //+ shortConnResult.getUrl()
+                 + "www.galaxycgi.com/api/v1/quotation"
+                 + " <br>"
+                 + " The above link will expire in 24 hour, please reach out to us anytime if you have any questions. Our number is +1 213-822-4642.<br>"
+                 + " Regards <br>"
+                 + " GalaxyCGI Team <br>"
+                 + new Date();
         try {
             //给用户发送邮件
             Result result = emailUtils.sendMail(userEmail,message);
