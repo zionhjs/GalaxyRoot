@@ -1,6 +1,6 @@
-package com.galaxy.common.core.utils;
+package com.galaxy.jms.module.utils;
 
-import com.galaxy.common.core.vo.ShortConnResult;
+import com.galaxy.jms.module.model.ShortConnResult;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -13,7 +13,7 @@ import java.util.Map;
  * @Date 2020/11/9 14:26
  * @Version 1.0
  **/
-public class ShortConnUtils {
+public class ShortConnUtil {
 
     /**
      * 短连接生成

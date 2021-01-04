@@ -10,6 +10,7 @@ public enum ResultCode {
     NOT_FOUND(404),//接口不存在
     INTERNAL_SERVER_ERROR(500),//服务器内部错误
 
+    SHORT_CONN_ERROR(800035),//短链接生成失败，请重新发送
     COMMENT_SAVE_ERROR(800034),//新增评论失败，请重新添加
     BLOG_UPDATE_ERROR(800033),//更新博客失败，请重新更新
     BLOG_NOT_EXIST(800032),//博客不存在或者已删除
