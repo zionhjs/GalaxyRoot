@@ -1,16 +1,15 @@
 package com.galaxy.cms.module.feign;
 
-import com.galaxy.common.core.constants.ServiceNameConstants;
-import com.rabbitmq.http.client.domain.UserInfo;
+import com.galaxy.common.core.response.Result;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
-import sun.security.util.SecurityConstants;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(contextId = "remoteUploadService")
+@FeignClient(name = "galaxy-upload")
 public interface RemoteImagesService {
 
-	
+    @RequestMapping(value = "/images/detail", method = RequestMethod.GET)
+    Result detail(@RequestParam("id") Long id);
 
 }

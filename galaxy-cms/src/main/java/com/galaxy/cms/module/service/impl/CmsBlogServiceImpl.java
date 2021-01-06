@@ -1,5 +1,6 @@
 package com.galaxy.cms.module.service.impl;
 
+import com.galaxy.cms.module.feign.RemoteImagesService;
 import com.galaxy.cms.module.mapper.CmsBlogImagesMapper;
 import com.galaxy.cms.module.mapper.CmsBlogMapper;
 import com.galaxy.cms.module.mapper.CmsMomentCommentMapper;
@@ -41,6 +42,9 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
 
     @Resource
     private CmsBlogImagesService cmsBlogImagesService;
+
+    @Resource
+    private RemoteImagesService remoteImagesService;
 
     @Override
     public Result detail(Long id) {
@@ -102,8 +106,8 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
         homeListVo.setBlogPageInfo(blogPageInfo);
 
         //图片分页查询
-
-
+        Result result = remoteImagesService.detail(123L);
+        System.out.println("result结果集" + result);
         //视频分页查询
 
 
