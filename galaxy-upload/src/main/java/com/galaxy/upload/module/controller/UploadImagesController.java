@@ -166,11 +166,28 @@ public class UploadImagesController extends BaseController {
         return ResultGenerator.genSuccessResult(images);
     }
 
+    @ApiOperation(value = "获取图片单个详情(Data)", notes = "获取图片单个详情(Data)")
+    @RequestMapping(value = "/detailData", method = {RequestMethod.POST,RequestMethod.GET})
+    public Result detailData(@RequestParam Long id) {
+        Images images = uploadImagesService.findById(id);
+        return ResultGenerator.genSuccessResultData(images);
+    }
+
+    @ApiOperation(value = "分页查询图片(Data)", notes = "分页查询图片(Data)")
+    @RequestMapping(value = "/findByModalData", method = RequestMethod.POST)
+    public Result findByModalData(@RequestParam(defaultValue="1",required=false) Integer page,
+                       @RequestParam(defaultValue="20",required=false) Integer size,
+                       @RequestParam(required = false) String title) {
+        return uploadImagesService.findByModalData(page,size,title);
+    }
+
     @ApiOperation(value = "分页查询", notes = "分页查询")
     @RequestMapping(value = "/findByModal", method = {RequestMethod.POST,RequestMethod.GET})
     public Result list(@RequestParam(defaultValue="1",required=false) Integer page,@RequestParam(defaultValue="20",required=false) Integer size, @RequestBody(required =false) Images images) {
         return uploadImagesService.list(page,size,images);
     }
+
+
 
 
 }

@@ -11,8 +11,14 @@ import org.springframework.stereotype.Component;
 public class RemoteImagesServiceFallbackImpl implements RemoteImagesService {
 
 	@Override
-	public Result detail(Long id) {
-		System.out.println("出错了出错了");
+	public Result imagesDetailData(Integer page, Integer size, String title) {
+		System.out.println("分查查询图片错误问题");
+		return null;
+	}
+
+	@Override
+	public Result videoDetailData(Integer page, Integer size, String title) {
+		System.out.println("分页查询视频错误问题");
 		return null;
 	}
 }

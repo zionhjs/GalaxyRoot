@@ -37,8 +37,11 @@
                  frame_images
         from t_video
         where is_delete = 0
-        <if test="status != null and status != ''">
+        <if test="status != null and status != '' and status !={} ">
             and status = #{status}
+        </if>
+        <if test="title != null and title != '' and title !={} ">
+            and title = #{title}
         </if>
     </select>
 </mapper>

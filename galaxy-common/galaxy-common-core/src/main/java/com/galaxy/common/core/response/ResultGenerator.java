@@ -6,6 +6,7 @@ import com.galaxy.common.core.utils.Logger;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 
 /**
  * 响应结果生成工具
@@ -23,6 +24,11 @@ public class ResultGenerator {
         return new Result()
                 .setCode(ResultCode.SUCCESS)
                 .setMessage(DEFAULT_SUCCESS_MESSAGE)
+                .setData(data);
+    }
+
+    public static <T> Result<T> genSuccessResultData(T data) {
+        return new Result()
                 .setData(data);
     }
 

@@ -1,10 +1,11 @@
 package com.galaxy.upload.module.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
 @Table(name = "t_images")
-public class Images {
+public class Images implements Serializable {
     /**
      * 记录ID
      */

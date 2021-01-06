@@ -2,13 +2,13 @@ package com.galaxy.cms.module.vo;
 
 import com.github.pagehelper.PageInfo;
 
-public class HomeListVo {
+public class HomeListVo<T> {
 
     private PageInfo blogPageInfo;
 
-    private PageInfo imagesPageInfo;
+    private T imagesPageInfo;
 
-    private PageInfo videoPageInfo;
+    private T videoPageInfo;
 
     public PageInfo getBlogPageInfo() {
         return blogPageInfo;
@@ -18,19 +18,19 @@ public class HomeListVo {
         this.blogPageInfo = blogPageInfo;
     }
 
-    public PageInfo getImagesPageInfo() {
+    public T getImagesPageInfo() {
         return imagesPageInfo;
     }
 
-    public void setImagesPageInfo(PageInfo imagesPageInfo) {
+    public void setImagesPageInfo(T imagesPageInfo) {
         this.imagesPageInfo = imagesPageInfo;
     }
 
-    public PageInfo getVideoPageInfo() {
+    public T getVideoPageInfo() {
         return videoPageInfo;
     }
 
-    public void setVideoPageInfo(PageInfo videoPageInfo) {
+    public void setVideoPageInfo(T videoPageInfo) {
         this.videoPageInfo = videoPageInfo;
     }
 }

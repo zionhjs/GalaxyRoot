@@ -14,4 +14,6 @@ public interface UploadVideoService extends Service<Video> {
     Result fetchFrame(String videofile,Video video);
 
     Result list(Integer page, Integer size, Video video);
+
+    Result findByModalData(Integer page, Integer size, String title);
 }

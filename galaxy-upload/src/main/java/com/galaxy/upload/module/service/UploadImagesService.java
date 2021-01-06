@@ -29,4 +29,6 @@ public interface UploadImagesService extends Service<Images> {
     Result saveImg(String url);
 
     Result uploadImagesNotLogo(MultipartFile multipartFile);
+
+    Result findByModalData(Integer page, Integer size, String title);
 }

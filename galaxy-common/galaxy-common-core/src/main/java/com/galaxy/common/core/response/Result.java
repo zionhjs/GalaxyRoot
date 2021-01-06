@@ -2,10 +2,15 @@ package com.galaxy.common.core.response;
 
 import com.alibaba.fastjson.JSON;
 
+import java.io.Serializable;
+
 /**
  * 统一API响应结果封装
  */
-public class Result<T> {
+public class Result<T> implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private int code;
     private String message;
     private T data;

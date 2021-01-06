@@ -316,6 +316,20 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         }
     }
 
+    @Override
+    public Result findByModalData(Integer page, Integer size, String title) {
+        PageHelper.startPage(page, size);
+        Images images = new Images();
+        if ("{}".equalsIgnoreCase(title)){
+            images.setTitle("");
+        }else {
+            images.setTitle(title);
+        }
+        List<Images> list = uploadImagesMapper.list(images);
+        PageInfo pageInfo = new PageInfo(list);
+        return ResultGenerator.genSuccessResultData(pageInfo);
+    }
+
     private static byte[] readInputStream(InputStream inStream) throws Exception {
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];

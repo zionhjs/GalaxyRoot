@@ -44,8 +44,11 @@
               s3_key_240,s3_key_480,s3_key_1080,object_url_240,object_url_480,object_url_1080,ifnull(rating, 0) as rating,tmp_rating
         from t_images
         where is_delete = 0
-        <if test="status != null and status != ''">
+        <if test="status != null and status != '' and status !={} ">
           and status = #{status}
+        </if>
+        <if test="title != null and title != '' and title !={} ">
+          and title = #{title}
         </if>
         order by rating
   </select>

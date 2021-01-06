@@ -84,6 +84,14 @@ public class UploadVideoController {
         return ResultGenerator.genSuccessResult(video);
     }
 
+    @ApiOperation(value = "分页查询视频(Data)", notes = "分页查询视频(Data)")
+    @RequestMapping(value = "/findByModalData", method = RequestMethod.POST)
+    public Result findByModalData(@RequestParam(defaultValue="1",required=false) Integer page,
+                       @RequestParam(defaultValue="20",required=false) Integer size,
+                       @RequestParam(required =false) String title) {
+        return uploadVideoService.findByModalData(page,size,title);
+    }
+
     @ApiOperation(value = "分页查询视频", notes = "分页查询视频")
     @RequestMapping(value = "/findByModal", method = {RequestMethod.POST,RequestMethod.GET})
     public Result list(@RequestParam(defaultValue="1",required=false) Integer page,

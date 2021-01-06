@@ -106,10 +106,12 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
         homeListVo.setBlogPageInfo(blogPageInfo);
 
         //图片分页查询
-        Result result = remoteImagesService.detail(123L);
-        System.out.println("result结果集" + result);
-        //视频分页查询
+        Result imagesResult = remoteImagesService.imagesDetailData(page,size,title);
+        homeListVo.setImagesPageInfo(imagesResult.getData());
 
+        //视频分页查询
+        Result videoResult = remoteImagesService.imagesDetailData(page,size,title);
+        homeListVo.setVideoPageInfo(videoResult.getData());
 
         return ResultGenerator.genSuccessResult(homeListVo);
     }

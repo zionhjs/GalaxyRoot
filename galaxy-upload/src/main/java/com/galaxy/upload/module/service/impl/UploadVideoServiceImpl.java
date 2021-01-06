@@ -176,6 +176,20 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
         return ResultGenerator.genSuccessResult(pageInfo);
     }
 
+    @Override
+    public Result findByModalData(Integer page, Integer size, String title) {
+        PageHelper.startPage(page, size);
+        Video video = new Video();
+        if ("{}".equalsIgnoreCase(title)){
+            video.setTitle("");
+        }else {
+            video.setTitle(title);
+        }
+        List<Video> list = uploadVideoMapper.list(video);
+        PageInfo pageInfo = new PageInfo(list);
+        return ResultGenerator.genSuccessResult(pageInfo);
+    }
+
     public static BufferedImage FrameToBufferedImage(Frame frame) {
         //创建BufferedImage对象
         Java2DFrameConverter converter = new Java2DFrameConverter();
