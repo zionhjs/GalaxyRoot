@@ -41,7 +41,7 @@
             and status = #{status}
         </if>
         <if test="title != null and title != '' and title !={} ">
-            and title = #{title}
+            and title like concat(concat('%',#{title}),'%')
         </if>
     </select>
 </mapper>

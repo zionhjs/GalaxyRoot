@@ -1,5 +1,6 @@
 package com.galaxy.ucenter.module.controller;
 
+import com.galaxy.common.core.annotation.VerifyIdempotent;
 import com.galaxy.common.core.controller.BaseController;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultGenerator;
@@ -53,6 +54,7 @@ public class UserController extends BaseController {
 
     @ApiOperation(value = "用户注册", notes = "用户注册")
     @RequestMapping(value = "/add", method = {RequestMethod.POST,RequestMethod.GET})
+    @VerifyIdempotent(value = "/user/add", expireMillis = 10000L)
     public Result add(@RequestBody User user) {
         Logger.info(this, "/galaxy/user/add 用户注册接口入参 :" + user);
         return userService.add(user);
