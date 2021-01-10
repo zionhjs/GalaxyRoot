@@ -101,8 +101,8 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
             uploadFile(multipartFile, video);
             return ResultGenerator.genSuccessResult(video);
         }catch (Exception e){
-            e.printStackTrace();
-            return ResultGenerator.genFailResult(ResultCode.VIDEO_ERROR,"上传视频失败");
+            Logger.info(this, "上传视频失败" + e.getMessage());
+            return ResultGenerator.genFailResult(ResultCode.VIDEO_ERROR,"上传视频失败" + e);
         }
     }
 
@@ -213,7 +213,7 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
 
             video.setS3BucketName(bucketName);
 
-            // for encode Video to 480p / 720p / 1080p
+        // for encode Video to 480p / 720p / 1080p
             File targetFile480 = new File("target480.mp4");
 
             targetFile480 = encodeVideo(sourceFile, targetFile480, 854, 480);

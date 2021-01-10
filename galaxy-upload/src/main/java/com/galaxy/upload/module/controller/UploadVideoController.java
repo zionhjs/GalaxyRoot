@@ -2,6 +2,7 @@ package com.galaxy.upload.module.controller;
 
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultGenerator;
+import com.galaxy.common.core.utils.Logger;
 import com.galaxy.upload.module.model.Video;
 import com.galaxy.upload.module.service.UploadVideoService;
 import com.github.pagehelper.PageHelper;
@@ -44,6 +45,7 @@ public class UploadVideoController {
                               @RequestParam(value = "suffix",required = false) String suffix,
                               @RequestParam(value="level",required = false) String level,
                               @RequestParam(value="status",required = false) Integer status){
+        Logger.info(this, "/video/uploadVideo 上传视频接口入参--->");
         return uploadVideoService.uploadVideo(multipartFile,title,description,suffix,level,status);
     }
 
