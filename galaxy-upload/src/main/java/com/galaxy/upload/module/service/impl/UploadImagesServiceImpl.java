@@ -116,7 +116,7 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             return ResultGenerator.genSuccessResult(images);
         }catch (Exception e){
             e.printStackTrace();
-            return ResultGenerator.genFailResult(ResultCode.IMAGEAS_ERROR,"上传图片失败");
+            return ResultGenerator.genFailResult(ResultCode.IMAGEAS_ERROR,"上传图片失败" + e);
         }
     }
 
