@@ -9,6 +9,7 @@ import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultCode;
 import com.galaxy.common.core.response.ResultGenerator;
 import com.galaxy.common.core.service.AbstractService;
+import com.galaxy.common.core.utils.Logger;
 import com.galaxy.upload.module.mapper.UploadImagesMapper;
 import com.galaxy.upload.module.model.Images;
 import com.galaxy.upload.module.service.UploadImagesService;
@@ -115,6 +116,7 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             save(images);
             return ResultGenerator.genSuccessResult(images);
         }catch (Exception e){
+            Logger.info(this,e.getMessage());
             e.printStackTrace();
             return ResultGenerator.genFailResult(ResultCode.IMAGEAS_ERROR,"上传图片失败" + e);
         }

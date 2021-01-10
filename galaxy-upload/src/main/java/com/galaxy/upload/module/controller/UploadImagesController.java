@@ -3,6 +3,7 @@ package com.galaxy.upload.module.controller;
 import com.galaxy.common.core.controller.BaseController;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultGenerator;
+import com.galaxy.common.core.utils.Logger;
 import com.galaxy.upload.module.model.Images;
 import com.galaxy.upload.module.service.UploadImagesService;
 import io.swagger.annotations.Api;
@@ -133,6 +134,7 @@ public class UploadImagesController extends BaseController {
                                @RequestParam(value = "suffix",required = false) String suffix,
                                @RequestParam(value="level",required = false) String level,
                                @RequestParam(value="status",required = false) Integer status){
+        Logger.info(this, "/images/uploadImages 上传图片直接保存接口入参--->");
         return uploadImagesService.uploadImages(multipartFile,title,description,suffix,level,status);
     }
 
