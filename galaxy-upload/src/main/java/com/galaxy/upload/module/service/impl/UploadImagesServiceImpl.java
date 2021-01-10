@@ -43,7 +43,7 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
     @Value("${galaxy.amazonProperties.image360BucketName}")
     private String image360BucketName;
 
-    private static String markImg = "targetLogoFile.tmp";
+    private static String markImg = "/home/ec2-user/targetLogoFile.png";
 
     private static String notLogo = "notLogo.tmp";
 
