@@ -105,9 +105,12 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
             return ResultGenerator.genFailResult(ResultCode.PASSWORD_ERROR,"用户名或密码错误");
         }
 
+        SysUserVo userVo = new SysUserVo();
+
         List<Object> sysMenuList = new ArrayList<Object>();
         if (null != user.getSysRoleId()){
             sysMenuList = sysMenuMapper.selectMenuByRoleId(user.getSysRoleId());
+            userVo = sysMenuMapper.selectRoleById(user.getSysRoleId());
         }
 
         //创建token
@@ -134,6 +137,8 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
             sysUserVo.setChannel(vo.getChannel());
             sysUserVo.setUserName(user.getUserName());
             sysUserVo.setSysMenuList(sysMenuList);
+            sysUserVo.setRoleId(userVo.getRoleId());
+            sysUserVo.setRoleName(userVo.getRoleName());
             //redisService.put(Constant.REDIS_KEY_LOGIN, token, new RedisModel(su.getId(), System.currentTimeMillis() + magConfig.getExpireTime()), magConfig.getExpireTime());
             redisUtil.setWithExpire(Constant.REDIS_KEY_LOGIN + token, sysUserVo , 2505600000L);
             redisUtil.set(user.getId()+"USERID",token);

@@ -20,6 +20,13 @@
     <result column="version" jdbcType="INTEGER" property="version" />
   </resultMap>
 
+    <select id="selectRoleById" resultType="com.galaxy.common.core.vo.SysUserVo">
+        select id as roleId,role_name as roleName
+        from t_sys_role
+        where is_delete = 0
+        and id = #{sysRoleId}
+    </select>
+
     <select id="selectMenuByRoleId" resultMap="BaseResultMap">
         select id,created_at,created_by,updated_at,updated_by,parent_id,name,link_url,image_url,enable_flag,sort_id
         from t_sys_menu

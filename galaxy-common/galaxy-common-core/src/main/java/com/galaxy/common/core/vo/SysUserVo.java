@@ -24,6 +24,8 @@ public class SysUserVo implements Serializable {
 
     private String roleId;
 
+    private String roleName;
+
     private String channel;
 
     private String userName;
@@ -35,13 +37,14 @@ public class SysUserVo implements Serializable {
     }
 
     public SysUserVo(Long userId, String phone, String email, String token,
-                     Long expireTime, String roleId, String channel, String userName,List<Object> sysMenuList) {
+                     Long expireTime, String roleId, String roleName, String channel, String userName,List<Object> sysMenuList) {
         this.userId = userId;
         this.phone = phone;
         this.email = email;
         this.token = token;
         this.expireTime = expireTime;
         this.roleId = roleId;
+        this.roleName = roleName;
         this.channel = channel;
         this.userName = userName;
         this.sysMenuList = sysMenuList;
@@ -93,6 +96,14 @@ public class SysUserVo implements Serializable {
 
     public void setRoleId(String roleId) {
         this.roleId = roleId;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     public String getChannel() {
