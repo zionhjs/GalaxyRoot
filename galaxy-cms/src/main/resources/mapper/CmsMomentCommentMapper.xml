@@ -22,11 +22,36 @@
     <result column="email" jdbcType="VARCHAR" property="email" />
   </resultMap>
 
-    <select id="selectMomentCommentByBlogId" resultMap="BaseResultMap">
-        select id,created_at,created_by,updated_at,updated_by,comment,image_urls,ifnull(like_num,0) as like_num,name,email
-        from t_moment_comment
-        where is_delete = 0
-        and moment_id = #{momentId}
+    <select id="list" resultType="com.galaxy.cms.module.model.MomentComment">
+        select m.id as id,m.created_at as createdAt,m.created_by as createdBy,
+                m.updated_at as updatedAt,m.updated_by as updatedBy,m.comment as comment,m.image_urls as imageUrls,
+                ifnull(m.like_num,0) as likeNum,m.name as name,m.email as email,
+                u.avatar as avatar
+        from t_moment_comment m left join t_user u on m.created_by = u.id
+        where m.is_delete = 0
+        and u.is_delete = 0
+    </select>
+
+    <select id="detail" resultType="com.galaxy.cms.module.model.MomentComment">
+        select m.id as id,m.created_at as createdAt,m.created_by as createdBy,
+                m.updated_at as updatedAt,m.updated_by as updatedBy,m.comment as comment,m.image_urls as imageUrls,
+                ifnull(m.like_num,0) as likeNum,m.name as name,m.email as email,
+                u.avatar as avatar
+        from t_moment_comment m left join t_user u on m.created_by = u.id
+        where m.is_delete = 0
+        and u.is_delete = 0
+        and m.id = #{id}
+    </select>
+
+    <select id="selectMomentCommentByBlogId" resultType="com.galaxy.cms.module.model.MomentComment">
+        select m.id as id,m.created_at as createdAt,m.created_by as createdBy,
+                m.updated_at as updatedAt,m.updated_by as updatedBy,m.comment as comment,m.image_urls as imageUrls,
+                ifnull(m.like_num,0) as likeNum,m.name as name,m.email as email,
+                u.avatar as avatar
+        from t_moment_comment m left join t_user u on m.created_by = u.id
+        where m.is_delete = 0
+        and u.is_delete = 0
+        and m.moment_id = #{momentId}
     </select>
 
 </mapper>

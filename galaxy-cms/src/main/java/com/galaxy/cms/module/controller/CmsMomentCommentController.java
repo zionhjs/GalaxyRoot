@@ -57,17 +57,14 @@ public class CmsMomentCommentController extends BaseController {
     @ApiOperation(value = "获取评论单个详情", notes = "获取评论单个详情")
     @RequestMapping(value = "/detail", method = {RequestMethod.POST, RequestMethod.GET})
     public Result detail(@RequestParam Long id) {
-        MomentComment momentComment = cmsMomentCommentService.findById(id);
-        return ResultGenerator.genSuccessResult(momentComment);
+        Logger.info(this, "/moment/comment/detail 获取评论单个详情接口入参--->" + id);
+        return cmsMomentCommentService.detail(id);
     }
 
     @ApiOperation(value = "分页查询评论", notes = "分页查询评论")
     @RequestMapping(value = "/findByModal", method = {RequestMethod.POST, RequestMethod.GET})
     public Result list(@RequestParam(defaultValue="1",required=false) Integer page, @RequestParam(defaultValue="20",required=false) Integer size, @RequestBody(required =false) MomentComment momentComment) {
-        PageHelper.startPage(page, size);
-        momentComment.setIsDelete(false);
-        List<MomentComment> list = cmsMomentCommentService.findByModel(momentComment);
-        PageInfo pageInfo = new PageInfo(list);
-        return ResultGenerator.genSuccessResult(pageInfo);
+        Logger.info(this, "/moment/comment/findByModal 分页查询评论接口入参--->" + momentComment);
+        return cmsMomentCommentService.list(page,size,momentComment);
     }
 }

@@ -11,4 +11,8 @@ import com.galaxy.common.core.service.Service;
 public interface CmsMomentCommentService extends Service<MomentComment> {
 
     Result add(MomentComment momentComment);
+
+    Result detail(Long id);
+
+    Result list(Integer page,Integer size,MomentComment momentComment);
 }

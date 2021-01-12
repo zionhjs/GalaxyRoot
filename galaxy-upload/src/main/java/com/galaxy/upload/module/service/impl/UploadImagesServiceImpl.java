@@ -111,6 +111,8 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             images.setS3Key240(s3Object240.getKey());
             //图片全路径
             images.setObjectUrl240("https://" + bucketName + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
+
+            s3Object240.close();
             //删除临时文件
             file.delete();
             save(images);

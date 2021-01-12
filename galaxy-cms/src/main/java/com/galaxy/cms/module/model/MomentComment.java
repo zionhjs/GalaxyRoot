@@ -92,6 +92,12 @@ public class MomentComment {
     private String email;
 
     /**
+     * 用户头像
+     */
+    @Transient
+    private String avatar;
+
+    /**
      * 获取自增id
      *
      * @return id - 自增id
@@ -339,5 +345,13 @@ public class MomentComment {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

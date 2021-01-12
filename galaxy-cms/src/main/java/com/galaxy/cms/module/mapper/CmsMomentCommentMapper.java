@@ -10,4 +10,7 @@ public interface CmsMomentCommentMapper extends Mapper<MomentComment> {
 
     List<MomentComment> selectMomentCommentByBlogId(Long momentId);
 
+    MomentComment detail(Long id);
+
+    List<MomentComment> list(MomentComment momentComment);
 }

@@ -8,11 +8,14 @@ import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultCode;
 import com.galaxy.common.core.response.ResultGenerator;
 import com.galaxy.common.core.service.AbstractService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -46,5 +49,20 @@ public class CmsMomentCommentServiceImpl extends AbstractService<MomentComment> 
             result.setData(momentComment);
             return result;
         }
+    }
+
+    @Override
+    public Result detail(Long id) {
+        MomentComment momentComment = cmsMomentCommentMapper.detail(id);
+        return ResultGenerator.genSuccessResult(momentComment);
+    }
+
+    @Override
+    public Result list(Integer page,Integer size,MomentComment momentComment) {
+        PageHelper.startPage(page, size);
+        momentComment.setIsDelete(false);
+        List<MomentComment> list = cmsMomentCommentMapper.list(momentComment);
+        PageInfo pageInfo = new PageInfo(list);
+        return ResultGenerator.genSuccessResult(pageInfo);
     }
 }
