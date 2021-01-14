@@ -2,7 +2,7 @@ package com.galaxy.gateway.filter;
 
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.galaxy.common.core.UserContext;
+import com.galaxy.common.core.config.MagConfig;
 import com.galaxy.common.core.constants.Constant;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultCode;
@@ -14,12 +14,14 @@ import com.galaxy.gateway.vo.SysMenuVo;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import javax.security.auth.message.AuthException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.PRE_TYPE;
 
@@ -32,6 +34,9 @@ public class LoginFilter extends ZuulFilter {
 
 	@Resource
 	private RedisUtil redisUtil;
+
+	@Autowired
+	private MagConfig magConfig;
 
 	@Override
 	public String filterType() {
@@ -53,12 +58,17 @@ public class LoginFilter extends ZuulFilter {
 
 		String[] s = url.split("/");
 
-		if ("/swagger-ui.*,/static.*,/a2billing.*,/favicon.*,/webjars/springfox-swagger-ui.*,/v2/api-docs.*,/galaxy/user/login,/galaxy/user/logout,/galaxy/user/add".
-				contains(s[s.length-1])) {
-			return false;
-		}else {
-			return true;
+		//false 不拦截,true 拦截
+		boolean tag = true;
+		List<String> urlsList = Arrays.asList(magConfig.getNotCheckLoginUrl().split(","));
+		for (String u :urlsList) {
+			//如果包含的话那就是不拦截
+			if (u.replaceAll("/","").equalsIgnoreCase(s[s.length-1])){
+				tag = false;
+				break;
+			}
 		}
+		return tag;
 	}
 
 	@Override
