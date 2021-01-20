@@ -31,17 +31,25 @@
     <result column="tmp_rating" jdbcType="BIGINT" property="tmpRating" />
   </resultMap>
 
-    <select id="getImagesDetailsById" resultMap="BaseResultMap">
-        select id,image_name,title,description,content_type,level,suffix,size,s3_bucket_name,
-                s3_key_240,s3_key_480,s3_key_1080,object_url_240,object_url_480,object_url_1080,rating,tmp_rating
+    <select id="getImagesDetailsById" resultType="com.galaxy.upload.module.model.Images">
+        select id as id,image_name as imageName,title as title,description as description,content_type as contentType,
+                level as level,suffix as suffix,size as size,s3_bucket_name as s3BucketName,
+                s3_key_240 as s3Key240,s3_key_480 as s3Key480,s3_key_1080 as s3Key1080,object_url_240 as objectUrl240,
+                object_url_480 as objectUrl480,
+                object_url_1080 as objectUrl1080,rating as rating,tmp_rating as tmpRating,
+                (case status when 1 then '普通图片' when 2 then '360°' when 3 then 'interior'  when 4 then 'exterior' end) as statusName
         from t_images
         where is_delete = 0
         and id = #{id}
     </select>
 
-  <select id="list" resultMap="BaseResultMap">
-      select id,status,image_name,title,description,content_type,level,suffix,size,s3_bucket_name,
-              s3_key_240,s3_key_480,s3_key_1080,object_url_240,object_url_480,object_url_1080,ifnull(rating, 0) as rating,tmp_rating
+  <select id="list" resultType="com.galaxy.upload.module.model.Images">
+      select id as id,image_name as imageName,title as title,description as description,content_type as contentType,
+              level as level,suffix as suffix,size as size,s3_bucket_name as s3BucketName,
+              s3_key_240 as s3Key240,s3_key_480 as s3Key480,s3_key_1080 as s3Key1080,object_url_240 as objectUrl240,
+              object_url_480 as objectUrl480,
+              object_url_1080 as objectUrl1080,rating as rating,tmp_rating as tmpRating,
+              (case status when 1 then '普通图片' when 2 then '360°' when 3 then 'interior'  when 4 then 'exterior' end) as statusName
         from t_images
         where is_delete = 0
         <if test="status != null and status != ''">

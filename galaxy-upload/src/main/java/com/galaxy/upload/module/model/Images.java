@@ -143,6 +143,9 @@ public class Images implements Serializable {
     @Column(name = "tmp_rating")
     private Long tmpRating;
 
+    @Transient
+    private String statusName;
+
     /**
      * 获取记录ID
      *
@@ -573,5 +576,13 @@ public class Images implements Serializable {
      */
     public void setTmpRating(Long tmpRating) {
         this.tmpRating = tmpRating;
+    }
+
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
     }
 }

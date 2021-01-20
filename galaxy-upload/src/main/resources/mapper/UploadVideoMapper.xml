@@ -31,10 +31,14 @@
     <result column="frame_images" jdbcType="VARCHAR" property="frameImages" />
   </resultMap>
 
-    <select id="list" resultMap="BaseResultMap">
-        select  id,created_at,created_by,updated_at,updated_by,status,title,description,video_name,thumbnail,content_type,
-                 size,level,suffix,s3_bucket_name,s3_key_480,s3_key_1080,s3_key_2160,object_url_480,object_url_1080,object_url_2160,
-                 frame_images
+    <select id="list" resultType="com.galaxy.upload.module.model.Video" >
+        select  id as id,created_at as createdAt,created_by as createdBy,updated_at as updatedAt,
+                 updated_by as updatedBy,status as status,title as title,description as description,video_name as videoName,
+                 thumbnail as thumbnail,content_type as contentType,
+                 size as size,level as level,suffix as suffix,
+                 s3_bucket_name as s3BucketName,s3_key_480 as s3Key480,s3_key_1080 as s3Key1080,s3_key_2160 as s3Key2160,
+                 object_url_480 as objectUrl480,object_url_1080 as objectUrl1080,object_url_2160 as objectUrl2160,
+                 frame_images as frameImages
         from t_video
         where is_delete = 0
         <if test="status != null and status != '' and status !={} ">
