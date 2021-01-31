@@ -143,7 +143,7 @@ public class Images implements Serializable {
     @Column(name = "tmp_rating")
     private Long tmpRating;
 
-    @Transient
+    @Column(name = "status_name")
     private String statusName;
 
     /**

@@ -1,4 +1,4 @@
-package com.galaxy.jms.module.utils;
+package com.galaxy.cms.module.utils;
 
 import com.aliyuncs.exceptions.ClientException;
 import com.galaxy.common.core.response.Result;

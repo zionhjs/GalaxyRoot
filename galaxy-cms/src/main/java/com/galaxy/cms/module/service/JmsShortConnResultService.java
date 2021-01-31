@@ -1,7 +1,7 @@
-package com.galaxy.jms.module.service;
+package com.galaxy.cms.module.service;
 
+import com.galaxy.cms.module.model.ShortConnResult;
 import com.galaxy.common.core.service.Service;
-import com.galaxy.jms.module.model.ShortConnResult;
 
 /**
 * Created by CodeGenerator on 2021/01/04.

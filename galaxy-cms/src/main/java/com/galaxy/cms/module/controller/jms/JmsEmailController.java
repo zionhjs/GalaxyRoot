@@ -1,10 +1,10 @@
-package com.galaxy.jms.module.controller;
+package com.galaxy.cms.module.controller.jms;
 
+import com.galaxy.cms.module.model.Email;
+import com.galaxy.cms.module.service.JmsEmailService;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultGenerator;
 import com.galaxy.common.core.utils.Logger;
-import com.galaxy.jms.module.model.Email;
-import com.galaxy.jms.module.service.JmsEmailService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;

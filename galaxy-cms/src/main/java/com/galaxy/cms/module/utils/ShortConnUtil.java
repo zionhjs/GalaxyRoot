@@ -1,6 +1,6 @@
-package com.galaxy.jms.module.utils;
+package com.galaxy.cms.module.utils;
 
-import com.galaxy.jms.module.model.ShortConnResult;
+import com.galaxy.cms.module.model.ShortConnResult;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.galaxy.jms.module.model;
+package com.galaxy.cms.module.model;
 
 import javax.persistence.*;
 import java.util.Date;

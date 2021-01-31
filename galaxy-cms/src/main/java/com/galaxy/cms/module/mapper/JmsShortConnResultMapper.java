@@ -1,8 +1,8 @@
-package com.galaxy.jms.module.mapper;
+package com.galaxy.cms.module.mapper;
 
 
+import com.galaxy.cms.module.model.ShortConnResult;
 import com.galaxy.common.core.Mapper.Mapper;
-import com.galaxy.jms.module.model.ShortConnResult;
 
 public interface JmsShortConnResultMapper extends Mapper<ShortConnResult> {
 

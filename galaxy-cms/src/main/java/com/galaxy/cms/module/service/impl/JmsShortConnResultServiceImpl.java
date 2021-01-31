@@ -1,9 +1,9 @@
-package com.galaxy.jms.module.service.impl;
+package com.galaxy.cms.module.service.impl;
 
+import com.galaxy.cms.module.mapper.JmsShortConnResultMapper;
+import com.galaxy.cms.module.model.ShortConnResult;
+import com.galaxy.cms.module.service.JmsShortConnResultService;
 import com.galaxy.common.core.service.AbstractService;
-import com.galaxy.jms.module.mapper.JmsShortConnResultMapper;
-import com.galaxy.jms.module.model.ShortConnResult;
-import com.galaxy.jms.module.service.JmsShortConnResultService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

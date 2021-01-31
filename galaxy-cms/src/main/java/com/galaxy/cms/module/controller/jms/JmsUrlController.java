@@ -1,9 +1,8 @@
-package com.galaxy.jms.module.controller;
+package com.galaxy.cms.module.controller.jms;
 
+import com.galaxy.cms.module.model.ShortConnResult;
+import com.galaxy.cms.module.service.JmsShortConnResultService;
 import com.galaxy.common.core.utils.Logger;
-import com.galaxy.jms.module.mapper.JmsShortConnResultMapper;
-import com.galaxy.jms.module.model.ShortConnResult;
-import com.galaxy.jms.module.service.JmsShortConnResultService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

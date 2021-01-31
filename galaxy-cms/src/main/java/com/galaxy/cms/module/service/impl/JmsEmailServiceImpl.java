@@ -1,17 +1,17 @@
-package com.galaxy.jms.module.service.impl;
+package com.galaxy.cms.module.service.impl;
 
+import com.galaxy.cms.module.mapper.JmsEmailMapper;
+import com.galaxy.cms.module.model.Email;
+import com.galaxy.cms.module.model.ShortConnResult;
+import com.galaxy.cms.module.service.JmsEmailService;
+import com.galaxy.cms.module.service.JmsShortConnResultService;
+import com.galaxy.cms.module.utils.EmailUtil;
+import com.galaxy.cms.module.utils.ShortConnUtil;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultCode;
 import com.galaxy.common.core.response.ResultGenerator;
 import com.galaxy.common.core.service.AbstractService;
 import com.galaxy.common.core.utils.DigitUtil;
-import com.galaxy.jms.module.mapper.JmsEmailMapper;
-import com.galaxy.jms.module.model.Email;
-import com.galaxy.jms.module.model.ShortConnResult;
-import com.galaxy.jms.module.service.JmsEmailService;
-import com.galaxy.jms.module.service.JmsShortConnResultService;
-import com.galaxy.jms.module.utils.EmailUtil;
-import com.galaxy.jms.module.utils.ShortConnUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

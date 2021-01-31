@@ -1,7 +1,7 @@
-package com.galaxy.jms.module.mapper;
+package com.galaxy.cms.module.mapper;
 
+import com.galaxy.cms.module.model.Email;
 import com.galaxy.common.core.Mapper.Mapper;
-import com.galaxy.jms.module.model.Email;
 
 public interface JmsEmailMapper extends Mapper<Email> {
 

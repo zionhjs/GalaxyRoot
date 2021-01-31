@@ -29,6 +29,7 @@
     <result column="object_url_1080" jdbcType="VARCHAR" property="objectUrl1080" />
     <result column="rating" jdbcType="BIGINT" property="rating" />
     <result column="tmp_rating" jdbcType="BIGINT" property="tmpRating" />
+    <result column="status_name" jdbcType="VARCHAR" property="statusName" />
   </resultMap>
 
     <select id="getImagesDetailsById" resultType="com.galaxy.upload.module.model.Images">
@@ -36,8 +37,7 @@
                 level as level,suffix as suffix,size as size,s3_bucket_name as s3BucketName,
                 s3_key_240 as s3Key240,s3_key_480 as s3Key480,s3_key_1080 as s3Key1080,object_url_240 as objectUrl240,
                 object_url_480 as objectUrl480,
-                object_url_1080 as objectUrl1080,rating as rating,tmp_rating as tmpRating,
-                (case status when 1 then '普通图片' when 2 then '360°' when 3 then 'interior'  when 4 then 'exterior' end) as statusName
+                object_url_1080 as objectUrl1080,rating as rating,tmp_rating as tmpRating,status_name
         from t_images
         where is_delete = 0
         and id = #{id}
@@ -48,8 +48,7 @@
               level as level,suffix as suffix,size as size,s3_bucket_name as s3BucketName,
               s3_key_240 as s3Key240,s3_key_480 as s3Key480,s3_key_1080 as s3Key1080,object_url_240 as objectUrl240,
               object_url_480 as objectUrl480,
-              object_url_1080 as objectUrl1080,rating as rating,tmp_rating as tmpRating,
-              (case status when 1 then '普通图片' when 2 then '360°' when 3 then 'interior'  when 4 then 'exterior' end) as statusName
+              object_url_1080 as objectUrl1080,rating as rating,tmp_rating as tmpRating,status_name
         from t_images
         where is_delete = 0
         <if test="status != null and status != ''">

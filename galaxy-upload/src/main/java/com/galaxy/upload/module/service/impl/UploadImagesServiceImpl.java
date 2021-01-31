@@ -72,10 +72,6 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         if(level == null) {
             level = "star";
         }
-        if (null == status){
-            //业务状态(1普通图片:2为360°图片)
-            status = 1;
-        }
 
         Images images = new Images();
         images.setStatus(status);
