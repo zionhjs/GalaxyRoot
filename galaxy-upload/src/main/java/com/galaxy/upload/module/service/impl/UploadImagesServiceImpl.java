@@ -14,6 +14,7 @@ import com.galaxy.upload.module.mapper.UploadImagesMapper;
 import com.galaxy.upload.module.model.Images;
 import com.galaxy.upload.module.service.UploadImagesService;
 import com.galaxy.upload.module.utils.ImageUtil;
+import com.galaxy.common.core.constants.Constant;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,10 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
     @Value("${galaxy.amazonProperties.image360BucketName}")
     private String image360BucketName;
 
-    private static String markImg = "/home/ec2-user/targetLogoFile.png";
+    //Linux文件下固定路径/home/ec2-user/targetLogoFile.png
+    //Windows文件下固定路径D:\\targetLogoFile .png
+
+    private static String markImg = Constant.OS_PREFIX;
 
     private static String notLogo = "notLogo.tmp";
 

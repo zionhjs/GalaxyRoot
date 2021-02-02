@@ -1,5 +1,7 @@
 package com.galaxy.common.core.constants;
 
+import java.io.File;
+
 public final class Constant {
     public static final String CITY_NAME="task_city_name";
 
@@ -165,5 +167,21 @@ public final class Constant {
     /*------------------------------------------rabbitmq结束-----------------------------------------------*/
 
 
+    /**
+     * Prefix for OSX, MS and Linux
+     */
+    public static final String OS_PREFIX;
+
+    static {
+        if (OSinfo.isWindows()) {
+            OS_PREFIX = "D:\\targetLogoFile .png";
+        } else if (OSinfo.isLinux()) {
+            OS_PREFIX = "/home/ec2-user/targetLogoFile.png";
+        } else if (OSinfo.isMacOS()) {
+            OS_PREFIX = "/Users/jinwu";
+        } else {
+            OS_PREFIX = "/home/ec2-user/targetLogoFile.png";
+        }
+    }
 
 }
