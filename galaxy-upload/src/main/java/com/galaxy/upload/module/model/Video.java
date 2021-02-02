@@ -143,6 +143,12 @@ public class Video {
     private String frameImages;
 
     /**
+     * 视频首页图片
+     */
+    @Column(name = "status_name")
+    private String statusName;
+
+    /**
      * 获取记录ID
      *
      * @return id - 记录ID
@@ -562,5 +568,13 @@ public class Video {
 
     public void setFrameImages(String frameImages) {
         this.frameImages = frameImages;
+    }
+
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
     }
 }

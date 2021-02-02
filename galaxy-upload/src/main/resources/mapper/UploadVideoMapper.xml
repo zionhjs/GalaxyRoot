@@ -38,7 +38,7 @@
                  size as size,level as level,suffix as suffix,
                  s3_bucket_name as s3BucketName,s3_key_480 as s3Key480,s3_key_1080 as s3Key1080,s3_key_2160 as s3Key2160,
                  object_url_480 as objectUrl480,object_url_1080 as objectUrl1080,object_url_2160 as objectUrl2160,
-                 frame_images as frameImages
+                 frame_images as frameImages,status_name as statusName
         from t_video
         where is_delete = 0
         <if test="status != null and status != '' and status !={} ">
