@@ -78,9 +78,6 @@ jobs:
       - run:
           name: Log into ECR
           command: aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 688559712485.dkr.ecr.us-west-1.amazonaws.com
-      - run:
-          name: Delete the latest from ECR first
-          command: aws ecr batch-delete-image --repository-name galaxy-chatbot --image-ids imageTag=latest
       # build all pakcages and push to aws ecr
       - run:
           name: package project into a jar
