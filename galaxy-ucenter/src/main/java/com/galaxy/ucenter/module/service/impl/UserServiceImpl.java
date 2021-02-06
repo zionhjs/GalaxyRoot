@@ -83,8 +83,6 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     @Override
     public Result login(LoginVo vo) {
 
-        readWriteLock.writeLock().lock();
-
         SysUserVo sysUserVo = new SysUserVo();
         User user = new User();
 
@@ -146,10 +144,6 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
             e.printStackTrace();
             Logger.info(this,"登录token存入redis产生异常："+e.getMessage());
             throw new RuntimeException("存入redis异常");
-        }finally {
-            if(readWriteLock.isWriteLocked()){
-                readWriteLock.writeLock().unlock();
-            }
         }
         return ResultGenerator.genSuccessResult(sysUserVo);
     }
