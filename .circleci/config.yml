@@ -1,0 +1,99 @@
+# tutorial for setup circleci with docker, config.yml: https://medium.com/faun/setup-a-circleci-pipeline-for-a-containerized-spring-boot-app-93045fa060de
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      # make sure the image has pre-installed docker command
+      # make sure use the image that has the docker-cli pre-installed
+      # circleci jdk-version: https://circleci.com/developer/images/image/cimg/openjdk
+      - image: cimg/openjdk:8.0
+
+    # make working directory on circleCI
+    working_directory: ~/galaxyserver
+
+    steps:
+      # git pull
+      - checkout
+
+      # setup testing env
+      - setup_remote_docker:
+          version: 19.03.13
+          docker_layer_caching: true
+      - run:
+          name: Does Java Exist
+          command: java -version
+      - run:
+          name: doese Docker Exist
+          command: docker -v
+          
+#      no need to login docker hub
+#      - run:
+#          name: Login to DockerHub
+#          command: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run:
+          name: check Docker images
+          command: docker images
+#      - run:
+#          name: Decrpyt Secrets
+#          command: openssl enc -d -aes-256-ecb -md md5 -in src/main/resources/application.properties.secrets -out src/main/resources/application.properties -k $SECRETS_KEY
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - upload-image-{{ checksum "pom.xml" }}
+      - run:
+          name: mvn dependency go-offline
+          command: mvn dependency:go-offline
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: upload-image-{{ checksum "pom.xml" }}
+
+
+
+#      # store raw contents of src code
+#      - store_artifacts:
+#          path: target/classes
+#          destination: update-image
+
+      # setup AWS Cli
+      # using AWS ECR to host docker images: https://gist.github.com/awssimplified/da49577fa48128e1da992dd6ec21085c
+      # Docker -> ECR -> ECS -> EC2 : https://www.youtube.com/watch?v=zs3tyVgiBQQ | additional: https://www.youtube.com/watch?v=yjb5kfRUw0A
+      - run:
+          name: download AWS cli
+          command: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      - run:
+          name: unzip the file
+          command: unzip awscliv2.zip
+      - run:
+          name: check files
+          command: ls
+      - run:
+          name: install AWS cli
+          command: sudo ./aws/install
+      # check AWS version
+      - run:
+          name: Check AWS version
+          command: aws --version
+
+      # configure AWS
+      - run:
+          name: configure AWS credentials
+          command: aws configure set aws_access_key_id $ACCESSKEY | aws configure set aws_secret_access_key $SECRETACCESSKEY | aws configure set region us-west-1
+      # log into ECR
+      - run:
+          name: Log into ECR
+          command: aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 688559712485.dkr.ecr.us-west-1.amazonaws.com
+      - run:
+          name: Delete the latest from ECR first
+          command: aws ecr batch-delete-image --repository-name galaxy-chatbot --image-ids imageTag=latest
+      # build all pakcages and push to aws ecr
+      - run:
+          name: package project into a jar
+          command: bash build.sh
+
+
+
+
