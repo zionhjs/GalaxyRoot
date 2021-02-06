@@ -1,4 +1,5 @@
 set -e
+export AWS_PAGER=""
 REGISTRY="688559712485.dkr.ecr.us-west-1.amazonaws.com"
 mvn clean package -B
 for project in `ls | grep galaxy `;do
