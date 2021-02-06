@@ -38,21 +38,13 @@ jobs:
 #          name: Decrpyt Secrets
 #          command: openssl enc -d -aes-256-ecb -md md5 -in src/main/resources/application.properties.secrets -out src/main/resources/application.properties -k $SECRETS_KEY
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - upload-image-{{ checksum "pom.xml" }}
-      - run:
-          name: mvn dependency go-offline
-          command: mvn dependency:go-offline
-
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: upload-image-{{ checksum "pom.xml" }}
-
-
-
+#      # Download and cache dependencies
+#      - restore_cache:
+#          keys:
+#            - upload-image-{{ checksum "pom.xml" }}
+ #     - run:
+ #         name: mvn dependency go-offline
+ #         command: mvn dependency:go-offline
 #      # store raw contents of src code
 #      - store_artifacts:
 #          path: target/classes
@@ -93,7 +85,10 @@ jobs:
       - run:
           name: package project into a jar
           command: bash build.sh
-
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: upload-image-{{ checksum "pom.xml" }}
 
 
 
