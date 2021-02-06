@@ -26,7 +26,9 @@ jobs:
       - run:
           name: doese Docker Exist
           command: docker -v
-
+      - run:
+          name: install less
+          command: apt-get install less
 #      no need to login docker hub
 #      - run:
 #          name: Login to DockerHub
