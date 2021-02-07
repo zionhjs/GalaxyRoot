@@ -112,7 +112,7 @@ jobs:
             - "57:88:79:c7:78:14:a6:4f:f5:a8:b8:56:68:4c:71:a9"
       - run:
           name: mkdir 
-          command: ssh ubuntu@$HOST "mkdir ~/galaxy-server"
+          command: ssh ubuntu@$HOST "mkdir ~/galaxy-server -p"
       - run:
           name: copy docker-compose.yml
           command: scp docker-compose.yml ubuntu@$HOST:~/galaxy-server/
