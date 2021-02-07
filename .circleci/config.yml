@@ -1,4 +1,6 @@
- workflows:
+# tutorial for setup circleci with docker, config.yml: https://medium.com/faun/setup-a-circleci-pipeline-for-a-containerized-spring-boot-app-93045fa060de
+version: 2.1
+workflows:
    version: 2
    build-and-deploy:
      jobs:
@@ -9,9 +11,6 @@
 #           filters:
 #             branches:
 #               only: master
-
-# tutorial for setup circleci with docker, config.yml: https://medium.com/faun/setup-a-circleci-pipeline-for-a-containerized-spring-boot-app-93045fa060de
-version: 2.1
 
 jobs:
   build:
