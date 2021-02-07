@@ -1,0 +1,46 @@
+version: '3.8'
+services:
+  galaxy-eureka:
+    network_mode: host
+    image: 688559712485.dkr.ecr.us-west-1.amazonaws.com/galaxy-eureka
+  galaxy-config:
+    network_mode: host
+    image: 688559712485.dkr.ecr.us-west-1.amazonaws.com/galaxy-config
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200/admin/health"]
+      retries: 4
+      interval: '5s'
+      start_period: '80s'
+    depends_on:
+      galaxy-eureka:
+        condition: service_started
+  galaxy-gateway:
+    network_mode: host
+    image: 688559712485.dkr.ecr.us-west-1.amazonaws.com/galaxy-gateway
+    depends_on:
+      galaxy-config:
+        condition: service_healthy
+  galaxy-cms:
+    network_mode: host
+    image: 688559712485.dkr.ecr.us-west-1.amazonaws.com/galaxy-cms
+    depends_on:
+      galaxy-config:
+        condition: service_healthy
+  galaxy-ucenter:
+    network_mode: host
+    image: 688559712485.dkr.ecr.us-west-1.amazonaws.com/galaxy-ucenter
+    depends_on:
+      galaxy-config:
+        condition: service_healthy
+  galaxy-upload:
+    network_mode: host
+    image: 688559712485.dkr.ecr.us-west-1.amazonaws.com/galaxy-upload
+    depends_on:
+      galaxy-config:
+        condition: service_healthy
+  galaxy-admin-server:
+    network_mode: host
+    image: 688559712485.dkr.ecr.us-west-1.amazonaws.com/galaxy-admin-server
+    depends_on:
+      galaxy-config:
+        condition: service_healthy
