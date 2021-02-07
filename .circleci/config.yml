@@ -84,9 +84,6 @@ jobs:
       - run:
           name: package project into a jar
           command: bash build.sh
-      - run:
-          name: re-boot the relted EC2 instance to update and load the most recent image
-          command: aws ec2 reboot-instances --instance-ids i-0136dfdc6bb26775f
    
       - save_cache:
           paths:
@@ -94,4 +91,17 @@ jobs:
           key: upload-image-{{ checksum "pom.xml" }}
 
 
-
+  deploy-job:
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "57:88:79:c7:78:14:a6:4f:f5:a8:b8:56:68:4c:71:a9"
+      - run:
+          name: mkdir 
+          command: ssh ubuntu@$HOST "mkdir ~/galaxy-server"
+      - run:
+          name: copy docker-compose.yml
+          command: scp docker-compose.yml ubuntu@$HOST:~/galaxy-server/
+      - run:
+          name: run docker containers
+          command: ssh ubuntu@$HOST "cd ~/galaxy-server && docker-compose pull && docker-compose up -d"
