@@ -92,6 +92,8 @@ jobs:
 
 
   deploy-job:
+    machine:
+        image: ubuntu-1604:202004-01
     steps:
       - add_ssh_keys:
           fingerprints:
