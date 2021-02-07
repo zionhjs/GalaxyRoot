@@ -74,4 +74,4 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://54.183.157.253:9000/eureka/
+      defaultZone: http://localhost:9000/eureka/
