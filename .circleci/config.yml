@@ -1,3 +1,15 @@
+ workflows:
+   version: 2
+   build-and-deploy:
+     jobs:
+       - build
+       - deploy:
+           requires:
+             - build # only deploy once build job has completed
+#           filters:
+#             branches:
+#               only: master
+
 # tutorial for setup circleci with docker, config.yml: https://medium.com/faun/setup-a-circleci-pipeline-for-a-containerized-spring-boot-app-93045fa060de
 version: 2.1
 
@@ -91,9 +103,9 @@ jobs:
           key: upload-image-{{ checksum "pom.xml" }}
 
 
-  deploy-job:
+  deploy:
     machine:
-        image: ubuntu-1604:202004-01
+        enabled: true
     steps:
       - add_ssh_keys:
           fingerprints:
