@@ -84,6 +84,10 @@ jobs:
       - run:
           name: package project into a jar
           command: bash build.sh
+      - run:
+          name: re-boot the relted EC2 instance to update and load the most recent image
+          command: aws ec2 reboot-instances --instance-ids i-0136dfdc6bb26775f
+   
       - save_cache:
           paths:
             - ~/.m2
