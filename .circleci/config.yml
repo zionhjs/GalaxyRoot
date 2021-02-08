@@ -109,7 +109,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "57:88:79:c7:78:14:a6:4f:f5:a8:b8:56:68:4c:71:a9"
+            - "ed:0e:a9:17:21:0c:78:7f:9b:03:01:be:a1:99:2c:8c"
       - run:
           name: mkdir 
           command: ssh ubuntu@$HOST "mkdir ~/galaxy-server -p"
