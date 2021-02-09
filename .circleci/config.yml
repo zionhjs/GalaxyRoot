@@ -117,5 +117,7 @@ jobs:
           name: copy docker-compose.yml
           command: scp docker-compose.yml ubuntu@$HOST:~/galaxy-server/
       - run:
+          name: ssh ubuntu@$HOST "aws ecr get-login-password --region us-west-1 | docker login --username AWS --password-stdin 688559712485.dkr.ecr.us-west-1.amazonaws.com"
+      - run:
           name: run docker containers
           command: ssh ubuntu@$HOST "cd ~/galaxy-server && docker-compose pull && docker-compose up -d"
