@@ -4,13 +4,16 @@ workflows:
    version: 2
    build-and-deploy:
      jobs:
-       - build
+       - build:
+           filters:
+             branches:
+               only: master
        - deploy:
            requires:
              - build # only deploy once build job has completed
-#           filters:
-#             branches:
-#               only: master
+           filters:
+             branches:
+               only: master
 
 jobs:
   build:
