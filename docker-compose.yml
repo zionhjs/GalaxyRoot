@@ -35,6 +35,8 @@ services:
   galaxy-upload:
     network_mode: host
     image: 688559712485.dkr.ecr.us-west-1.amazonaws.com/galaxy-upload
+    volumes:
+      - /home/ubuntu/ffmpeg:/tmp/jave
     depends_on:
       galaxy-config:
         condition: service_healthy
