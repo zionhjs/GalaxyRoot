@@ -1,5 +1,6 @@
 package com.galaxy.upload.module.utils;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -58,12 +59,6 @@ public class ImageUtil {
         return null;
     }
 
-    /**
-     * 给multipartFile加上图片水印
-     * @param multipartFile  需要上传的文件
-     * @param markImg  本地水印绝对路径
-     * @throws IOException
-     */
     public static File addPicMarkToMutipartFile(MultipartFile multipartFile, String markImg) throws IOException {
         // 获取图片文件名
         String originFileName = multipartFile.getOriginalFilename();
@@ -75,12 +70,14 @@ public class ImageUtil {
         String dContentType = multipartFile.getContentType();
         // 是图片且不是gif才加水印
         if (!suffix.equalsIgnoreCase("gif")) {
-            // 获取水印图片
+            //获取要加logo得图片
             InputStream inputImg = multipartFile.getInputStream();
             Image img = ImageIO.read(inputImg);
+
+            // 获取水印图片 因为无法直接获取jar包中的文件 所以需要先使用流转换
             ClassPathResource classPathResource = new ClassPathResource(markImg);
-            BufferedInputStream bis = (BufferedInputStream) classPathResource.getInputStream();
-            Image mark = ImageIO.read(bis);
+            InputStream inputStream = classPathResource.getInputStream();
+            Image mark = ImageIO.read(inputStream);
             // 加图片水印
             int imgWidth = img.getWidth(null);
             int imgHeight = img.getHeight(null);
