@@ -1,5 +1,6 @@
 package com.galaxy.upload.module.utils;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -77,7 +78,9 @@ public class ImageUtil {
             // 获取水印图片
             InputStream inputImg = multipartFile.getInputStream();
             Image img = ImageIO.read(inputImg);
-            File file = new File(markImg);
+            ClassPathResource classPathResource = new ClassPathResource(markImg);
+            File file = classPathResource.getFile();
+            //File file = new File(markImg);
             BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
             Image mark = ImageIO.read(bis);
             // 加图片水印

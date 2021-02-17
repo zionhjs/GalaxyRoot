@@ -47,7 +47,9 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
     //Linux文件下固定路径/home/ec2-user/targetLogoFile.png
     //Windows文件下固定路径D:\\targetLogoFile .png
 
-    private static String markImg = Constant.OS_PREFIX;
+    //private static String markImg = Constant.OS_PREFIX;
+
+    private static String markImg = "logo.png";
 
     private static String notLogo = "notLogo.tmp";
 
@@ -88,6 +90,8 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         images.setContentType(multipartFile.getContentType());
         images.setSize(multipartFile.getSize());
         try{
+
+
 
             //添加图片水印
             File file = ImageUtil.addPicMarkToMutipartFile(multipartFile, markImg);
