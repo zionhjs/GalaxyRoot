@@ -79,9 +79,7 @@ public class ImageUtil {
             InputStream inputImg = multipartFile.getInputStream();
             Image img = ImageIO.read(inputImg);
             ClassPathResource classPathResource = new ClassPathResource(markImg);
-            File file = classPathResource.getFile();
-            //File file = new File(markImg);
-            BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
+            BufferedInputStream bis = (BufferedInputStream) classPathResource.getInputStream();
             Image mark = ImageIO.read(bis);
             // 加图片水印
             int imgWidth = img.getWidth(null);
