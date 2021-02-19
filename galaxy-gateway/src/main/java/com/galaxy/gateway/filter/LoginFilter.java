@@ -54,6 +54,16 @@ public class LoginFilter extends ZuulFilter {
 		RequestContext requestContext = RequestContext.getCurrentContext();
 		HttpServletRequest request = requestContext.getRequest();
 
+		HttpServletResponse response = requestContext.getResponse();
+		//允许所有来源访问
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		//允许访问的方式
+		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+		//本次预检请求的有效期
+		response.setHeader("Access-Control-Max-Age", "3600");
+		//请求头
+		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, Origin, Accept, accessToken");
+
 		String url =  request.getRequestURI(); //获取请求的路径
 
 		String[] s = url.split("/");
@@ -77,15 +87,6 @@ public class LoginFilter extends ZuulFilter {
 		RequestContext requestContext = RequestContext.getCurrentContext();
 		HttpServletRequest request = requestContext.getRequest();
 		HttpServletResponse response = requestContext.getResponse();
-
-		//允许所有来源访问
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		//允许访问的方式
-		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
-		//本次预检请求的有效期
-		response.setHeader("Access-Control-Max-Age", "3600");
-		//请求头
-		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, Origin, Accept, accessToken");
 
 		String url = request.getRequestURI(); //获取请求的路径
 		String[] s = url.split("/");
