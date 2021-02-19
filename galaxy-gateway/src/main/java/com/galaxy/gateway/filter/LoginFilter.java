@@ -61,8 +61,8 @@ public class LoginFilter extends ZuulFilter {
 		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
 		//本次预检请求的有效期
 		response.setHeader("Access-Control-Max-Age", "3600");
-		//请求头
-		response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With, Origin, Accept, accessToken");
+		//请求头的全部放行
+		response.setHeader("Access-Control-Allow-Headers", "*");
 
 		String url =  request.getRequestURI(); //获取请求的路径
 
