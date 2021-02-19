@@ -133,9 +133,10 @@ public class UploadImagesController extends BaseController {
                                @RequestParam(value="description",required = false) String description,
                                @RequestParam(value = "suffix",required = false) String suffix,
                                @RequestParam(value="level",required = false) String level,
-                               @RequestParam(value="status",required = false) Integer status){
+                               @RequestParam(value="status",required = false) Integer status,
+                               @RequestParam(value="statusName",required = false) String statusName){
         Logger.info(this, "/images/uploadImages 上传图片直接保存接口入参--->");
-        return uploadImagesService.uploadImages(multipartFile,title,description,suffix,level,status);
+        return uploadImagesService.uploadImages(multipartFile,title,description,suffix,level,status,statusName);
     }
 
     @ApiOperation(value = "修改图片", notes = "修改图片")

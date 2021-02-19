@@ -60,7 +60,7 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
     private AmazonS3 amazonS3Client;
 
     @Override
-    public Result uploadImages(MultipartFile multipartFile,String title,String description,String suffix,String level,Integer status) {
+    public Result uploadImages(MultipartFile multipartFile,String title,String description,String suffix,String level,Integer status,String statusName) {
 
         if (multipartFile.isEmpty()){
             return ResultGenerator.genFailResult(ResultCode.IMAGEAS_NOT_EXIST,"文件不存在");
@@ -80,7 +80,6 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         }
 
         Images images = new Images();
-        images.setStatus(status);
         images.setCreatedAt(new Date());
         images.setTitle(title);
         images.setDescription(description);
@@ -90,8 +89,6 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         images.setContentType(multipartFile.getContentType());
         images.setSize(multipartFile.getSize());
         try{
-
-
 
             //添加图片水印
             File file = ImageUtil.addPicMarkToMutipartFile(multipartFile, markImg);
@@ -103,10 +100,18 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             String bucketName = new String();
 
             //业务状态(1普通图片:2为360°图片)
-            if (1 == status){
-                bucketName = imageBucketName;
-            }else if (2 == status){
+            if ("360".equals(statusName)){
                 bucketName = image360BucketName;
+                images.setStatus(2);
+            }else if ("interior".equals(statusName)){
+                bucketName = imageBucketName;
+                images.setStatus(3);
+            }else if ("exterior".equals(statusName)){
+                bucketName = imageBucketName;
+                images.setStatus(4);
+            } else {
+                bucketName = imageBucketName;
+                images.setStatus(1);
             }
 
             //上传图片
