@@ -63,7 +63,7 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
      * @return
      */
     @Override
-    public Result uploadVideo(MultipartFile multipartFile, String title, String description, String suffix, String level,Integer status) {
+    public Result uploadVideo(MultipartFile multipartFile, String title, String description, String suffix, String level,Integer status,String statusName) {
 
         if (multipartFile.isEmpty()){
             return ResultGenerator.genFailResult(ResultCode.IMAGEAS_NOT_EXIST,"文件不存在");
@@ -95,6 +95,7 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
         video.setVideoName(multipartFile.getOriginalFilename());
         video.setContentType(multipartFile.getContentType());
         video.setSize(multipartFile.getSize());
+        video.setStatusName(statusName);
         try{
 
             //video.setThumbnail(new Binary(aws3Service.getVideoPic(multipartFile)));

@@ -88,6 +88,7 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         images.setImageName(multipartFile.getOriginalFilename());
         images.setContentType(multipartFile.getContentType());
         images.setSize(multipartFile.getSize());
+        images.setStatusName(statusName);
         try{
 
             //添加图片水印

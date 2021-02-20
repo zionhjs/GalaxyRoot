@@ -44,9 +44,10 @@ public class UploadVideoController {
                               @RequestParam(value="description",required = false) String description,
                               @RequestParam(value = "suffix",required = false) String suffix,
                               @RequestParam(value="level",required = false) String level,
-                              @RequestParam(value="status",required = false) Integer status){
+                              @RequestParam(value="status",required = false) Integer status,
+                              @RequestParam(value="statusName",required = false) String statusName){
         Logger.info(this, "/video/uploadVideo 上传视频接口入参--->");
-        return uploadVideoService.uploadVideo(multipartFile,title,description,suffix,level,status);
+        return uploadVideoService.uploadVideo(multipartFile,title,description,suffix,level,status,statusName);
     }
 
     @ApiOperation(value = "新增视频", notes = "新增视频")

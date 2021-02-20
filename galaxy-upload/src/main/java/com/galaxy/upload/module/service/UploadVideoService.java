@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface UploadVideoService extends Service<Video> {
 
-    Result uploadVideo(MultipartFile multipartFile, String title, String description, String suffix, String level,Integer status);
+    Result uploadVideo(MultipartFile multipartFile, String title, String description, String suffix, String level,Integer status,String statusName);
 
     Result uploadVideoUrl(MultipartFile multipartFile);
 
