@@ -17,6 +17,12 @@
     <result column="blog_id" jdbcType="BIGINT" property="blogId" />
   </resultMap>
 
+    <update id="batchDeleteBlogImages">
+        update t_blog_images
+        set is_delete = 1
+        where blog_id = #{blogId}
+    </update>
+
     <select id="selectBlogImagesByBlogId" resultMap="BaseResultMap">
         select id,created_at,created_by,updated_at,updated_by,status,url,blog_id
         from t_blog_images

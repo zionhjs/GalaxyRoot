@@ -27,16 +27,7 @@ public class CmsBlogImagesController {
     @ApiOperation(value = "批量添加博客图片", notes = "批量添加博客图片")
     @RequestMapping(value = "/batch", method = {RequestMethod.POST, RequestMethod.GET})
     public Result batch(@RequestBody List<BlogImages> blogImagesList) {
-        if (blogImagesList.size() > 0){
-            for (BlogImages d:blogImagesList) {
-                d.setCreatedAt(new Date());
-                d.setIsDelete(false);
-            }
-        }
-        cmsBlogImagesService.saveList(blogImagesList);
-        Result result= ResultGenerator.genSuccessResult();
-        result.setData(blogImagesList);
-        return result;
+        return cmsBlogImagesService.batch(blogImagesList);
     }
 
     @ApiOperation(value = "新增博客图片", notes = "新增博客图片")

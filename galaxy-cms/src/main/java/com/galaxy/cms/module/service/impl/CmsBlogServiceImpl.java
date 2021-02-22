@@ -145,6 +145,14 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
         }
 
         blog.setUpdatedAt(new Date());
+
+        if (blog.getBlogImagesList().size() > 0){
+            //批量删除以前的博客图片
+            cmsBlogImagesMapper.batchDeleteBlogImages(blog.getId());
+            //批量添加现在得博客图片
+            cmsBlogImagesService.batch(blog.getBlogImagesList());
+        }
+
         rows = updateRows(blog);
         if (0 == rows){
             return ResultGenerator.genFailResult(ResultCode.BLOG_UPDATE_ERROR,"更新博客失败，请重新更新");

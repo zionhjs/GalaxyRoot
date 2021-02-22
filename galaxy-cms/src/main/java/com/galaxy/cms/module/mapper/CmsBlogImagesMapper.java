@@ -9,4 +9,6 @@ import java.util.List;
 public interface CmsBlogImagesMapper extends Mapper<BlogImages> {
 
     List<BlogImages> selectBlogImagesByBlogId(Long blogId);
+
+    void batchDeleteBlogImages(Long blogId);
 }

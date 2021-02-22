@@ -38,11 +38,7 @@ public class CmsTeamMemberController {
     @ApiOperation(value = "删除团队成员", notes = "删除团队成员")
     @RequestMapping(value = "/delete", method = {RequestMethod.POST, RequestMethod.GET})
     public Result delete(@RequestParam Long id) {
-        TeamMember teamMember=new TeamMember();
-        teamMember.setId(id);
-        teamMember.setIsDelete(true);
-        cmsTeamMemberService.update(teamMember);
-        return ResultGenerator.genSuccessResult();
+        return cmsTeamMemberService.delete(id);
     }
 
     @ApiOperation(value = "修改团队成员", notes = "修改团队成员")
