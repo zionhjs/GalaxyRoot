@@ -42,7 +42,6 @@ public enum ResultCode{
     PARAM_ERROR(800010),//手机号或者邮箱必须输入一个
     FILE_DOWNLOAD_ERROR(800009),//文件下载失败
     FILE_BULL_ERROR(800008),//文件不能为空
-    FILEUPLOAD_ERROR(800007),//上传文件失败
     USER_LOGIN_CHANNEL_ERROR(800006),//登录渠道不存在，请重新登录
     NOT_LOGIN_EXCEPTION(800005),//用户未登录,请重新登录
     VERFIY_CODE_TIME_ERROR(800004),//验证码已经过期
