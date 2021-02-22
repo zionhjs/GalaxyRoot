@@ -33,6 +33,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -350,10 +351,13 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         if (multipartFile.length==0){
             return ResultGenerator.genFailResult(ResultCode.FILEUPLOAD_ERROR,"上传文件不可为空");
         }
+        List<Images> imagesList = new ArrayList<Images>();
         for (MultipartFile file : multipartFile){
-            uploadImages(file,title,description,suffix,level,status,statusName);
+            Result result = uploadImages(file,title,description,suffix,level,status,statusName);
+            Images images = (Images) result.getData();
+            imagesList.add((images));
         }
-        return ResultGenerator.genSuccessResult();
+        return ResultGenerator.genSuccessResult(imagesList);
     }
 
     private static byte[] readInputStream(InputStream inStream) throws Exception {
