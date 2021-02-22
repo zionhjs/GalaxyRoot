@@ -16,6 +16,12 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
 
+    <select id="getCountById" resultType="java.lang.Integer">
+        select count(1)
+        from t_team
+        where is_delete = 0
+    </select>
+
     <select id="list" resultMap="BaseResultMap">
         select id,created_at,created_by,updated_at,updated_by,status,name
         from t_team

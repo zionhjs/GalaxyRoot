@@ -9,4 +9,6 @@ import java.util.List;
 public interface CmsTeamMapper extends Mapper<Team> {
 
     List<Team> list(Team team);
+
+    Integer getCountById(Long id);
 }

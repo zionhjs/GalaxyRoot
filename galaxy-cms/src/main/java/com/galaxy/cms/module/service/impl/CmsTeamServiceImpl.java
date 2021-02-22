@@ -6,6 +6,7 @@ import com.galaxy.cms.module.model.Team;
 import com.galaxy.cms.module.service.CmsTeamMemberService;
 import com.galaxy.cms.module.service.CmsTeamService;
 import com.galaxy.common.core.response.Result;
+import com.galaxy.common.core.response.ResultCode;
 import com.galaxy.common.core.response.ResultGenerator;
 import com.galaxy.common.core.service.AbstractService;
 import com.github.pagehelper.PageHelper;
@@ -72,6 +73,12 @@ public class CmsTeamServiceImpl extends AbstractService<Team> implements CmsTeam
 
     @Override
     public Result deleteTeamMember(Long id) {
+
+        Integer rows = cmsTeamMapper.getCountById(id);
+        if (rows == 0){
+            return ResultGenerator.genFailResult(ResultCode.TEAM_NOT_EXIST,"team不存在或者已删除");
+        }
+
         Team team = new Team();
         team.setId(id);
         team.setIsDelete(true);
