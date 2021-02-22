@@ -352,9 +352,10 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             return ResultGenerator.genFailResult(ResultCode.FILEUPLOAD_ERROR,"上传文件不可为空");
         }
         List<Images> imagesList = new ArrayList<Images>();
+        Images images;
         for (MultipartFile file : multipartFile){
             Result result = uploadImages(file,title,description,suffix,level,status,statusName);
-            Images images = (Images) result.getData();
+            images = (Images) result.getData();
             imagesList.add((images));
         }
         return ResultGenerator.genSuccessResult(imagesList);
