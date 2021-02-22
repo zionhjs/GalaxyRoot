@@ -12,6 +12,7 @@ public enum ResultCode{
     NOT_FOUND(404),//接口不存在
     INTERNAL_SERVER_ERROR(500),//服务器内部错误
 
+    FILEUPLOAD_ERROR(800037),//上传文件不可为空
     TEAM_NOT_EXIST(800036),//team不存在或者已删除
     SHORT_CONN_ERROR(800035),//短链接生成失败，请重新发送
     COMMENT_SAVE_ERROR(800034),//新增评论失败，请重新添加

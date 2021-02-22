@@ -126,6 +126,19 @@ public class UploadImagesController extends BaseController {
         return uploadImagesService.uploadImagesNotLogo(multipartFile);
     }
 
+    @ApiOperation(value = "批量上传图片直接保存", notes = "批量上传图片直接保存")
+    @RequestMapping(value = "/batchUploadImages", method = RequestMethod.POST)
+    public Result batchUploadImages(@RequestParam("multipartFile") MultipartFile[] multipartFile,
+                               @RequestParam(value="title",required = false) String title,
+                               @RequestParam(value="description",required = false) String description,
+                               @RequestParam(value = "suffix",required = false) String suffix,
+                               @RequestParam(value="level",required = false) String level,
+                               @RequestParam(value="status",required = false) Integer status,
+                               @RequestParam(value="statusName",required = false) String statusName){
+        Logger.info(this, "/images/batchUploadImages 批量上传图片直接保存--->");
+        return uploadImagesService.batchUploadImages(multipartFile,title,description,suffix,level,status,statusName);
+    }
+
     @ApiOperation(value = "上传图片直接保存", notes = "上传图片直接保存")
     @RequestMapping(value = "/uploadImages", method = RequestMethod.POST)
     public Result uploadImages(@RequestParam MultipartFile multipartFile,

@@ -17,6 +17,7 @@ import com.galaxy.upload.module.utils.ImageUtil;
 import com.galaxy.common.core.constants.Constant;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -342,6 +343,17 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         List<Images> list = uploadImagesMapper.list(images);
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResultData(pageInfo);
+    }
+
+    @Override
+    public Result batchUploadImages(MultipartFile[] multipartFile, String title, String description, String suffix, String level, Integer status, String statusName) {
+        if (multipartFile.length==0){
+            return ResultGenerator.genFailResult(ResultCode.FILEUPLOAD_ERROR,"上传文件不可为空");
+        }
+        for (MultipartFile file : multipartFile){
+            uploadImages(file,title,description,suffix,level,status,statusName);
+        }
+        return ResultGenerator.genSuccessResult();
     }
 
     private static byte[] readInputStream(InputStream inStream) throws Exception {
