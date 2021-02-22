@@ -150,6 +150,9 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
             //批量删除以前的博客图片
             cmsBlogImagesMapper.batchDeleteBlogImages(blog.getId());
             //批量添加现在得博客图片
+            for (BlogImages blogImages:blog.getBlogImagesList()){
+                blogImages.setBlogId(blog.getId());
+            }
             cmsBlogImagesService.batch(blog.getBlogImagesList());
         }
 
