@@ -54,6 +54,9 @@
         <if test="status != null and status != ''">
           and status = #{status}
         </if>
+          <if test="statusName != null and statusName != ''">
+              and status_name = #{statusName}
+          </if>
         <if test="title != null and title != '' and title !={} ">
           and title like concat(concat('%',#{title}),'%')
         </if>
