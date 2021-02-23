@@ -104,7 +104,7 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
 
             //业务状态(1普通图片:2为360°图片)
             if ("360".equals(statusName)){
-                bucketName = imageBucketName;
+                bucketName = image360BucketName;
                 images.setStatus(2);
             }else if ("interior".equals(statusName)){
                 bucketName = imageBucketName;
