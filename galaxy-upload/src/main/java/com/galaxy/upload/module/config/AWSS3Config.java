@@ -11,10 +11,10 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Configuration
 public class AWSS3Config {
-    @Value("${galaxy.amazonProperties.accessKey}")
-    private String accessKey;
-    @Value("${galaxy.amazonProperties.secretKey}")
-    private String secretAccessKey;
+    //@Value("${galaxy.amazonProperties.accessKey}")
+    private String accessKey = "AKIA2AUK3NDSQG56S2M4";
+    //@Value("${galaxy.amazonProperties.secretKey}")
+    private String secretAccessKey = "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";
     @Value("${galaxy.amazonProperties.region}")
     private String region;
     @Value("${galaxy.amazonProperties.cloudfront_DomainName}")
