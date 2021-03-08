@@ -60,7 +60,7 @@
         <if test="title != null and title != '' and title !={} ">
           and title like concat(concat('%',#{title}),'%')
         </if>
-        order by rating
+        order by id
   </select>
 
 </mapper>
