@@ -5,10 +5,10 @@ phases:
     commands:
       - echo Logging in to AWS ECR...
       - $(aws ecr get-login --region us-west-1)
-      - export REPOSITORY_URI=688559712485.dkr.ecr.us-west-1.amazonaws.com/galaxy-common
+      - export REPOSITORY_URI=688559712485.dkr.ecr.us-west-1.amazonaws.com/galaxy-eureka
       - export COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - export IMAGE_TAG=${COMMIT_HASH:=latest}
-      - export PROJECT=galaxy-common-core
+      - export PROJECT=galaxy-eureka
   build:
     commands:
       - echo build started at `date`
@@ -24,8 +24,8 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
 artifacts:
   files:
-    - galaxy-common/galaxy-common-core/target/galaxy-common-core-1.0.0.jar
-    - appspec.yml
-    - start.sh
+    - target/galaxy-eureka-1.0.0.jar
     - shutdown.sh
+    - start.sh
+    - appspec.yml
   discard-paths: yes
