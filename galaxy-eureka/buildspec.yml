@@ -10,8 +10,8 @@ phases:
       - echo current path is `pwd`
       - echo current folders are `ls -al`
       - cd ./galaxy-eureka
-      - - echo moved to path `pwd`
-      - - echo moved folders are `ls -al`
+      - echo moved to path `pwd`
+      - echo moved folders are `ls -al`
       - echo build started at `date`
       # - mvn clean install
       - mvn clean package
