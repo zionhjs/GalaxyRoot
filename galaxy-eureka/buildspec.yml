@@ -7,8 +7,8 @@ phases:
 
   build:
     commands:
-      - echo build started at `date`
-      - mvn clean install -f galaxy-common
+      - echo build started at `date`.
+      - mvn clean install -f ../galaxy-common
       - mvn clean install
 
 artifacts:
