@@ -2,16 +2,22 @@ version: 0.0
 os: linux
 files:
   - source: target
-    destination: /home/ec2-user
+    destination: /home/ec2-user/jar
 hooks:
+  ApplicationStop:
+    - location: deploy/stop.sh
+      timeout: 300
+      runas: root
   BeforeInstall:
-    - location: ./shutdown.sh
+    - location: deploy/check.sh
       timeout: 300
       runas: root
   AfterInstall:
-    - location: ./start.sh
+    - location: deploy/install.sh
       timeout: 300
       runas: root
-
-
+  ApplicationStart:
+    - location: deploy/start.sh
+      timeout: 300
+      runas: root
 
