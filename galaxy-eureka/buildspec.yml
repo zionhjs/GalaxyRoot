@@ -8,10 +8,14 @@ phases:
   build:
     commands:
       - echo build started at `date`
-      - mvn clean package -B
+      - cd ../galaxy-common
+      - mvn clean install
+      - cd galaxy-eureka
+      - mvn clean install -Dmaven.test.skip=true
 
 artifacts:
   files:
-    - target/*.jar
+    - target
     - appspec.yml
+    - deploy
   discard-paths: yes
