@@ -11,7 +11,7 @@ phases:
 
   post_build:
     commands:
-      - mvn clenan package -B
+      - mvn clean package -B
 artifacts:
   files:
     - target/*.jar
