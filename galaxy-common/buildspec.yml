@@ -9,10 +9,3 @@ phases:
     commands:
       - echo build started at `date`.
       - mvn clean install
-
-artifacts:
-  files:
-    - target
-    - appspec.yml
-    - deploy
-  discard-paths: yes
