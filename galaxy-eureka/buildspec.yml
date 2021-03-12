@@ -3,8 +3,6 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo Logging in to AWS ECR...
-      - $(aws ecr get-login --region us-west-1)
       - export REPOSITORY_URI=688559712485.dkr.ecr.us-west-1.amazonaws.com/galaxy-eureka
       - export COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - export IMAGE_TAG=${COMMIT_HASH:=latest}
