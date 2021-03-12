@@ -7,7 +7,7 @@ phases:
 
   build:
     commands:
-      - echo `pwd`
+      - echo current path is `pwd`
       - echo build started at `date`
       # - mvn clean install
       - mvn clean package
