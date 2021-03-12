@@ -3,15 +3,13 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: corretto8
+      java: openjdk8
 
   build:
     commands:
       - echo build started at `date`
-
-  post_build:
-    commands:
       - mvn clean package -B
+
 artifacts:
   files:
     - target/*.jar
