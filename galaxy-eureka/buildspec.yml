@@ -10,12 +10,14 @@ phases:
       - cd ./galaxy-eureka
       - echo build started at `date`
       - mvn clean install
-      - echo path `ls`
 
 artifacts:
   files:
-    - target/*.jar
-    # - appspec.yml
-    - '*.yml'
-    - deploy/*
+    - 'target/galaxy-eureka-1.0.0.jar'
+    - 'appspec.yml'
+    - 'deploy/check.sh'
+    - 'deploy/install.sh'
+    - 'deploy/start.sh'
+    - 'deploy/stop.sh'
   discard-paths: yes
+
