@@ -13,11 +13,11 @@ phases:
 
 artifacts:
   files:
-    - 'target/galaxy-eureka-1.0.0.jar'
-    - 'appspec.yml'
-    - 'deploy/check.sh'
-    - 'deploy/install.sh'
-    - 'deploy/start.sh'
-    - 'deploy/stop.sh'
+    - 'galaxy-eureka/target/galaxy-eureka-1.0.0.jar'
+    - 'galaxy-eureka/appspec.yml'
+    - 'galaxy-eureka/deploy/check.sh'
+    - 'galaxy-eureka/deploy/install.sh'
+    - 'galaxy-eureka/deploy/start.sh'
+    - 'galaxy-eureka/deploy/stop.sh'
   discard-paths: yes
 
