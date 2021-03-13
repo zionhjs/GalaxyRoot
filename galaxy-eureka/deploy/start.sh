@@ -1,6 +1,3 @@
 #!/bin/bash
-NAME=galaxy-eureka
 
-REPOSITORY_URL=688559712485.dkr.ecr.us-west-1.amazonaws.com/galaxy-eureka:latest
-
-sudo docker run --name $NAME $REPOSITORY_URL
+sudo docker run --name galaxy-eureka 688559712485.dkr.ecr.us-west-1.amazonaws.com/galaxy-eureka:latest
