@@ -10,7 +10,6 @@ phases:
       - cd ./galaxy-eureka
       - echo build started at `date`
       - mvn clean install
-      - cd ..
       # - mvn clean package
 
 artifacts:
