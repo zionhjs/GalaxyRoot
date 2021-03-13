@@ -7,7 +7,6 @@ phases:
 
   build:
     commands:
-      - cd ./galaxy-gateway
       - echo build started at `date`
       - mvn clean install
 
