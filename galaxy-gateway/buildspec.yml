@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: openjdk8
+
+  build:
+    commands:
+      - cd ./galaxy-gateway
+      - echo build started at `date`
+      - mvn clean install
+
+artifacts:
+  files:
+    - 'galaxy-gateway/target/galaxy-gateway-1.0.0.jar'
+    - 'galaxy-gateway/appspec.yml'
+    - 'galaxy-gateway/deploy/check.sh'
+    - 'galaxy-gateway/deploy/install.sh'
+    - 'galaxy-gateway/deploy/start.sh'
+    - 'galaxy-gateway/deploy/stop.sh'
+  discard-paths: yes
+
