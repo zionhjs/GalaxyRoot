@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: openjdk8
+
+  build:
+    commands:
+      - echo build started at `date`
+      - mvn clean install
+
+artifacts:
+  files:
+    - 'galaxy-cms/target/galaxy-cms-1.0.0.jar'
+    - 'galaxy-cms/appspec.yml'
+    - 'galaxy-cms/deploy/check.sh'
+    - 'galaxy-cms/deploy/install.sh'
+    - 'galaxy-cms/deploy/start.sh'
+    - 'galaxy-cms/deploy/stop.sh'
+  discard-paths: yes
+

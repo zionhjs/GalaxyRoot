@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: openjdk8
+
+  build:
+    commands:
+      - echo build started at `date`
+      - mvn clean install
+
+artifacts:
+  files:
+    - 'galaxy-ucenter/target/galaxy-ucenter-1.0.0.jar'
+    - 'galaxy-ucenter/appspec.yml'
+    - 'galaxy-ucenter/deploy/check.sh'
+    - 'galaxy-ucenter/deploy/install.sh'
+    - 'galaxy-ucenter/deploy/start.sh'
+    - 'galaxy-ucenter/deploy/stop.sh'
+  discard-paths: yes
+
