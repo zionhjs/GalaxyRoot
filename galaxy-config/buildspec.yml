@@ -12,11 +12,11 @@ phases:
 
 artifacts:
   files:
-    - 'galaxy-gateway/target/galaxy-gateway-1.0.0.jar'
-    - 'galaxy-gateway/appspec.yml'
-    - 'galaxy-gateway/deploy/check.sh'
-    - 'galaxy-gateway/deploy/install.sh'
-    - 'galaxy-gateway/deploy/start.sh'
-    - 'galaxy-gateway/deploy/stop.sh'
+    - 'galaxy-config/target/galaxy-config-1.0.0.jar'
+    - 'galaxy-config/appspec.yml'
+    - 'galaxy-config/deploy/check.sh'
+    - 'galaxy-config/deploy/install.sh'
+    - 'galaxy-config/deploy/start.sh'
+    - 'galaxy-config/deploy/stop.sh'
   discard-paths: yes
 

@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: ./galaxy-cms-1.0.0.jar
+  - source: ./galaxy-ucenter-1.0.0.jar
     destination: /home/ec2-user/jar
 hooks:
   ApplicationStop:

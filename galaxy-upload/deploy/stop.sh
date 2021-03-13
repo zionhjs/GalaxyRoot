@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo docker rm -f galaxy-ucenter >>/dev/null 2&>1
+sudo docker rm -f galaxy-upload >>/dev/null 2&>1

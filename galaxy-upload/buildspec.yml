@@ -12,11 +12,11 @@ phases:
 
 artifacts:
   files:
-    - 'galaxy-ucenter/target/galaxy-ucenter-1.0.0.jar'
-    - 'galaxy-ucenter/appspec.yml'
-    - 'galaxy-ucenter/deploy/check.sh'
-    - 'galaxy-ucenter/deploy/install.sh'
-    - 'galaxy-ucenter/deploy/start.sh'
-    - 'galaxy-ucenter/deploy/stop.sh'
+    - 'galaxy-upload/target/galaxy-upload-1.0.0.jar'
+    - 'galaxy-upload/appspec.yml'
+    - 'galaxy-upload/deploy/check.sh'
+    - 'galaxy-upload/deploy/install.sh'
+    - 'galaxy-upload/deploy/start.sh'
+    - 'galaxy-upload/deploy/stop.sh'
   discard-paths: yes
 
