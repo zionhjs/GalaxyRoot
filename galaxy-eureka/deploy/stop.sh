@@ -1,4 +1,3 @@
 #!/bin/bash
-#NAME=galaxy-eureka
-sleep 1
-#sudo docker rm -f $NAME
+
+sudo docker rm -f galaxy-eureka
