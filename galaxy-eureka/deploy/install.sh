@@ -13,17 +13,15 @@ REPOSITORY_URL=688559712485.dkr.ecr.us-west-1.amazonaws.com/galaxy-eureka:latest
 
 cd $WORK
 
-sudo rm -f *source*.jar
+sudo mv *.jar $HOME/${NAME}.jar
 
-sudo mv *.jar $HOME/${NAME}
-
-sudo rm -rf ${WORK}/*
+cd $HOME
 
 sudo docker build -t $REPOSITORY_URI .
 
-docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:${date}_${IMAGE_TAG}
+sudo docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:${date}_${IMAGE_TAG}
 
-docker push $REPOSITORY_URI:latest
+sudo docker push $REPOSITORY_URI:latest
 
-docker push $REPOSITORY_URI:$IMAGE_TAG
+sudo docker push $REPOSITORY_URI:$IMAGE_TAG
 
