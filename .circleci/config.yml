@@ -104,7 +104,6 @@ jobs:
             - ~/.m2
           key: upload-image-{{ checksum "pom.xml" }}
 
-
   deploy:
     machine:
         enabled: true
