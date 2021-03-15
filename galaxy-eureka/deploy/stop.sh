@@ -6,6 +6,6 @@
 #     sudo docker rm -f $Service_name >/dev/null 2>1
 #     sudo docker rmi -f `sudo docker images|grep -v openjdk|awk '{print $3}'|grep -v IMAGE` >/dev/null 2>1
 #else
-#     echo "exit 0"
+     echo "exit 0"
 #fi
 
