@@ -10,3 +10,4 @@ if [ -n "$Docker_running" ];then
 else
      sudo echo 'exit 0'
 fi
+
