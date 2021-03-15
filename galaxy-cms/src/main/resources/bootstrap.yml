@@ -19,4 +19,4 @@ eureka:
   client:
     service-url:
       # defaultZone: http://localhost:9000/eureka/
-      defaultZone: http://3.101.66.210:9000/eureka/
+      defaultZone: http://10.0.0.88:9000/eureka/
