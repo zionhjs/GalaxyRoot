@@ -1,4 +1,5 @@
 #!/bin/bash
+
 Service_name=galaxy-ucenter
 Docker_running=`sudo docker ps |sudo grep $Service_name`
 

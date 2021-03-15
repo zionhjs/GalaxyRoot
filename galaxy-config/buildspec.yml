@@ -17,5 +17,6 @@ artifacts:
     - 'galaxy-config/deploy/check.sh'
     - 'galaxy-config/deploy/install.sh'
     - 'galaxy-config/deploy/start.sh'
+    - 'galaxy-config/deploy/stop.sh'
   discard-paths: yes
 

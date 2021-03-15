@@ -1,4 +1,5 @@
 #!/bin/bash
+
 Service_name=galaxy-gateway
 Docker_running=`sudo docker ps |sudo grep $Service_name`
 
@@ -8,3 +9,4 @@ if [ -n "$Doocker_running" ];then
 else
      sudo echo 'exit 0'
 fi
+
