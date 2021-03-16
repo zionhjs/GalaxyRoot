@@ -10,7 +10,7 @@ package com.galaxy.gateway.handler;
 public class Test {
 
     public void test(){
-        System.out.println("测试自动部署测试自动部署");
+        System.out.println("测试自动部署测试自动部署测试自动部署");
     }
 
 }
