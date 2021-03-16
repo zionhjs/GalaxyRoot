@@ -1,16 +1,53 @@
 spring:
   application:
     name: galaxy-gateway
+  # 使用druid数据源
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://47.100.17.12:3306/galaxy?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false
+    maxLifetime: 1800000
+    maximumPoolSize: 15
+  redis:
+    # 指定redis 使用2库
+    database: 2
+    password: 123456
+    host: localhost
+    port: 6379
+    timeout: 6000  # 连接超时时长（毫秒）
+    pool:
+      max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
+      max-wait: -1      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-idle: 10      # 连接池中的最大空闲连接
+      min-idle: 5       # 连接池中的最小空闲连接
   cloud:
-    bus:
-      enabled: true
-      trace:
-        enabled: true
-    config:
-      discovery:
-        enabled: true
-        service-id: galaxy-config  #注册中心的服务名
-      profile: prod  # 指定配置文件的环境
+    gateway:
+      locator:  #是否和服务注册与发现组件结合，设置为 true 后可以直接使用应用名称调用服务
+        enbled: true
+      routes:
+        filters:
+          # 限流配置
+          - name: RequestRateLimiter
+            args:
+              key-resolver: '#{@remoteAddrKeyResolver}'
+              redis-rate-limiter.replenishRate: 10
+              redis-rate-limiter.burstCapacity: 20
+            # 自定义熔断
+          - name: Hystrix
+            args:
+              name: default
+              fallbackUri: 'forward:/fallback'
+  servlet:
+    multipart:
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+  # 配置rabbitmq的地址以及用户密码
+  rabbitmq:
+    host: 47.100.17.12
+    username: galaxy
+    password: galaxy
 
 # 注册中心
 eureka:
@@ -20,4 +57,76 @@ eureka:
     service-url:
       #defaultZone: http://localhost:9000/eureka/
       defaultZone: http://10.0.0.88:9000/eureka/
+
+##远程自定义配置
+galaxy:
+  notCheckLoginUrl: /login,/register,/logout,/detail,/findByModal,/findBackPasswor,/user/findByModal,/images/findByModal,/images/detail,/video/findByModal,/video/detail,/cms/team/detail,/cms/team/findByModal,/blog/homeFindByTitle,/email/sendQuery,/blog/findByModalOrderByTime,/url/redirect,/getInviteList,/getCategoryByParentId,/getUserListBySex,/error,/env/print,/swagger-ui.*,/static.*,/a2billing.*,/favicon.*,/webjars/springfox-swagger-ui.*,/v2/api-docs.*
+
+server:
+  port: 9400
+
+# 不校验验证码终端
+ignore:
+  clients:
+    - test
+
+### 网关配置
+zuul:
+  host:
+    connect-timeout-millis: 15000 #HTTP连接超时大于Hystrix的超时时间
+    socket-timeout-millis: 60000  #socket超时
+  # 路由信息配置
+  routes:
+    # 针对某个服务的配置，可自定义
+    galaxy-ucenter:
+      # 访问的路径，此处要以 '/do/' 开头
+      path: /gateway/ucenter/**
+      # 后端服务的实例 Id。
+      # 意思：以 '/apigateway/' 开头的请求，都会向后端服务 'wanwan-ucenter' 进行转发
+      serviceId: galaxy-ucenter
+      # 剥夺前缀，此配置是针对上方 'path' 配置的项
+      # 为 true 的情况下：向后端转发之后是不会携带 '/do' 的。为 false 则相反
+      stripPrefix: true
+      # 不向后端服务传递的敏感头信息
+      sensitiveHeaders: Cookie,Set-Cookie,Authorization
+    galaxy-upload:
+      path: /gateway/upload/**
+      serviceId: galaxy-upload
+      stripPrefix: true
+      sensitiveHeaders: Cookie,Set-Cookie,Authorization
+    galaxy-cms:
+      path: /gateway/cms/**
+      serviceId: galaxy-cms
+      stripPrefix: true
+      sensitiveHeaders: Cookie,Set-Cookie,Authorization
+    galaxy-jms:
+      path: /gateway/jms/**
+      serviceId: galaxy-jms
+      stripPrefix: true
+      sensitiveHeaders: Cookie,Set-Cookie,Authorization
+  #忽略的服务，有些后端服务是不需要让网管代理的，防止服务侵入，*代表全部
+  ignored-services: "*"
+
+## 允许/actuator/bus-refresh接口被外部调用
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+#自定义熔断
+hystrix:
+  command:
+    #"类名#方法名(参数类型1,参数类型2,参数类型n)"   微服务局部处理
+    "UploadVideoService#uploadVideo(MultipartFile,String,String,String,String,Integer)": #HystrixCommandKey
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 50000   #熔断器熔断降级时间 设置要大于 connectTimeout + readTimeout 之和
+            #假设：连接500毫秒，处理短信4000毫秒，哪个timeOut会触发服务降级
+            # 链接   500毫秒 < connectTimeout 1000 正常；处理短信4000 < readTimeout 5000 正常； 但是 (4000 + 500) > 1000 超过了熔断时间。因此超时降级
+
+ribbon:        #设置ribbon的超时时间小于zuul的超时时间
+  ReadTimeout: 50000
+  ConnectTimeout: 50000
 
