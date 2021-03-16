@@ -31,9 +31,9 @@ spring:
     maximumPoolSize: 15
   redis:
     # 指定redis 使用2库
-    database: 2
+    database: 12
     password: 123456
-    host: localhost
+    host: 47.100.17.12
     port: 6379
     timeout: 6000  # 连接超时时长（毫秒）
     pool:
