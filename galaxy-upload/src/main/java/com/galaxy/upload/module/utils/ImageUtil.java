@@ -103,11 +103,6 @@ public class ImageUtil {
             ImageIO.write(bufImg, suffix, imOut);
             InputStream is = new ByteArrayInputStream(bs.toByteArray());*/
 
-            // 这里是我增加的 测试是否能清除内存占用
-//            img.flush();
-//            mark.flush();
-//            bufImg.flush();
-
             // 加水印后的文件上传
             return outFile;
         }

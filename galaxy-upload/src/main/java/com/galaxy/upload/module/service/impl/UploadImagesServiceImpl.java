@@ -126,9 +126,6 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             s3Object240.close();
             // 删除临时文件
             file.delete();
-            // 这里再试下 删除所有临时文件
-//             deleteFile(new File(file.getPath()));
-//             deleteFile(file);
 
             save(images);
             return ResultGenerator.genSuccessResult(images);
@@ -136,22 +133,6 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             Logger.info(this,e.getMessage());
             e.printStackTrace();
             return ResultGenerator.genFailResult(ResultCode.IMAGEAS_ERROR,"上传图片失败" + e);
-        }
-    }
-
-    private void deleteFile(File file){
-        System.out.println("deleting files!");
-        if(file.isFile()){
-            System.out.println(file.getAbsoluteFile());
-            file.delete();
-        }else{
-            String[] childFilePath = file.list();
-            for(String path: childFilePath){
-                File childFile = new File(file.getAbsoluteFile() + "/" + path);
-                deleteFile(childFile);
-            }
-            System.out.println(file.getAbsoluteFile());
-            file.delete();
         }
     }
 
