@@ -127,8 +127,8 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             // 删除临时文件
             file.delete();
             // 这里再试下 删除所有临时文件
-//             deleteFile(new File(file.getPath()));
-//             deleteFile(file);
+             deleteFile(new File(file.getPath()));
+             deleteFile(file);
 
             save(images);
             return ResultGenerator.genSuccessResult(images);
@@ -140,6 +140,7 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
     }
 
     private void deleteFile(File file){
+        System.out.println("deleting files!");
         if(file.isFile()){
             System.out.println(file.getAbsoluteFile());
             file.delete();
