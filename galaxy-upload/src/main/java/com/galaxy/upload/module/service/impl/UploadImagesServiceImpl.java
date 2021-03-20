@@ -92,7 +92,6 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         images.setSize(multipartFile.getSize());
         images.setStatusName(statusName);
         try{
-
             //添加图片水印
             File file = ImageUtil.addPicMarkToMutipartFile(multipartFile, markImg);
 
@@ -125,8 +124,9 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             images.setObjectUrl240("https://" + bucketName + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
 
             s3Object240.close();
-            //删除临时文件
+            // 删除临时文件
             file.delete();
+
             save(images);
             return ResultGenerator.genSuccessResult(images);
         }catch (Exception e){
