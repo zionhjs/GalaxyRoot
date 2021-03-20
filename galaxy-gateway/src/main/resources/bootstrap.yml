@@ -49,15 +49,6 @@ spring:
     username: galaxy
     password: galaxy
 
-# 注册中心
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    service-url:
-      #defaultZone: http://localhost:9000/eureka/
-      defaultZone: http://10.0.0.88:9000/eureka/
-
 ##远程自定义配置
 galaxy:
   notCheckLoginUrl: /login,/register,/logout,/detail,/findByModal,/findBackPasswor,/user/findByModal,/images/findByModal,/images/detail,/video/findByModal,/video/detail,/cms/team/detail,/cms/team/findByModal,/blog/homeFindByTitle,/email/sendQuery,/blog/findByModalOrderByTime,/url/redirect,/getInviteList,/getCategoryByParentId,/getUserListBySex,/error,/env/print,/swagger-ui.*,/static.*,/a2billing.*,/favicon.*,/webjars/springfox-swagger-ui.*,/v2/api-docs.*
@@ -129,4 +120,13 @@ hystrix:
 ribbon:        #设置ribbon的超时时间小于zuul的超时时间
   ReadTimeout: 50000
   ConnectTimeout: 50000
+
+# 注册中心
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      #defaultZone: http://localhost:9000/eureka/
+      defaultZone: http://10.0.0.88:9000/eureka/
 
