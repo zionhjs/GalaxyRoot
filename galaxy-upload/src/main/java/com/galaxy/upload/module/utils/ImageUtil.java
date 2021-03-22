@@ -66,8 +66,8 @@ public class ImageUtil {
         int lastSplit = originFileName.lastIndexOf(".");
         String suffix = originFileName.substring(lastSplit + 1);
         // 获取图片原始信息
-        String dOriginFileName = multipartFile.getOriginalFilename();
-        String dContentType = multipartFile.getContentType();
+        //String dOriginFileName = multipartFile.getOriginalFilename();
+        //String dContentType = multipartFile.getContentType();
         // 是图片且不是gif才加水印
         if (!suffix.equalsIgnoreCase("gif")) {
             //获取要加logo得图片
@@ -103,6 +103,7 @@ public class ImageUtil {
             ImageIO.write(bufImg, suffix, imOut);
             InputStream is = new ByteArrayInputStream(bs.toByteArray());*/
 
+            inputStream.close();
             // 加水印后的文件上传
             return outFile;
         }
