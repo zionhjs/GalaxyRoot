@@ -103,6 +103,7 @@ public class ImageUtil {
             ImageIO.write(bufImg, suffix, imOut);
             InputStream is = new ByteArrayInputStream(bs.toByteArray());*/
 
+            inputImg.close();
             inputStream.close();
             // 加水印后的文件上传
             return outFile;
