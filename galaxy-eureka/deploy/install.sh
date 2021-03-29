@@ -25,3 +25,5 @@ sudo docker push 688559712485.dkr.ecr.us-west-1.amazonaws.com/galaxy-eureka:${da
 
 sudo docker rmi -f 688559712485.dkr.ecr.us-west-1.amazonaws.com/galaxy-eureka:${date}_$IMAGE_TAG
 
+
+

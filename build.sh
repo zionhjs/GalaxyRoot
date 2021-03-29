@@ -7,3 +7,5 @@ for project in `ls | grep galaxy | grep -v galaxy-common `;do
   docker build -t $REGISTRY/$project --build-arg PROJECT=$project .
   docker push $REGISTRY/$project
 done
+
+

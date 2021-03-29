@@ -8,6 +8,7 @@ phases:
   build:
     commands:
       - echo build started at `date`
+      - openssl enc -d -aes-256-ecb -md md5 -in ./galaxy-admin-server/src/main/resources/bootstrap.yml.secrets -out ./galaxy-admin-server/src/main/resources/bootstrap.yml -k $SECRETS_KEY
       - mvn clean install
 
 artifacts:

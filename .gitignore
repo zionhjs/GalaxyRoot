@@ -23,3 +23,12 @@ nbdist/
 .nb-gradle/
 galaxy-common/galaxy-common-core/src/main/resources/
 galaxy-common/galaxy-common-core/src/test/
+
+### application.properties for hiding keys ###
+galaxy-upload/src/main/resources/bootstrap.yml
+galaxy-ucenter/src/main/resources/bootstrap.yml
+galaxy-gateway/src/main/resources/bootstrap.yml
+galaxy-eureka/src/main/resources/bootstrap.yml
+galaxy-config/src/main/resources/bootstrap.yml
+galaxy-cms/src/main/resources/bootstrap.yml
+galaxy-admin-server/src/main/resources/bootstrap.yml

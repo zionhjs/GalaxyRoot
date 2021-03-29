@@ -7,7 +7,10 @@ phases:
 
   build:
     commands:
+      - echo current path is `pwd`
+      - echo current lst is `ls -list`
       - echo build started at `date`
+      - openssl enc -d -aes-256-ecb -md md5 -in ./galaxy-upload/src/main/resources/bootstrap.yml.secrets -out ./galaxy-upload/src/main/resources/bootstrap.yml -k $SECRETS_KEY
       - mvn clean install
 
 artifacts:

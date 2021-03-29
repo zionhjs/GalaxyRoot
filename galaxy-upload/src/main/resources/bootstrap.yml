@@ -1,8 +1,8 @@
 ##远程自定义配置
 galaxy:
   amazonProperties:
-    accessKey: AKIA2AUK3NDSXMVXAQ6B
-    secretKey: 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
+    accessKey: AKIA2AUK3NDS7MN4OCY4
+    secretKey: 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
     region: us-west-1
     cloudfront_DomainName: d18bri8sapzuu4.cloudfront.net
     imageBucketName: galaxy-image

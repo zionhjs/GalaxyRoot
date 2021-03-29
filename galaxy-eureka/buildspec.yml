@@ -9,6 +9,7 @@ phases:
     commands:
       - cd ./galaxy-eureka
       - echo build started at `date`
+      - openssl enc -d -aes-256-ecb -md md5 -in ./src/main/resources/bootstrap.yml.secrets -out ./src/main/resources/bootstrap.yml -k $SECRETS_KEY
       - mvn clean install
 
 artifacts:
