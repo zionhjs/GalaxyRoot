@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -91,6 +92,13 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         images.setContentType(multipartFile.getContentType());
         images.setSize(multipartFile.getSize());
         images.setStatusName(statusName);
+        if ("exterior".equals(statusName)){
+            images.setRating(100L);
+            images.setTmpRating(10000L);
+        }else {
+            images.setRating(0L);
+            images.setTmpRating(10000L);
+        }
         try{
             //添加图片水印
             File file = ImageUtil.addPicMarkToMutipartFile(multipartFile, markImg);
@@ -367,6 +375,9 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         if (null != images){
             //主要积分点击+1
             images.getRating();
+            BigDecimal result = images == null ?  BigDecimal.ZERO : BigDecimal.valueOf(images.getRating());
+            images.setRating(Long.valueOf(result.add(new BigDecimal("1")).toString()));
+            update(images);
         }
         return ResultGenerator.genSuccessResult(images);
     }
