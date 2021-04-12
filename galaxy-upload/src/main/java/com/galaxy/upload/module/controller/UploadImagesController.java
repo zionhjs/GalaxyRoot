@@ -178,8 +178,7 @@ public class UploadImagesController extends BaseController {
     @ApiOperation(value = "获取单个详情", notes = "获取单个详情")
     @RequestMapping(value = "/detail", method = {RequestMethod.POST,RequestMethod.GET})
     public Result detail(@RequestParam Long id) {
-        Images images = uploadImagesService.findById(id);
-        return ResultGenerator.genSuccessResult(images);
+        return uploadImagesService.detail(id);
     }
 
     @ApiOperation(value = "获取图片单个详情(Data)", notes = "获取图片单个详情(Data)")

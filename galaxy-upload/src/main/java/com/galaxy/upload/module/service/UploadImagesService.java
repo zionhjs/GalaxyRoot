@@ -33,4 +33,6 @@ public interface UploadImagesService extends Service<Images> {
     Result findByModalData(Integer page, Integer size, String title);
 
     Result batchUploadImages(MultipartFile[] multipartFile, String title, String description, String suffix, String level, Integer status, String statusName);
+
+    Result detail(Long id);
 }

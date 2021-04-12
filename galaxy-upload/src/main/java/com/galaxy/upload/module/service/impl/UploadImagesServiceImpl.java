@@ -361,6 +361,16 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         return ResultGenerator.genSuccessResult(imagesList);
     }
 
+    @Override
+    public Result detail(Long id) {
+        Images images = findById(id);
+        if (null != images){
+            //主要积分点击+1
+            images.getRating();
+        }
+        return ResultGenerator.genSuccessResult(images);
+    }
+
     private static byte[] readInputStream(InputStream inStream) throws Exception {
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
