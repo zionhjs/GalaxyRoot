@@ -64,11 +64,7 @@ public class UploadVideoController {
     @ApiOperation(value = "删除视频", notes = "删除视频")
     @RequestMapping(value = "/delete", method = {RequestMethod.POST,RequestMethod.GET})
     public Result delete(@RequestParam Long id) {
-        Video video=new Video();
-        video.setId(id);
-        video.setIsDelete(true);
-        uploadVideoService.update(video);
-        return ResultGenerator.genSuccessResult();
+        return uploadVideoService.delete(id);
     }
 
     @ApiOperation(value = "修改视频", notes = "修改视频")

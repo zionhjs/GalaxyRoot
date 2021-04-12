@@ -2,6 +2,7 @@ package com.galaxy.upload.module.service.impl;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.services.s3.model.S3Object;
@@ -189,6 +190,19 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
         List<Video> list = uploadVideoMapper.list(video);
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);
+    }
+
+    @Override
+    public Result delete(Long id) {
+        Video video=new Video();
+        video.setId(id);
+        video.setIsDelete(true);
+        update(video);
+
+        //删除远程视频
+        amazonS3Client.deleteObject(new DeleteObjectRequest(videoBucketName, video.getS3Key480()));
+
+        return ResultGenerator.genSuccessResult();
     }
 
     public static BufferedImage FrameToBufferedImage(Frame frame) {
