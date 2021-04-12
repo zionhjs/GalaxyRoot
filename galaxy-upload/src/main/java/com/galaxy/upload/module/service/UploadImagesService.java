@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 public interface UploadImagesService extends Service<Images> {
 
@@ -17,6 +18,8 @@ public interface UploadImagesService extends Service<Images> {
     Result delete(Long id);
 
     Result list(Integer page, Integer size, Images images);
+
+    List<Images> imagesList(Images images);
 
     Result uploadImagesUrl(MultipartFile multipartFile);
 

@@ -455,6 +455,13 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         return ResultGenerator.genSuccessResult(pageInfo);
     }
 
+    @Override
+    public List<Images> imagesList(Images images) {
+        List<Images> list = uploadImagesMapper.list(images);
+        return list;
+    }
+
+
     /**
      * 上传到亚马逊上去
      * @param bucketName
