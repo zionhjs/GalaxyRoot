@@ -17,6 +17,7 @@ import com.galaxy.upload.module.utils.ImageUtil;
 import com.galaxy.common.core.constants.Constant;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import net.coobird.thumbnailator.Thumbnailator;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -131,9 +132,26 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             //图片全路径
             images.setObjectUrl240("https://" + bucketName + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
 
+            int width = 350;
+            int height = 350;
+            File small = new File("out_small.png");
+            try {
+                //我设置了生成小图片的大小，并不一定会按照我设置的大小去生成图片，内部有一个比例的。
+                //Thumbnailator类有很多方法，根据参数去传入参数
+                Thumbnailator.createThumbnail(file, small, width, height);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //上传缩略图
+            S3Object s3SmallObject240 = uploadFileToS3Bucket(bucketName, small);
+            //图片全路径
+            images.setSmallObjectUrl240("https://" + bucketName + ".s3-us-west-1.amazonaws.com/" + s3SmallObject240.getKey());
+
             s3Object240.close();
             // 删除临时文件
             file.delete();
+            small.delete();
 
             save(images);
             return ResultGenerator.genSuccessResult(images);
@@ -141,6 +159,26 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             Logger.info(this,e.getMessage());
             e.printStackTrace();
             return ResultGenerator.genFailResult(ResultCode.IMAGEAS_ERROR,"上传图片失败" + e);
+        }
+    }
+
+    /**
+     * 将指定图片在指定 位置生成缩略图
+     */
+    private void changSmall(File uploadFile){
+        String path = uploadFile.getPath();
+        try {
+            BufferedImage input = ImageIO.read(uploadFile);
+            BufferedImage inputbig = new BufferedImage(33, 33, BufferedImage.TYPE_INT_BGR);
+            Graphics2D g = (Graphics2D) inputbig.getGraphics();
+            g.drawImage(input, 0, 0,33,33,null); //画图
+            g.dispose();
+            inputbig.flush();
+            String fname = path.substring(0, path.lastIndexOf("."));//新名字
+            String parent = uploadFile.getParent();
+            ImageIO.write(inputbig, "jpg", new File( "D:\\out_pic.png")); //将其保存在C:/imageSort/targetPIC/下
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 

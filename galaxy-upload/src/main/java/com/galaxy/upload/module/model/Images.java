@@ -121,6 +121,12 @@ public class Images implements Serializable {
     private String objectUrl240;
 
     /**
+     * 缩略图240图片全拼路径
+     */
+    @Column(name = "small_object_url_240")
+    private String smallObjectUrl240;
+
+    /**
      * 480图片全拼路径
      */
     @Column(name = "object_url_480")
@@ -342,6 +348,14 @@ public class Images implements Serializable {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getSmallObjectUrl240() {
+        return smallObjectUrl240;
+    }
+
+    public void setSmallObjectUrl240(String smallObjectUrl240) {
+        this.smallObjectUrl240 = smallObjectUrl240;
     }
 
     /**

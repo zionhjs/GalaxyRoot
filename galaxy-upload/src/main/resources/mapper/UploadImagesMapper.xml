@@ -25,6 +25,7 @@
     <result column="s3_key_480" jdbcType="VARCHAR" property="s3Key480" />
     <result column="s3_key_1080" jdbcType="VARCHAR" property="s3Key1080" />
     <result column="object_url_240" jdbcType="VARCHAR" property="objectUrl240" />
+    <result column="small_object_url_240" jdbcType="VARCHAR" property="smallObjectUrl240" />
     <result column="object_url_480" jdbcType="VARCHAR" property="objectUrl480" />
     <result column="object_url_1080" jdbcType="VARCHAR" property="objectUrl1080" />
     <result column="rating" jdbcType="BIGINT" property="rating" />
