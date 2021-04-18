@@ -91,6 +91,9 @@ public class Blog {
     @Column(name = "tag_name")
     private String tagName;
 
+    @Column(name = "status_name")
+    private String statusName;
+
     /**
      * 评论数
      */
@@ -100,6 +103,14 @@ public class Blog {
     private List<BlogImages> blogImagesList;
 
     private List<MomentComment> momentCommentList;
+
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
 
     /**
      * 获取记录ID
