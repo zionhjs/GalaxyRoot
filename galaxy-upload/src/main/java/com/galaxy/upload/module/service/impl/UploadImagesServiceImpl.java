@@ -18,6 +18,7 @@ import com.galaxy.common.core.constants.Constant;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import net.coobird.thumbnailator.Thumbnailator;
+import net.coobird.thumbnailator.Thumbnails;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -132,16 +133,8 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             //图片全路径
             images.setObjectUrl240("https://" + bucketName + ".s3-us-west-1.amazonaws.com/" + s3Object240.getKey());
 
-            int width = 350;
-            int height = 350;
-            File small = new File("out_small.png");
-            try {
-                //我设置了生成小图片的大小，并不一定会按照我设置的大小去生成图片，内部有一个比例的。
-                //Thumbnailator类有很多方法，根据参数去传入参数
-                Thumbnailator.createThumbnail(file, small, width, height);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            //生成缩略图
+            File small = changSmall(file,600,600);
 
             //上传缩略图
             S3Object s3SmallObject240 = uploadFileToS3Bucket(bucketName, small);
@@ -165,21 +158,29 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
     /**
      * 将指定图片在指定 位置生成缩略图
      */
-    private void changSmall(File uploadFile){
-        String path = uploadFile.getPath();
+    private File changSmall(File uploadFile,int imgWidth,int imgHeight){
+        InputStream inputImg = null;
         try {
-            BufferedImage input = ImageIO.read(uploadFile);
-            BufferedImage inputbig = new BufferedImage(33, 33, BufferedImage.TYPE_INT_BGR);
-            Graphics2D g = (Graphics2D) inputbig.getGraphics();
-            g.drawImage(input, 0, 0,33,33,null); //画图
-            g.dispose();
-            inputbig.flush();
-            String fname = path.substring(0, path.lastIndexOf("."));//新名字
-            String parent = uploadFile.getParent();
-            ImageIO.write(inputbig, "jpg", new File( "D:\\out_pic.png")); //将其保存在C:/imageSort/targetPIC/下
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            inputImg = new FileInputStream(uploadFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+        Image img = null;
+        try {
+            img = ImageIO.read(inputImg);
+            BufferedImage bufImg = new BufferedImage(imgWidth, imgHeight, BufferedImage.TYPE_INT_RGB);
+            //取到画笔
+            Graphics2D g = bufImg.createGraphics();
+            //画底片
+            g.drawImage(img, 0, 0, bufImg.getWidth(), bufImg.getHeight(), null);
+            g.dispose();
+            File outFile = new File("small_pic.png");
+            ImageIO.write(bufImg, "png", outFile);//写图片
+            return outFile;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
