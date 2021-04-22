@@ -48,7 +48,7 @@
       select id as id,image_name as imageName,title as title,description as description,content_type as contentType,
               level as level,suffix as suffix,size as size,s3_bucket_name as s3BucketName,
               s3_key_240 as s3Key240,s3_key_480 as s3Key480,s3_key_1080 as s3Key1080,object_url_240 as objectUrl240,
-              object_url_480 as objectUrl480,
+              object_url_480 as objectUrl480,small_object_url_240 as smallObjectUrl240,
               object_url_1080 as objectUrl1080,rating as rating,tmp_rating as tmpRating,status_name as statusName
         from t_images
         where is_delete = 0
