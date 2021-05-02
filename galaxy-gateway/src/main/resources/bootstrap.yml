@@ -64,8 +64,8 @@ ignore:
 ### 网关配置
 zuul:
   host:
-    connect-timeout-millis: 15000 #HTTP连接超时大于Hystrix的超时时间
-    socket-timeout-millis: 60000  #socket超时
+    connect-timeout-millis: 1500000 #HTTP连接超时大于Hystrix的超时时间
+    socket-timeout-millis: 6000000  #socket超时
   # 路由信息配置
   routes:
     # 针对某个服务的配置，可自定义
@@ -113,13 +113,13 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 50000   #熔断器熔断降级时间 设置要大于 connectTimeout + readTimeout 之和
+            timeoutInMilliseconds: 5000000   #熔断器熔断降级时间 设置要大于 connectTimeout + readTimeout 之和
             #假设：连接500毫秒，处理短信4000毫秒，哪个timeOut会触发服务降级
             # 链接   500毫秒 < connectTimeout 1000 正常；处理短信4000 < readTimeout 5000 正常； 但是 (4000 + 500) > 1000 超过了熔断时间。因此超时降级
 
 ribbon:        #设置ribbon的超时时间小于zuul的超时时间
-  ReadTimeout: 50000
-  ConnectTimeout: 50000
+  ReadTimeout: 5000000
+  ConnectTimeout: 5000000
 
 # 注册中心
 eureka:
