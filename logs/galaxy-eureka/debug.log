@@ -642,3 +642,15 @@ Caused by: java.lang.IllegalStateException: StandardEngine[Tomcat].StandardHost[
 2021-05-04 12:11:25,349 [Eureka-EvictionTimer] INFO  [c.netflix.eureka.registry.AbstractInstanceRegistry] AbstractInstanceRegistry.java:1250 - Running the evict task with compensationTime 4ms
 2021-05-04 12:12:25,353 [Eureka-EvictionTimer] INFO  [c.netflix.eureka.registry.AbstractInstanceRegistry] AbstractInstanceRegistry.java:1250 - Running the evict task with compensationTime 2ms
 2021-05-04 12:13:25,357 [Eureka-EvictionTimer] INFO  [c.netflix.eureka.registry.AbstractInstanceRegistry] AbstractInstanceRegistry.java:1250 - Running the evict task with compensationTime 3ms
+2021-05-04 12:14:25,362 [Eureka-EvictionTimer] INFO  [c.netflix.eureka.registry.AbstractInstanceRegistry] AbstractInstanceRegistry.java:1250 - Running the evict task with compensationTime 4ms
+2021-05-04 12:15:25,368 [Eureka-EvictionTimer] INFO  [c.netflix.eureka.registry.AbstractInstanceRegistry] AbstractInstanceRegistry.java:1250 - Running the evict task with compensationTime 4ms
+2021-05-04 12:16:25,374 [Eureka-EvictionTimer] INFO  [c.netflix.eureka.registry.AbstractInstanceRegistry] AbstractInstanceRegistry.java:1250 - Running the evict task with compensationTime 5ms
+2021-05-04 12:17:25,379 [Eureka-EvictionTimer] INFO  [c.netflix.eureka.registry.AbstractInstanceRegistry] AbstractInstanceRegistry.java:1250 - Running the evict task with compensationTime 4ms
+2021-05-04 12:18:25,383 [Eureka-EvictionTimer] INFO  [c.netflix.eureka.registry.AbstractInstanceRegistry] AbstractInstanceRegistry.java:1250 - Running the evict task with compensationTime 4ms
+2021-05-04 12:19:25,388 [Eureka-EvictionTimer] INFO  [c.netflix.eureka.registry.AbstractInstanceRegistry] AbstractInstanceRegistry.java:1250 - Running the evict task with compensationTime 4ms
+2021-05-04 12:20:24,784 [ReplicaAwareInstanceRegistry - RenewalThresholdUpdater] INFO  [c.n.eureka.registry.PeerAwareInstanceRegistryImpl] PeerAwareInstanceRegistryImpl.java:539 - Current renewal threshold is : 10
+2021-05-04 12:20:25,394 [Eureka-EvictionTimer] INFO  [c.netflix.eureka.registry.AbstractInstanceRegistry] AbstractInstanceRegistry.java:1250 - Running the evict task with compensationTime 5ms
+2021-05-04 12:21:25,399 [Eureka-EvictionTimer] INFO  [c.netflix.eureka.registry.AbstractInstanceRegistry] AbstractInstanceRegistry.java:1250 - Running the evict task with compensationTime 4ms
+2021-05-04 12:22:25,403 [Eureka-EvictionTimer] INFO  [c.netflix.eureka.registry.AbstractInstanceRegistry] AbstractInstanceRegistry.java:1250 - Running the evict task with compensationTime 2ms
+2021-05-04 12:23:25,408 [Eureka-EvictionTimer] INFO  [c.netflix.eureka.registry.AbstractInstanceRegistry] AbstractInstanceRegistry.java:1250 - Running the evict task with compensationTime 4ms
+2021-05-04 12:24:25,410 [Eureka-EvictionTimer] INFO  [c.netflix.eureka.registry.AbstractInstanceRegistry] AbstractInstanceRegistry.java:1250 - Running the evict task with compensationTime 0ms
