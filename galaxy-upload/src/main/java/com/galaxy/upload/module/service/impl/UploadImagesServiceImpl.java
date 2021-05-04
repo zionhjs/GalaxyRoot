@@ -159,6 +159,8 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             s3Object240.close();
             s3SmallObject240.close();
             save(images);
+            // explicitly gc after each upload
+            System.gc();
             return ResultGenerator.genSuccessResult(images);
         }catch (Exception e){
             Logger.info(this,e.getMessage());
