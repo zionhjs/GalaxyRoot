@@ -8,4 +8,4 @@ for project in `ls | grep galaxy | grep -v galaxy-common `;do
   docker push $REGISTRY/$project
 done
 
-
+sudo docker ps -a
