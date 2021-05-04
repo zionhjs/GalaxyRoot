@@ -6986,3 +6986,155 @@ com.netflix.discovery.shared.transport.TransportException: Cannot execute reques
 2021-05-02 17:25:49.948 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
 2021-05-02 17:30:49.950 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
 2021-05-02 17:35:49.951 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2021-05-04 10:07:29.809 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$7accb29f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-04 10:07:40.016 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8888
+2021-05-04 10:07:40.111 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Connect Timeout Exception on Url - http://localhost:8888. Will be trying the next url if available
+2021-05-04 10:07:40.112 [main] WARN  o.s.c.c.client.ConfigServicePropertySourceLocator - Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/galaxy-ucenter/default": Connection refused (Connection refused); nested exception is java.net.ConnectException: Connection refused (Connection refused)
+2021-05-04 10:07:40.114 [main] INFO  com.galaxy.ucenter.GalaxyUcenterApplication - No active profile set, falling back to default profiles: default
+2021-05-04 10:07:41.388 [main] WARN  tk.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.galaxy.ucenter]' package. Please check your configuration.
+2021-05-04 10:07:41.407 [main] WARN  org.mybatis.spring.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[com.galaxy.ucenter]' package. Please check your configuration.
+2021-05-04 10:07:41.541 [main] WARN  o.springframework.boot.actuate.endpoint.EndpointId - Endpoint ID 'bus-env' contains invalid characters, please migrate to a valid format.
+2021-05-04 10:07:41.545 [main] WARN  o.springframework.boot.actuate.endpoint.EndpointId - Endpoint ID 'bus-refresh' contains invalid characters, please migrate to a valid format.
+2021-05-04 10:07:41.857 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-05-04 10:07:41.861 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2021-05-04 10:07:41.910 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 28ms. Found 0 repository interfaces.
+2021-05-04 10:07:42.065 [main] WARN  o.springframework.boot.actuate.endpoint.EndpointId - Endpoint ID 'service-registry' contains invalid characters, please migrate to a valid format.
+2021-05-04 10:07:42.694 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=8142c743-390f-3ca7-a0f7-270256c06a79
+2021-05-04 10:07:42.712 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2021-05-04 10:07:42.720 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+2021-05-04 10:07:42.732 [main] INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor - No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2021-05-04 10:07:42.843 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration' of type [org.springframework.amqp.rabbit.annotation.RabbitBootstrapConfiguration$$EnhancerBySpringCGLIB$$251e6dd0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-04 10:07:43.018 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$5eb2afa2] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-04 10:07:43.298 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-04 10:07:43.338 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration$$EnhancerBySpringCGLIB$$c9a46ad1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-04 10:07:43.355 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration' of type [org.springframework.boot.autoconfigure.integration.IntegrationAutoConfiguration$IntegrationJmxConfiguration$$EnhancerBySpringCGLIB$$a53675f1] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-04 10:07:43.373 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration' of type [org.springframework.boot.autoconfigure.jmx.JmxAutoConfiguration$$EnhancerBySpringCGLIB$$de1e1ebe] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-04 10:07:43.381 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'mbeanServer' of type [com.sun.jmx.mbeanserver.JmxMBeanServer] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-04 10:07:43.421 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$7accb29f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-05-04 10:07:44.046 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9600 (http)
+2021-05-04 10:07:44.067 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9600"]
+2021-05-04 10:07:44.085 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-05-04 10:07:44.085 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.16]
+2021-05-04 10:07:44.101 [main] INFO  org.apache.catalina.core.AprLifecycleListener - The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/Users/zionhugh/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.]
+2021-05-04 10:07:44.284 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-05-04 10:07:44.285 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 4150 ms
+2021-05-04 10:07:44.569 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2021-05-04 10:07:44.570 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-05-04 10:07:44.588 [main] INFO  com.netflix.config.DynamicPropertyFactory - DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@46c662f2
+2021-05-04 10:07:45.131 [main] INFO  c.a.d.s.b.a.DruidDataSourceAutoConfigure - Init DruidDataSource
+2021-05-04 10:07:45.756 [main] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2021-05-04 10:07:46.659 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'taskScheduler'
+2021-05-04 10:07:48.648 [main] INFO  o.s.b.actuate.endpoint.web.EndpointLinksResolver - Exposing 24 endpoint(s) beneath base path '/actuator'
+2021-05-04 10:07:48.820 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2021-05-04 10:07:48.820 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2021-05-04 10:07:49.189 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2021-05-04 10:07:49.385 [main] INFO  t.mybatis.mapper.autoconfigure.MapperCacheDisabler - Clear tk.mybatis.mapper.util.MsUtil CLASS_CACHE cache.
+2021-05-04 10:07:49.387 [main] INFO  t.mybatis.mapper.autoconfigure.MapperCacheDisabler - Clear tk.mybatis.mapper.genid.GenIdUtil CACHE cache.
+2021-05-04 10:07:49.388 [main] INFO  t.mybatis.mapper.autoconfigure.MapperCacheDisabler - Clear tk.mybatis.mapper.version.VersionUtil CACHE cache.
+2021-05-04 10:07:49.389 [main] INFO  t.mybatis.mapper.autoconfigure.MapperCacheDisabler - Clear EntityHelper entityTableMap cache.
+2021-05-04 10:07:51.205 [main] INFO  o.s.c.stream.messaging.DirectWithAttributesChannel - Channel 'galaxy-ucenter-1.springCloudBusInput' has 1 subscriber(s).
+2021-05-04 10:07:51.388 [main] INFO  o.s.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel errorChannel
+2021-05-04 10:07:51.466 [main] INFO  o.s.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel nullChannel
+2021-05-04 10:07:51.480 [main] INFO  o.s.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel springCloudBusOutput
+2021-05-04 10:07:51.535 [main] INFO  o.s.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel springCloudBusInput
+2021-05-04 10:07:51.557 [main] INFO  o.s.integration.monitor.IntegrationMBeanExporter - Registering MessageHandler org.springframework.cloud.stream.binding.StreamListenerMessageHandler@75973f7a
+2021-05-04 10:07:51.679 [main] INFO  o.s.integration.monitor.IntegrationMBeanExporter - Registering MessageHandler errorLogger
+2021-05-04 10:07:51.773 [main] INFO  o.s.integration.endpoint.EventDrivenConsumer - Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2021-05-04 10:07:51.773 [main] INFO  o.s.integration.channel.PublishSubscribeChannel - Channel 'galaxy-ucenter-1.errorChannel' has 1 subscriber(s).
+2021-05-04 10:07:51.773 [main] INFO  o.s.integration.endpoint.EventDrivenConsumer - started _org.springframework.integration.errorLogger
+2021-05-04 10:08:01.843 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Fetching config from server at : http://localhost:8888
+2021-05-04 10:08:01.850 [main] INFO  o.s.c.c.client.ConfigServicePropertySourceLocator - Connect Timeout Exception on Url - http://localhost:8888. Will be trying the next url if available
+2021-05-04 10:08:01.850 [main] WARN  o.s.c.c.client.ConfigServicePropertySourceLocator - Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/galaxy-ucenter/default": Connection refused (Connection refused); nested exception is java.net.ConnectException: Connection refused (Connection refused)
+2021-05-04 10:08:02.045 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Attempting to connect to: [47.100.17.12:5672]
+2021-05-04 10:08:02.725 [main] INFO  o.s.a.rabbit.connection.CachingConnectionFactory - Created new connection: rabbitConnectionFactory#175ac243:0/SimpleConnection@4bc39640 [delegate=amqp://galaxy@47.100.17.12:5672/, localPort= 59429]
+2021-05-04 10:08:03.081 [main] INFO  o.s.c.stream.messaging.DirectWithAttributesChannel - Channel 'galaxy-ucenter-1.springCloudBusOutput' has 1 subscriber(s).
+2021-05-04 10:08:03.116 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2021-05-04 10:08:03.162 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2021-05-04 10:08:03.445 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON encoding codec LegacyJacksonJson
+2021-05-04 10:08:03.445 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using JSON decoding codec LegacyJacksonJson
+2021-05-04 10:08:03.612 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML encoding codec XStreamXml
+2021-05-04 10:08:03.612 [main] INFO  c.n.discovery.provider.DiscoveryJerseyProvider - Using XML decoding codec XStreamXml
+2021-05-04 10:08:03.949 [main] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2021-05-04 10:08:03.994 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2021-05-04 10:08:03.994 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2021-05-04 10:08:03.994 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2021-05-04 10:08:03.995 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2021-05-04 10:08:03.995 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2021-05-04 10:08:03.995 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+2021-05-04 10:08:03.995 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2021-05-04 10:08:04.223 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2021-05-04 10:08:04.227 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2021-05-04 10:08:04.231 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2021-05-04 10:08:04.236 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1620148084235 with initial instances count: 2
+2021-05-04 10:08:04.243 [main] INFO  o.s.c.n.e.serviceregistry.EurekaServiceRegistry - Registering application GALAXY-UCENTER with eureka with status UP
+2021-05-04 10:08:04.244 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1620148084244, current=UP, previous=STARTING]
+2021-05-04 10:08:04.247 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_GALAXY-UCENTER/192.168.0.96:galaxy-ucenter:9600: registering service...
+2021-05-04 10:08:04.288 [main] INFO  o.s.c.s.b.r.p.RabbitExchangeQueueProvisioner - declaring queue for inbound: springCloudBus.anonymous.SS0YgjryRvq6YQEoUJ30SQ, bound to: springCloudBus
+2021-05-04 10:08:04.301 [DiscoveryClient-InstanceInfoReplicator-0] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_GALAXY-UCENTER/192.168.0.96:galaxy-ucenter:9600 - registration status: 204
+2021-05-04 10:08:04.764 [main] INFO  o.s.integration.monitor.IntegrationMBeanExporter - Registering MessageChannel springCloudBus.anonymous.SS0YgjryRvq6YQEoUJ30SQ.errors
+2021-05-04 10:08:04.873 [main] INFO  o.s.cloud.stream.binder.BinderErrorChannel - Channel 'galaxy-ucenter-1.springCloudBus.anonymous.SS0YgjryRvq6YQEoUJ30SQ.errors' has 1 subscriber(s).
+2021-05-04 10:08:04.874 [main] INFO  o.s.cloud.stream.binder.BinderErrorChannel - Channel 'galaxy-ucenter-1.springCloudBus.anonymous.SS0YgjryRvq6YQEoUJ30SQ.errors' has 2 subscriber(s).
+2021-05-04 10:08:05.352 [main] INFO  o.s.i.amqp.inbound.AmqpInboundChannelAdapter - started inbound.springCloudBus.anonymous.SS0YgjryRvq6YQEoUJ30SQ
+2021-05-04 10:08:05.353 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-05-04 10:08:05.375 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-05-04 10:08:05.391 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-05-04 10:08:05.598 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: addUsingPOST_1
+2021-05-04 10:08:05.602 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: addUsingGET_1
+2021-05-04 10:08:05.606 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingPOST_1
+2021-05-04 10:08:05.608 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingGET_1
+2021-05-04 10:08:05.612 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: detailUsingPOST_1
+2021-05-04 10:08:05.616 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: detailUsingGET_1
+2021-05-04 10:08:05.620 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingPOST_1
+2021-05-04 10:08:05.623 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_1
+2021-05-04 10:08:05.626 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_1
+2021-05-04 10:08:05.628 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingGET_1
+2021-05-04 10:08:05.639 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: addUsingPOST_2
+2021-05-04 10:08:05.641 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: addUsingGET_2
+2021-05-04 10:08:05.648 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingPOST_2
+2021-05-04 10:08:05.650 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: deleteUsingGET_2
+2021-05-04 10:08:05.653 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: detailUsingPOST_2
+2021-05-04 10:08:05.655 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: detailUsingGET_2
+2021-05-04 10:08:05.659 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingPOST_2
+2021-05-04 10:08:05.662 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: listUsingGET_2
+2021-05-04 10:08:05.685 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingPOST_2
+2021-05-04 10:08:05.688 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: updateUsingGET_2
+2021-05-04 10:08:05.748 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-9600"]
+2021-05-04 10:08:05.797 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 9600 (http) with context path ''
+2021-05-04 10:08:05.798 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 9600
+2021-05-04 10:08:05.801 [main] INFO  com.galaxy.ucenter.GalaxyUcenterApplication - Started GalaxyUcenterApplication in 47.291 seconds (JVM running for 47.947)
+2021-05-04 10:13:04.009 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2021-05-04 10:17:16.347 [http-nio-9600-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-05-04 10:17:16.348 [http-nio-9600-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2021-05-04 10:17:16.378 [http-nio-9600-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 30 ms
+2021-05-04 10:17:18.575 [http-nio-9600-exec-1] DEBUG c.g.u.module.mapper.UserMapper.findUserByPhone - ==>  Preparing: select id,status,user_name,password,remark_name, phone,email,register_time,register_ip,last_login_time,last_login_ip,avatar,sys_role_id from t_user where is_delete = 0 and phone = ? 
+2021-05-04 10:17:18.661 [http-nio-9600-exec-1] DEBUG c.g.u.module.mapper.UserMapper.findUserByPhone - ==> Parameters: admin(String)
+2021-05-04 10:17:18.851 [http-nio-9600-exec-1] DEBUG c.g.u.module.mapper.UserMapper.findUserByPhone - <==      Total: 1
+2021-05-04 10:17:18.859 [http-nio-9600-exec-1] DEBUG c.g.u.m.mapper.SysMenuMapper.selectMenuByRoleId - ==>  Preparing: select id,created_at,created_by,updated_at,updated_by,parent_id,name,link_url,image_url,enable_flag,sort_id from t_sys_menu where is_delete = 0 and parent_id = ? 
+2021-05-04 10:17:18.860 [http-nio-9600-exec-1] DEBUG c.g.u.m.mapper.SysMenuMapper.selectMenuByRoleId - ==> Parameters: 1(String)
+2021-05-04 10:17:19.029 [http-nio-9600-exec-1] DEBUG c.g.u.m.mapper.SysMenuMapper.selectMenuByRoleId - <==      Total: 29
+2021-05-04 10:17:19.030 [http-nio-9600-exec-1] DEBUG c.g.u.module.mapper.SysMenuMapper.selectRoleById - ==>  Preparing: select id as roleId,role_name as roleName from t_sys_role where is_delete = 0 and id = ? 
+2021-05-04 10:17:19.030 [http-nio-9600-exec-1] DEBUG c.g.u.module.mapper.SysMenuMapper.selectRoleById - ==> Parameters: 1(String)
+2021-05-04 10:17:19.190 [http-nio-9600-exec-1] DEBUG c.g.u.module.mapper.SysMenuMapper.selectRoleById - <==      Total: 1
+2021-05-04 10:18:04.023 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2021-05-04 10:23:04.038 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2021-05-04 10:28:04.052 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2021-05-04 10:33:04.061 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2021-05-04 10:38:04.073 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2021-05-04 10:43:04.089 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2021-05-04 10:48:04.109 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2021-05-04 10:53:04.127 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2021-05-04 10:58:04.137 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2021-05-04 11:03:04.148 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2021-05-04 11:08:04.163 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2021-05-04 11:13:04.170 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2021-05-04 11:18:04.182 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2021-05-04 11:20:35.243 [http-nio-9600-exec-3] DEBUG c.g.u.module.mapper.UserMapper.findUserByPhone - ==>  Preparing: select id,status,user_name,password,remark_name, phone,email,register_time,register_ip,last_login_time,last_login_ip,avatar,sys_role_id from t_user where is_delete = 0 and phone = ? 
+2021-05-04 11:20:35.257 [http-nio-9600-exec-3] DEBUG c.g.u.module.mapper.UserMapper.findUserByPhone - ==> Parameters: admin(String)
+2021-05-04 11:20:35.425 [http-nio-9600-exec-3] DEBUG c.g.u.module.mapper.UserMapper.findUserByPhone - <==      Total: 1
+2021-05-04 11:20:35.429 [http-nio-9600-exec-3] DEBUG c.g.u.m.mapper.SysMenuMapper.selectMenuByRoleId - ==>  Preparing: select id,created_at,created_by,updated_at,updated_by,parent_id,name,link_url,image_url,enable_flag,sort_id from t_sys_menu where is_delete = 0 and parent_id = ? 
+2021-05-04 11:20:35.430 [http-nio-9600-exec-3] DEBUG c.g.u.m.mapper.SysMenuMapper.selectMenuByRoleId - ==> Parameters: 1(String)
+2021-05-04 11:20:35.587 [http-nio-9600-exec-3] DEBUG c.g.u.m.mapper.SysMenuMapper.selectMenuByRoleId - <==      Total: 29
+2021-05-04 11:20:35.588 [http-nio-9600-exec-3] DEBUG c.g.u.module.mapper.SysMenuMapper.selectRoleById - ==>  Preparing: select id as roleId,role_name as roleName from t_sys_role where is_delete = 0 and id = ? 
+2021-05-04 11:20:35.588 [http-nio-9600-exec-3] DEBUG c.g.u.module.mapper.SysMenuMapper.selectRoleById - ==> Parameters: 1(String)
+2021-05-04 11:20:35.735 [http-nio-9600-exec-3] DEBUG c.g.u.module.mapper.SysMenuMapper.selectRoleById - <==      Total: 1
+2021-05-04 11:23:04.219 [AsyncResolver-bootstrap-executor-0] INFO  c.n.d.shared.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration

@@ -53,7 +53,24 @@ public class ImageUtil {
             ImageIO.write(bufImg, suffix, imOut);
             InputStream is = new ByteArrayInputStream(bs.toByteArray());*/
             // 加水印后的文件上传
-            return outFile;
+            try{
+                return outFile;
+            }catch (Exception e){
+                e.printStackTrace();
+            }finally {
+                // do .flush() and .close() to release memory usage
+                try{
+                    inputImg.close();
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+                img.flush();
+                file.delete();
+                bis.close();
+                mark.flush();
+                bufImg.flush();
+                // outFile.delete();
+            }
         }
         //返回加了水印的上传对象
         return null;
@@ -103,9 +120,14 @@ public class ImageUtil {
             ImageIO.write(bufImg, suffix, imOut);
             InputStream is = new ByteArrayInputStream(bs.toByteArray());*/
 
+            // do the .flush() and .close()
             inputImg.close();
+            img.flush();
+            mark.flush();
+            bufImg.flush();
             inputStream.close();
-            // 加水印后的文件上传
+            inputStream.close();
+            // 加水印后的文件上传  this outFile should close or remove in the service method
             return outFile;
         }
         //返回加了水印的上传对象
