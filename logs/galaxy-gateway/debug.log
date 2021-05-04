@@ -299,3 +299,142 @@ Caused by: com.netflix.client.ClientException: Load balancer does not have avail
 2021-05-04 12:12:10,772 [AsyncResolver-bootstrap-executor-0] INFO  [c.n.d.shared.resolver.aws.ConfigClusterResolver] ConfigClusterResolver.java:43 - Resolving eureka endpoints via configuration
 2021-05-04 12:17:10,785 [AsyncResolver-bootstrap-executor-0] INFO  [c.n.d.shared.resolver.aws.ConfigClusterResolver] ConfigClusterResolver.java:43 - Resolving eureka endpoints via configuration
 2021-05-04 12:22:10,796 [AsyncResolver-bootstrap-executor-0] INFO  [c.n.d.shared.resolver.aws.ConfigClusterResolver] ConfigClusterResolver.java:43 - Resolving eureka endpoints via configuration
+2021-05-04 12:27:10,815 [AsyncResolver-bootstrap-executor-0] INFO  [c.n.d.shared.resolver.aws.ConfigClusterResolver] ConfigClusterResolver.java:43 - Resolving eureka endpoints via configuration
+2021-05-04 12:32:10,829 [AsyncResolver-bootstrap-executor-0] INFO  [c.n.d.shared.resolver.aws.ConfigClusterResolver] ConfigClusterResolver.java:43 - Resolving eureka endpoints via configuration
+2021-05-04 12:37:11,259 [AsyncResolver-bootstrap-executor-0] INFO  [c.n.d.shared.resolver.aws.ConfigClusterResolver] ConfigClusterResolver.java:43 - Resolving eureka endpoints via configuration
+2021-05-04 12:53:54,474 [AMQP Connection 47.100.17.12:5672] WARN  [com.rabbitmq.client.impl.ForgivingExceptionHandler] ForgivingExceptionHandler.java:115 - An unexpected connection driver error occured (Exception message: Connection reset)
+2021-05-04 12:53:54,546 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
+2021-05-04 12:53:55,512 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-1] INFO  [o.s.a.r.listener.SimpleMessageListenerContainer] SimpleMessageListenerContainer.java:1277 - Restarting Consumer@7915111a: tags=[[amq.ctag-KLO0CsWHXIs2Yr777MaIeA]], channel=Cached Rabbit Channel: AMQChannel(amqp://galaxy@47.100.17.12:5672/,1), conn: Proxy@46059b73 Shared Rabbit Connection: SimpleConnection@19565b5 [delegate=amqp://galaxy@47.100.17.12:5672/, localPort= 59362], acknowledgeMode=AUTO local queue size=0
+2021-05-04 12:53:55,529 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-2] INFO  [o.s.a.rabbit.connection.CachingConnectionFactory] AbstractConnectionFactory.java:460 - Attempting to connect to: [47.100.17.12:5672]
+2021-05-04 12:53:56,157 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-2] INFO  [o.s.a.rabbit.connection.CachingConnectionFactory] AbstractConnectionFactory.java:496 - Created new connection: rabbitConnectionFactory#6630dd28:1/SimpleConnection@2f06e682 [delegate=amqp://galaxy@47.100.17.12:5672/, localPort= 54075]
+2021-05-04 12:53:56,340 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-2] INFO  [org.springframework.amqp.rabbit.core.RabbitAdmin] RabbitAdmin.java:578 - Auto-declaring a non-durable, auto-delete, or exclusive Queue (springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg) durable:false, auto-delete:true, exclusive:true. It will be redeclared if the broker stops and is restarted while the connection factory is alive, but all messages will be lost.
+2021-05-04 13:15:56,403 [AMQP Connection 47.100.17.12:5672] WARN  [com.rabbitmq.client.impl.ForgivingExceptionHandler] ForgivingExceptionHandler.java:115 - An unexpected connection driver error occured (Exception message: Connection reset)
+2021-05-04 13:15:56,438 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
+2021-05-04 13:15:56,448 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
+2021-05-04 13:15:56,543 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-2] INFO  [o.s.a.r.listener.SimpleMessageListenerContainer] SimpleMessageListenerContainer.java:1277 - Restarting Consumer@51faf58f: tags=[[amq.ctag-XF9cbkmerk6Wdgh_b9f0aQ]], channel=Cached Rabbit Channel: AMQChannel(amqp://galaxy@47.100.17.12:5672/,2), conn: Proxy@46059b73 Shared Rabbit Connection: SimpleConnection@2f06e682 [delegate=amqp://galaxy@47.100.17.12:5672/, localPort= 54075], acknowledgeMode=AUTO local queue size=0
+2021-05-04 13:15:56,552 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-3] INFO  [o.s.a.rabbit.connection.CachingConnectionFactory] AbstractConnectionFactory.java:460 - Attempting to connect to: [47.100.17.12:5672]
+2021-05-04 13:15:57,181 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-3] INFO  [o.s.a.rabbit.connection.CachingConnectionFactory] AbstractConnectionFactory.java:496 - Created new connection: rabbitConnectionFactory#6630dd28:2/SimpleConnection@6f877094 [delegate=amqp://galaxy@47.100.17.12:5672/, localPort= 54370]
+2021-05-04 13:15:57,186 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-3] INFO  [org.springframework.amqp.rabbit.core.RabbitAdmin] RabbitAdmin.java:578 - Auto-declaring a non-durable, auto-delete, or exclusive Queue (springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg) durable:false, auto-delete:true, exclusive:true. It will be redeclared if the broker stops and is restarted while the connection factory is alive, but all messages will be lost.
+2021-05-04 13:15:58,376 [DiscoveryClient-HeartbeatExecutor-0] INFO  [com.netflix.discovery.DiscoveryClient] DiscoveryClient.java:850 - DiscoveryClient_GALAXY-GATEWAY/192.168.0.96:galaxy-gateway:9400 - Re-registering apps/GALAXY-GATEWAY
+2021-05-04 13:15:58,381 [DiscoveryClient-HeartbeatExecutor-0] INFO  [com.netflix.discovery.DiscoveryClient] DiscoveryClient.java:826 - DiscoveryClient_GALAXY-GATEWAY/192.168.0.96:galaxy-gateway:9400: registering service...
+2021-05-04 13:15:58,939 [DiscoveryClient-HeartbeatExecutor-0] INFO  [com.netflix.discovery.DiscoveryClient] DiscoveryClient.java:835 - DiscoveryClient_GALAXY-GATEWAY/192.168.0.96:galaxy-gateway:9400 - registration status: 204
+2021-05-04 13:29:04,561 [AMQP Connection 47.100.17.12:5672] WARN  [com.rabbitmq.client.impl.ForgivingExceptionHandler] ForgivingExceptionHandler.java:115 - An unexpected connection driver error occured (Exception message: Connection reset)
+2021-05-04 13:29:04,589 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
+2021-05-04 13:29:04,594 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
+2021-05-04 13:29:05,556 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-3] INFO  [o.s.a.r.listener.SimpleMessageListenerContainer] SimpleMessageListenerContainer.java:1277 - Restarting Consumer@3ffb6e94: tags=[[amq.ctag-Exw1NKlXFDeVnzci1xK1iQ]], channel=Cached Rabbit Channel: AMQChannel(amqp://galaxy@47.100.17.12:5672/,2), conn: Proxy@46059b73 Shared Rabbit Connection: SimpleConnection@6f877094 [delegate=amqp://galaxy@47.100.17.12:5672/, localPort= 54370], acknowledgeMode=AUTO local queue size=0
+2021-05-04 13:29:05,569 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-4] INFO  [o.s.a.rabbit.connection.CachingConnectionFactory] AbstractConnectionFactory.java:460 - Attempting to connect to: [47.100.17.12:5672]
+2021-05-04 13:29:06,487 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-4] INFO  [o.s.a.rabbit.connection.CachingConnectionFactory] AbstractConnectionFactory.java:496 - Created new connection: rabbitConnectionFactory#6630dd28:3/SimpleConnection@25daf5ae [delegate=amqp://galaxy@47.100.17.12:5672/, localPort= 54597]
+2021-05-04 13:29:06,509 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-4] INFO  [org.springframework.amqp.rabbit.core.RabbitAdmin] RabbitAdmin.java:578 - Auto-declaring a non-durable, auto-delete, or exclusive Queue (springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg) durable:false, auto-delete:true, exclusive:true. It will be redeclared if the broker stops and is restarted while the connection factory is alive, but all messages will be lost.
+2021-05-04 13:58:02,012 [AMQP Connection 47.100.17.12:5672] WARN  [com.rabbitmq.client.impl.ForgivingExceptionHandler] ForgivingExceptionHandler.java:115 - An unexpected connection driver error occured (Exception message: Connection reset)
+2021-05-04 13:58:02,088 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
+2021-05-04 13:58:02,101 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
+2021-05-04 13:58:02,510 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-4] INFO  [o.s.a.r.listener.SimpleMessageListenerContainer] SimpleMessageListenerContainer.java:1277 - Restarting Consumer@4b89db56: tags=[[amq.ctag-hW4dGnSK2iHqfZDQU5kv7w]], channel=Cached Rabbit Channel: AMQChannel(amqp://galaxy@47.100.17.12:5672/,2), conn: Proxy@46059b73 Shared Rabbit Connection: SimpleConnection@25daf5ae [delegate=amqp://galaxy@47.100.17.12:5672/, localPort= 54597], acknowledgeMode=AUTO local queue size=0
+2021-05-04 13:58:02,545 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-5] INFO  [o.s.a.rabbit.connection.CachingConnectionFactory] AbstractConnectionFactory.java:460 - Attempting to connect to: [47.100.17.12:5672]
+2021-05-04 13:58:03,272 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-5] INFO  [o.s.a.rabbit.connection.CachingConnectionFactory] AbstractConnectionFactory.java:496 - Created new connection: rabbitConnectionFactory#6630dd28:4/SimpleConnection@789cbc58 [delegate=amqp://galaxy@47.100.17.12:5672/, localPort= 54873]
+2021-05-04 13:58:03,280 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-5] INFO  [org.springframework.amqp.rabbit.core.RabbitAdmin] RabbitAdmin.java:578 - Auto-declaring a non-durable, auto-delete, or exclusive Queue (springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg) durable:false, auto-delete:true, exclusive:true. It will be redeclared if the broker stops and is restarted while the connection factory is alive, but all messages will be lost.
+2021-05-04 14:15:17,246 [AMQP Connection 47.100.17.12:5672] WARN  [com.rabbitmq.client.impl.ForgivingExceptionHandler] ForgivingExceptionHandler.java:115 - An unexpected connection driver error occured (Exception message: Connection reset)
+2021-05-04 14:15:17,267 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
+2021-05-04 14:15:17,271 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
+2021-05-04 14:15:17,924 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-5] INFO  [o.s.a.r.listener.SimpleMessageListenerContainer] SimpleMessageListenerContainer.java:1277 - Restarting Consumer@274c6d52: tags=[[amq.ctag-zYfdN6W6AIl9XMeBziu22Q]], channel=Cached Rabbit Channel: AMQChannel(amqp://galaxy@47.100.17.12:5672/,2), conn: Proxy@46059b73 Shared Rabbit Connection: SimpleConnection@789cbc58 [delegate=amqp://galaxy@47.100.17.12:5672/, localPort= 54873], acknowledgeMode=AUTO local queue size=0
+2021-05-04 14:15:17,931 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-6] INFO  [o.s.a.rabbit.connection.CachingConnectionFactory] AbstractConnectionFactory.java:460 - Attempting to connect to: [47.100.17.12:5672]
+2021-05-04 14:15:18,791 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-6] INFO  [o.s.a.rabbit.connection.CachingConnectionFactory] AbstractConnectionFactory.java:496 - Created new connection: rabbitConnectionFactory#6630dd28:5/SimpleConnection@66e7e0d2 [delegate=amqp://galaxy@47.100.17.12:5672/, localPort= 55111]
+2021-05-04 14:15:18,801 [springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg-6] INFO  [org.springframework.amqp.rabbit.core.RabbitAdmin] RabbitAdmin.java:578 - Auto-declaring a non-durable, auto-delete, or exclusive Queue (springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg) durable:false, auto-delete:true, exclusive:true. It will be redeclared if the broker stops and is restarted while the connection factory is alive, but all messages will be lost.
+2021-05-04 14:15:39,179 [AsyncResolver-bootstrap-executor-0] INFO  [c.n.d.shared.resolver.aws.ConfigClusterResolver] ConfigClusterResolver.java:43 - Resolving eureka endpoints via configuration
+2021-05-04 14:22:18,159 [AsyncResolver-bootstrap-executor-0] INFO  [c.n.d.shared.resolver.aws.ConfigClusterResolver] ConfigClusterResolver.java:43 - Resolving eureka endpoints via configuration
+2021-05-04 14:27:18,177 [AsyncResolver-bootstrap-executor-0] INFO  [c.n.d.shared.resolver.aws.ConfigClusterResolver] ConfigClusterResolver.java:43 - Resolving eureka endpoints via configuration
+2021-05-04 14:32:18,197 [AsyncResolver-bootstrap-executor-0] INFO  [c.n.d.shared.resolver.aws.ConfigClusterResolver] ConfigClusterResolver.java:43 - Resolving eureka endpoints via configuration
+2021-05-04 14:37:18,216 [AsyncResolver-bootstrap-executor-0] INFO  [c.n.d.shared.resolver.aws.ConfigClusterResolver] ConfigClusterResolver.java:43 - Resolving eureka endpoints via configuration
+2021-05-04 14:39:28,445 [Thread-14] INFO  [com.netflix.loadbalancer.PollingServerListUpdater] PollingServerListUpdater.java:53 - Shutting down the Executor Pool for PollingServerListUpdater
+2021-05-04 14:39:28,537 [Thread-10] INFO  [o.s.c.n.e.serviceregistry.EurekaServiceRegistry] EurekaServiceRegistry.java:65 - Unregistering application GALAXY-GATEWAY with eureka with status DOWN
+2021-05-04 14:39:28,547 [Thread-10] WARN  [com.netflix.discovery.DiscoveryClient] DiscoveryClient.java:1303 - Saw local status change event StatusChangeEvent [timestamp=1620164368547, current=DOWN, previous=UP]
+2021-05-04 14:39:28,562 [DiscoveryClient-InstanceInfoReplicator-0] INFO  [com.netflix.discovery.DiscoveryClient] DiscoveryClient.java:826 - DiscoveryClient_GALAXY-GATEWAY/192.168.0.96:galaxy-gateway:9400: registering service...
+2021-05-04 14:39:28,603 [DiscoveryClient-InstanceInfoReplicator-0] INFO  [com.netflix.discovery.DiscoveryClient] DiscoveryClient.java:835 - DiscoveryClient_GALAXY-GATEWAY/192.168.0.96:galaxy-gateway:9400 - registration status: 204
+2021-05-04 14:39:29,020 [Thread-10] INFO  [o.s.a.r.listener.SimpleMessageListenerContainer] SimpleMessageListenerContainer.java:586 - Waiting for workers to finish.
+2021-05-04 14:39:29,174 [Thread-10] INFO  [o.s.a.r.listener.SimpleMessageListenerContainer] SimpleMessageListenerContainer.java:589 - Successfully waited for workers to finish.
+2021-05-04 14:39:29,177 [Thread-10] INFO  [o.s.i.amqp.inbound.AmqpInboundChannelAdapter] AbstractEndpoint.java:176 - stopped inbound.springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg
+2021-05-04 14:39:29,208 [Thread-10] INFO  [o.s.cloud.stream.binder.BinderErrorChannel] AbstractSubscribableChannel.java:64 - Channel 'galaxy-gateway-1.springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg.errors' has 1 subscriber(s).
+2021-05-04 14:39:29,214 [Thread-10] INFO  [o.s.cloud.stream.binder.BinderErrorChannel] AbstractSubscribableChannel.java:64 - Channel 'galaxy-gateway-1.springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg.errors' has 0 subscriber(s).
+2021-05-04 14:39:29,317 [Thread-10] INFO  [o.s.integration.endpoint.EventDrivenConsumer] EventDrivenConsumer.java:107 - Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2021-05-04 14:39:29,319 [Thread-10] INFO  [o.s.integration.channel.PublishSubscribeChannel] AbstractSubscribableChannel.java:64 - Channel 'galaxy-gateway-1.errorChannel' has 0 subscriber(s).
+2021-05-04 14:39:29,320 [Thread-10] INFO  [o.s.integration.endpoint.EventDrivenConsumer] AbstractEndpoint.java:193 - stopped _org.springframework.integration.errorLogger
+2021-05-04 14:39:29,333 [Thread-10] INFO  [o.s.cloud.netflix.zuul.ZuulFilterInitializer] ZuulFilterInitializer.java:77 - Stopping filter initializer
+2021-05-04 14:39:29,387 [Thread-10] INFO  [com.netflix.util.concurrent.ShutdownEnabledTimer] ShutdownEnabledTimer.java:67 - Shutdown hook removed for: NFLoadBalancer-PingTimer-galaxy-upload
+2021-05-04 14:39:29,390 [Thread-10] INFO  [com.netflix.util.concurrent.ShutdownEnabledTimer] ShutdownEnabledTimer.java:72 - Exception caught (might be ok if at shutdown)
+java.lang.IllegalStateException: Shutdown in progress
+	at java.lang.ApplicationShutdownHooks.remove(ApplicationShutdownHooks.java:82)
+	at java.lang.Runtime.removeShutdownHook(Runtime.java:239)
+	at com.netflix.util.concurrent.ShutdownEnabledTimer.cancel(ShutdownEnabledTimer.java:70)
+	at com.netflix.loadbalancer.BaseLoadBalancer.cancelPingTask(BaseLoadBalancer.java:632)
+	at com.netflix.loadbalancer.BaseLoadBalancer.shutdown(BaseLoadBalancer.java:883)
+	at com.netflix.loadbalancer.DynamicServerListLoadBalancer.shutdown(DynamicServerListLoadBalancer.java:285)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:337)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:271)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1055)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1062)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1057)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1026)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:975)
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:79)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:256)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1055)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1062)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1057)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1026)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:945)
+2021-05-04 14:39:29,418 [Thread-10] INFO  [com.netflix.util.concurrent.ShutdownEnabledTimer] ShutdownEnabledTimer.java:67 - Shutdown hook removed for: NFLoadBalancer-PingTimer-galaxy-ucenter
+2021-05-04 14:39:29,419 [Thread-10] INFO  [com.netflix.util.concurrent.ShutdownEnabledTimer] ShutdownEnabledTimer.java:72 - Exception caught (might be ok if at shutdown)
+java.lang.IllegalStateException: Shutdown in progress
+	at java.lang.ApplicationShutdownHooks.remove(ApplicationShutdownHooks.java:82)
+	at java.lang.Runtime.removeShutdownHook(Runtime.java:239)
+	at com.netflix.util.concurrent.ShutdownEnabledTimer.cancel(ShutdownEnabledTimer.java:70)
+	at com.netflix.loadbalancer.BaseLoadBalancer.cancelPingTask(BaseLoadBalancer.java:632)
+	at com.netflix.loadbalancer.BaseLoadBalancer.shutdown(BaseLoadBalancer.java:883)
+	at com.netflix.loadbalancer.DynamicServerListLoadBalancer.shutdown(DynamicServerListLoadBalancer.java:285)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.invokeCustomDestroyMethod(DisposableBeanAdapter.java:337)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:271)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1055)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1062)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1057)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1026)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:975)
+	at org.springframework.cloud.context.named.NamedContextFactory.destroy(NamedContextFactory.java:79)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:256)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:571)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:543)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1055)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:504)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1062)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1057)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1026)
+	at org.springframework.context.support.AbstractApplicationContext$1.run(AbstractApplicationContext.java:945)
+2021-05-04 14:39:29,522 [Thread-10] INFO  [o.s.scheduling.concurrent.ThreadPoolTaskExecutor] ExecutorConfigurationSupport.java:208 - Shutting down ExecutorService 'applicationTaskExecutor'
+2021-05-04 14:39:29,749 [Thread-10] INFO  [o.s.scheduling.concurrent.ThreadPoolTaskScheduler] ExecutorConfigurationSupport.java:208 - Shutting down ExecutorService 'taskScheduler'
+2021-05-04 14:39:29,802 [Thread-10] INFO  [com.alibaba.druid.pool.DruidDataSource] DruidDataSource.java:1825 - {dataSource-1} closed
+2021-05-04 14:39:30,212 [Thread-10] INFO  [o.s.integration.monitor.IntegrationMBeanExporter] IntegrationMBeanExporter.java:495 - Summary on shutdown: springCloudBusOutput
+2021-05-04 14:39:30,215 [Thread-10] INFO  [o.s.integration.monitor.IntegrationMBeanExporter] IntegrationMBeanExporter.java:495 - Summary on shutdown: springCloudBusInput
+2021-05-04 14:39:30,216 [Thread-10] INFO  [o.s.integration.monitor.IntegrationMBeanExporter] IntegrationMBeanExporter.java:495 - Summary on shutdown: nullChannel
+2021-05-04 14:39:30,218 [Thread-10] INFO  [o.s.integration.monitor.IntegrationMBeanExporter] IntegrationMBeanExporter.java:495 - Summary on shutdown: errorChannel
+2021-05-04 14:39:30,218 [Thread-10] INFO  [o.s.integration.monitor.IntegrationMBeanExporter] IntegrationMBeanExporter.java:495 - Summary on shutdown: springCloudBus.anonymous.IGESKhr_QAeIYvuInnpkKg.errors
+2021-05-04 14:39:30,220 [Thread-10] INFO  [o.s.integration.monitor.IntegrationMBeanExporter] IntegrationMBeanExporter.java:498 - Summary on shutdown: org.springframework.cloud.stream.binding.StreamListenerMessageHandler@4bec6682
+2021-05-04 14:39:30,222 [Thread-10] INFO  [o.s.integration.monitor.IntegrationMBeanExporter] IntegrationMBeanExporter.java:498 - Summary on shutdown: _org.springframework.integration.errorLogger.handler
+2021-05-04 14:39:30,235 [Thread-10] INFO  [com.netflix.discovery.DiscoveryClient] DiscoveryClient.java:888 - Shutting down DiscoveryClient ...
+2021-05-04 14:39:33,246 [Thread-10] INFO  [com.netflix.discovery.DiscoveryClient] DiscoveryClient.java:922 - Unregistering ...
+2021-05-04 14:39:33,293 [Thread-10] INFO  [com.netflix.discovery.DiscoveryClient] DiscoveryClient.java:924 - DiscoveryClient_GALAXY-GATEWAY/192.168.0.96:galaxy-gateway:9400 - deregister  status: 200
+2021-05-04 14:39:33,494 [Thread-10] INFO  [com.netflix.discovery.DiscoveryClient] DiscoveryClient.java:911 - Completed shut down of DiscoveryClient

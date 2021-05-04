@@ -1468,3 +1468,12 @@ com.netflix.discovery.shared.transport.TransportException: Cannot execute reques
 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
 	at java.lang.Thread.run(Thread.java:745)
+2021-05-04 12:53:54,546 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
+2021-05-04 13:15:56,438 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
+2021-05-04 13:15:56,448 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
+2021-05-04 13:29:04,589 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
+2021-05-04 13:29:04,594 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
+2021-05-04 13:58:02,088 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
+2021-05-04 13:58:02,101 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
+2021-05-04 14:15:17,267 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
+2021-05-04 14:15:17,271 [AMQP Connection 47.100.17.12:5672] ERROR [o.s.a.rabbit.connection.CachingConnectionFactory] CachingConnectionFactory.java:1468 - Channel shutdown: connection error
