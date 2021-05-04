@@ -22,3 +22,5 @@ artifacts:
     - 'galaxy-eureka/deploy/stop.sh'
   discard-paths: yes
 
+
+

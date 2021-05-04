@@ -16,7 +16,7 @@ public class UserContext {
     public static void init(SysUserVo sysUserVo) {
         userContext.sysUserLocal.set(sysUserVo);
     }
-    
+
     public static Optional<SysUserVo> getCurrentSysUser() {
     	if(null!=userContext.sysUserLocal.get()){
     		return	Optional.of(userContext.sysUserLocal.get());
@@ -30,4 +30,6 @@ public class UserContext {
     }
 
 }
+
+
 

@@ -48,7 +48,6 @@ public class UserAuthInterceptor implements HandlerInterceptor {
 		}
 	}
 
-
 	@Override
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
 			throws Exception {

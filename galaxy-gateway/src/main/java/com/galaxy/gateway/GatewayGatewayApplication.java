@@ -31,5 +31,5 @@ public class GatewayGatewayApplication {
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
-
 }
+

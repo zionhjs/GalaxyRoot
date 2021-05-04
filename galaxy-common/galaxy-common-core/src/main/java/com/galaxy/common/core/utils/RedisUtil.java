@@ -74,7 +74,6 @@ public class RedisUtil {
         redisTemplate.delete(key);
     }
 
-
     /**
      * 设置Hash的属性
      * @param key
@@ -87,7 +86,6 @@ public class RedisUtil {
         }
         hashOperations.put(key, hashKey, value);
     }
-
 
     /**
      * 批量设置Hash的属性

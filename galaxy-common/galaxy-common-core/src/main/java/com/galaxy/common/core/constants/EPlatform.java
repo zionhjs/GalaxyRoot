@@ -14,3 +14,4 @@ public enum EPlatform {
 
 	private String description;
 }
+

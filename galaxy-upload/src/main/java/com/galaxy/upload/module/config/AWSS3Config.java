@@ -25,8 +25,6 @@ public class AWSS3Config {
     private String region = "us-west-1";
     private String cloudfront_domainname = "d18bri8sapzuu4.cloudfront.net";*/
 
-
-
     @Bean
     public AmazonS3 getAmazonS3Client(){
         final BasicAWSCredentials basicAWSCredentials = new BasicAWSCredentials(accessKey, secretAccessKey);

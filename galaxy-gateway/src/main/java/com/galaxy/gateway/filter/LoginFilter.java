@@ -31,7 +31,6 @@ import static org.springframework.cloud.netflix.zuul.filters.support.FilterConst
 @Component
 @AllArgsConstructor
 public class LoginFilter extends ZuulFilter {
-
 	@Resource
 	private RedisUtil redisUtil;
 
@@ -161,3 +160,5 @@ public class LoginFilter extends ZuulFilter {
 	}
 
 }
+
+

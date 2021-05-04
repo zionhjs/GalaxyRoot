@@ -17,3 +17,4 @@ public interface UserService extends Service<User> {
 
     Result add(User user);
 }
+

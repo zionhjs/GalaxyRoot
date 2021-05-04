@@ -47,3 +47,4 @@ public class Result<T> implements Serializable {
         return JSON.toJSONString(this);
     }
 }
+
