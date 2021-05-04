@@ -190,7 +190,9 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             ImageIO.write(bufImg, "png", outFile);//写图片
 
             // 把文件flush下 不然会占空间
+            img.flush();
             bufImg.flush();
+            inputImg.close();
             return outFile;
         } catch (IOException e) {
             e.printStackTrace();

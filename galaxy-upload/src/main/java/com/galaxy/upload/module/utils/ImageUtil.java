@@ -10,7 +10,6 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class ImageUtil {
-
     /**
      * 给multipartFile加上图片水印
      * @param multipartFile  需要上传的文件
@@ -125,7 +124,6 @@ public class ImageUtil {
             img.flush();
             mark.flush();
             bufImg.flush();
-            inputStream.close();
             inputStream.close();
             // 加水印后的文件上传  this outFile should close or remove in the service method
             return outFile;
