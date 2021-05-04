@@ -18,6 +18,9 @@ server:
     context-path: /
 
 spring:
+  cloud:
+    config:
+      enabled: false
   application:
     name: galaxy-upload
   # 数据源

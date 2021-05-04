@@ -49,7 +49,12 @@ public class TimerController {
             Logger.info(this,"" + e);
             e.printStackTrace();
         }
-
     }
 
+    @Scheduled(cron =  "0 */6 * * * ?") //每隔6分钟执行一次
+    public void autoGC(){
+        System.out.println(" working on GC for every 6 minutes!");
+        System.gc();
+    }
 }
+
