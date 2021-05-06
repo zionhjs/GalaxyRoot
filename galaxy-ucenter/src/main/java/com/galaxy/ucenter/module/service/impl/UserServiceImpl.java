@@ -112,7 +112,7 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
         }
 
         //创建token
-        String token= (String) redisUtil.get(user.getId() + "USERID");
+        String token = (String) redisUtil.get(user.getId() + "USERID");
 
         Boolean loginFlag = false;
 
