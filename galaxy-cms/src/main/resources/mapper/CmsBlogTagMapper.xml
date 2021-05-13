@@ -15,4 +15,11 @@
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="tag_name" jdbcType="VARCHAR" property="tagName" />
   </resultMap>
+
+  <select id="selectAllTag" resultType="java.lang.String">
+      select tag_name
+      from t_blog_tag
+      where is_delete = 0
+  </select>
+
 </mapper>

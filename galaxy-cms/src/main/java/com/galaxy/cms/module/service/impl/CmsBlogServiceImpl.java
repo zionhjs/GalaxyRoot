@@ -6,8 +6,10 @@ import com.galaxy.cms.module.mapper.CmsBlogMapper;
 import com.galaxy.cms.module.mapper.CmsMomentCommentMapper;
 import com.galaxy.cms.module.model.Blog;
 import com.galaxy.cms.module.model.BlogImages;
+import com.galaxy.cms.module.model.BlogTag;
 import com.galaxy.cms.module.service.CmsBlogImagesService;
 import com.galaxy.cms.module.service.CmsBlogService;
+import com.galaxy.cms.module.service.CmsBlogTagService;
 import com.galaxy.cms.module.vo.HomeListVo;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultCode;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,6 +48,53 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
 
     @Resource
     private RemoteUploadService remoteUploadService;
+
+    @Resource
+    private CmsBlogTagService cmsBlogTagService;
+
+    @Override
+    public Result add(Blog blog) {
+        blog.setId(DigitUtil.generatorLongId());
+        blog.setCreatedAt(new Date());
+        blog.setIsDelete(false);
+        save(blog);
+
+        if (blog.getBlogImagesList().size() > 0){
+            for (BlogImages d:blog.getBlogImagesList()) {
+                d.setBlogId(blog.getId());
+                d.setCreatedAt(new Date());
+                d.setIsDelete(false);
+            }
+            cmsBlogImagesService.saveList(blog.getBlogImagesList());
+        }
+
+        List<BlogTag> blogTagList = new ArrayList<BlogTag>();
+        BlogTag blogTag;
+        //添加博客详情
+        if (null != blog.getTagName()){
+            String[] array = blog.getTagName().split(",");
+            for (int i = 0;i < array.length; i++){
+                //
+                List<String> stringList = cmsBlogTagService.selectAllTag();
+                //如果不包含，代表是新增的标签
+                if (!stringList.contains(array[i])){
+                    blogTag = new BlogTag();
+                    blogTag.setIsDelete(false);
+                    blogTag.setCreatedAt(new Date());
+                    blogTag.setTagName(array[i]);
+                    blogTagList.add(blogTag);
+                }
+            }
+        }
+        //如果完全一样就不会添加博客标签
+        if (blogTagList.size() > 0){
+            cmsBlogTagService.save(blogTagList);
+        }
+
+        Result result = ResultGenerator.genSuccessResult();
+        result.setData(blog);
+        return result;
+    }
 
     @Override
     public Result detail(Long id) {
@@ -114,27 +164,6 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
         homeListVo.setVideoPageInfo(videoResult.getData());
 
         return ResultGenerator.genSuccessResult(homeListVo);
-    }
-
-    @Override
-    public Result add(Blog blog) {
-        blog.setId(DigitUtil.generatorLongId());
-        blog.setCreatedAt(new Date());
-        blog.setIsDelete(false);
-        save(blog);
-
-        if (blog.getBlogImagesList().size() > 0){
-            for (BlogImages d:blog.getBlogImagesList()) {
-                d.setBlogId(blog.getId());
-                d.setCreatedAt(new Date());
-                d.setIsDelete(false);
-            }
-            cmsBlogImagesService.saveList(blog.getBlogImagesList());
-        }
-
-        Result result = ResultGenerator.genSuccessResult();
-        result.setData(blog);
-        return result;
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -20,4 +21,8 @@ public class CmsBlogTagServiceImpl extends AbstractService<BlogTag> implements C
     @Resource
     private CmsBlogTagMapper cmsBlogTagMapper;
 
+    @Override
+    public List<String> selectAllTag() {
+        return cmsBlogTagMapper.selectAllTag();
+    }
 }

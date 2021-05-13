@@ -49,7 +49,7 @@
         select b.id as id,b.created_at as createdAt,b.created_by as createdBy,b.updated_at as updatedAt,
                 b.updated_by as updatedBy,b.title as title,b.author as author,b.content as content,
                 ifnull(b.like_num,0) as likeNum,ifnull(b.browse_num,0) as browseNum,b.tag_id as tagId,
-                b.tag_name as tagName,b.status_name as statusName
+                b.tag_name as tagName
         from t_blog b
         where b.is_delete = 0
         <if test="title != null and title != '' and title != '{}'">
@@ -58,8 +58,8 @@
         <if test="content != null and content != ''">
             and b.content LIKE concat(concat('%',#{content}),'%')
         </if>
-        <if test="statusName != null and statusName != '' and statusName != '{}'">
-            and b.status_name = #{statusName}
+        <if test="tagName != null and tagName != '' and tagName != '{}'">
+            and find_in_set(#{tagName}, b.tag_name)
         </if>
     </select>
 
