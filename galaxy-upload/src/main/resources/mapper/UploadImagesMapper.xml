@@ -64,7 +64,6 @@
         <if test="title != null and title != '' and title !={} ">
           and title like concat(concat('%',#{title}),'%')
         </if>
-        order by rating desc,tmp_rating desc
   </select>
 
 </mapper>
