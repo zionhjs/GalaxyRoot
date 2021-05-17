@@ -144,9 +144,9 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
             int i = 0;
             Frame f = null;
             while (i < length) {
-                // 去掉前5帧，避免出现全黑的图片，依自己情况而定
+                // 去掉前10帧，避免出现全黑的图片，依自己情况而定
                 f = ff.grabImage();
-                if ((i > 5) && (f.image != null)) {
+                if ((i > 10) && (f.image != null)) {
                     break;
                 }
                 i++;
