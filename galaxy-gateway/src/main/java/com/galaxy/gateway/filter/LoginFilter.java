@@ -78,6 +78,7 @@ public class LoginFilter extends ZuulFilter {
 			}
 		}
 		return tag;
+		// return true;
 	}
 
 	@Override

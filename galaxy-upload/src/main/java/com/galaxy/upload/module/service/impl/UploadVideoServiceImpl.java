@@ -98,7 +98,6 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
         video.setSize(multipartFile.getSize());
         video.setStatusName(statusName);
         try{
-
             //video.setThumbnail(new Binary(aws3Service.getVideoPic(multipartFile)));
             uploadFile(multipartFile, video);
             return ResultGenerator.genSuccessResult(video);
@@ -228,7 +227,7 @@ public class UploadVideoServiceImpl extends AbstractService<Video> implements Up
 
             video.setS3BucketName(bucketName);
 
-        // for encode Video to 480p / 720p / 1080p
+            //for encode Video to 480p / 720p / 1080p
             File targetFile480 = new File("target480.mp4");
 
             targetFile480 = encodeVideo(sourceFile, targetFile480, 854, 480);
