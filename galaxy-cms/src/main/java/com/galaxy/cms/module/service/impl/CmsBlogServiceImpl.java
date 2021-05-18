@@ -189,6 +189,30 @@ public class CmsBlogServiceImpl extends AbstractService<Blog> implements CmsBlog
         if (0 == rows){
             return ResultGenerator.genFailResult(ResultCode.BLOG_UPDATE_ERROR,"更新博客失败，请重新更新");
         }else {
+
+            List<BlogTag> blogTagList = new ArrayList<BlogTag>();
+            BlogTag blogTag;
+            //添加博客详情
+            if (null != blog.getTagName()){
+                String[] array = blog.getTagName().split(",");
+                for (int i = 0;i < array.length; i++){
+                    //
+                    List<String> stringList = cmsBlogTagService.selectAllTag();
+                    //如果不包含，代表是新增的标签
+                    if (!stringList.contains(array[i])){
+                        blogTag = new BlogTag();
+                        blogTag.setIsDelete(false);
+                        blogTag.setCreatedAt(new Date());
+                        blogTag.setTagName(array[i]);
+                        blogTagList.add(blogTag);
+                    }
+                }
+            }
+            //如果完全一样就不会添加博客标签
+            if (blogTagList.size() > 0){
+                cmsBlogTagService.save(blogTagList);
+            }
+
             Result result=ResultGenerator.genSuccessResult();
             result.setData(blog);
             return result;
