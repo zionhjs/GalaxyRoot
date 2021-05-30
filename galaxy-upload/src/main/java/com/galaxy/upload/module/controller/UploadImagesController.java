@@ -5,6 +5,7 @@ import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultGenerator;
 import com.galaxy.common.core.utils.Logger;
 import com.galaxy.upload.module.model.Images;
+import com.galaxy.upload.module.param.ZipParam;
 import com.galaxy.upload.module.service.UploadImagesService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -20,6 +21,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/images")
@@ -34,10 +36,10 @@ public class UploadImagesController extends BaseController {
      * @return
      * @author jiejing
      */
-    @RequestMapping(value = "/toDowmNoteByVid", method = RequestMethod.POST)
+    @RequestMapping(value = "/toDowmNoteByVid", method = RequestMethod.GET)
     public void toDowmNoteByVid(HttpServletRequest request, HttpServletResponse response) {
         //url
-        String notesUrl = "https://galaxy-image.s3-us-west-1.amazonaws.com/2020-12-25T04:43:04.762_out_pic.png";
+        String notesUrl = "https://galaxy-image.s3-us-west-1.amazonaws.com/2021-05-30T17:55:19.911_out_pic.png";
         //下载文件名称
         String notesName = "百度图片";
         ServletOutputStream out = null;
@@ -90,8 +92,14 @@ public class UploadImagesController extends BaseController {
         }
     }
 
+    @ApiOperation(value = "下载Zip包", notes = "下载Zip包")
+    @RequestMapping(value = "/downloadZip", method = RequestMethod.POST)
+    public Result downloadZip(@RequestBody List<ZipParam> param){
+        return uploadImagesService.downloadZip(param);
+    }
+
     @ApiOperation(value = "根据url下载图片", notes = "根据url下载图片")
-    @RequestMapping(value = "/saveImg", method = RequestMethod.POST)
+    @RequestMapping(value = "/saveImg", method = RequestMethod.GET)
     public Result saveImg(@RequestParam String url){
         return uploadImagesService.saveImg(url);
     }

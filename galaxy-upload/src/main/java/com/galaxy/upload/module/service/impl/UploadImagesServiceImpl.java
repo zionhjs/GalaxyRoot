@@ -1,17 +1,17 @@
 package com.galaxy.upload.module.service.impl;
 
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.DeleteObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectResult;
-import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.*;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.response.ResultCode;
 import com.galaxy.common.core.response.ResultGenerator;
 import com.galaxy.common.core.service.AbstractService;
+import com.galaxy.common.core.utils.DigitUtil;
 import com.galaxy.common.core.utils.Logger;
+import com.galaxy.common.core.utils.ZipMultiFileUtil;
 import com.galaxy.upload.module.mapper.UploadImagesMapper;
 import com.galaxy.upload.module.model.Images;
+import com.galaxy.upload.module.param.ZipParam;
 import com.galaxy.upload.module.service.UploadImagesService;
 import com.galaxy.upload.module.utils.ImageUtil;
 import com.galaxy.common.core.constants.Constant;
@@ -63,6 +63,11 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
 
     @Autowired
     private AmazonS3 amazonS3Client;
+
+    public InputStream download(String key){
+        S3Object object = amazonS3Client.getObject(new GetObjectRequest(imageBucketName, key));
+        return object.getObjectContent();
+    }
 
     @Override
     public Result uploadImages(MultipartFile multipartFile,String title,String description,String suffix,String level,Integer status,String statusName) {
@@ -337,38 +342,6 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
         }
     }
 
-    /**
-     * 根据url下载图片到本地
-     * @param imgeUrl 图片的路径
-     */
-    public Result saveImg(String imgeUrl) {
-        BufferedImage bufferedImage = null;
-        try {
-            URL url=new URL(imgeUrl);
-            URLConnection urlConnection=url.openConnection();
-            HttpURLConnection httpURLConnection=(HttpURLConnection)urlConnection;
-            httpURLConnection.connect();
-            if (httpURLConnection.getResponseCode()== HttpURLConnection.HTTP_OK){
-                InputStream inputStream=httpURLConnection.getInputStream();
-
-                bufferedImage= ImageIO.read(inputStream);
-                //参数二设置保存图片的格式
-                //参数三设置图片保存地址
-                ImageIO.write(bufferedImage,"png",new File("D:\\out.png"));
-
-                // flush buffered files
-                bufferedImage.flush();
-            }else {
-                System.out.println("连接失败");
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     @Override
     public Result uploadImagesNotLogo(MultipartFile multipartFile) {
         if (null == multipartFile){
@@ -445,6 +418,109 @@ public class UploadImagesServiceImpl extends AbstractService<Images> implements 
             update(images);
         }
         return ResultGenerator.genSuccessResult(images);
+    }
+
+    @Override
+    public Result downloadZip(List<ZipParam> paramList) {
+        if (paramList.size() > 0){
+            //全部下载到本地的图片
+            List<String> urlList = new ArrayList<>();
+            //转换为File文件
+            List<File> fileList = new ArrayList<>();
+            for (ZipParam d : paramList) {
+                String imgUrl = downloadImg(d.getImgUrl());
+                fileList.add(new File(imgUrl));
+                urlList.add(imgUrl);
+            }
+
+            String url =  "D:\\" + "galaxy" + DigitUtil.generatorLongId() + ".zip";
+            File zipFile = new File(url);
+            // 调用压缩方法
+            ZipMultiFileUtil.zipFiles(fileList.stream().toArray(File[]::new), zipFile);
+
+            //删除临时文件
+            if (fileList.size() > 0){
+                for (File d:fileList) {
+                    d.delete();
+                }
+            }
+
+            //删除图片
+            //zipFile.delete();
+
+        }
+        return ResultGenerator.genSuccessResult();
+    }
+
+    /**
+     * 根据url下载图片到本地
+     * @param imgeUrl 图片的路径
+     */
+    public String downloadImg(String imgeUrl) {
+        BufferedImage bufferedImage = null;
+        try {
+            URL url=new URL(imgeUrl);
+            URLConnection urlConnection=url.openConnection();
+            HttpURLConnection httpURLConnection=(HttpURLConnection)urlConnection;
+            httpURLConnection.connect();
+            if (httpURLConnection.getResponseCode()== HttpURLConnection.HTTP_OK){
+                InputStream inputStream=httpURLConnection.getInputStream();
+
+                bufferedImage= ImageIO.read(inputStream);
+                //参数二设置保存图片的格式
+                //参数三设置图片保存地址
+                //ImageIO.write(bufferedImage,"png",new File("D:\\out.png")); 下载到本地固定路径
+                //ImageIO.write(bufferedImage,"png",new File(DigitUtil.generatorLongId() + ".png")); 下载到项目下
+                String imgUrl = DigitUtil.generatorLongId() + ".png";
+                ImageIO.write(bufferedImage,"png",new File(imgUrl));
+
+                // flush buffered files
+                bufferedImage.flush();
+                return imgUrl;
+            }else {
+                System.out.println("连接失败");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 根据url下载图片到本地
+     * @param imgeUrl 图片的路径
+     */
+    public Result saveImg(String imgeUrl) {
+        BufferedImage bufferedImage = null;
+        try {
+            URL url=new URL(imgeUrl);
+            URLConnection urlConnection=url.openConnection();
+            HttpURLConnection httpURLConnection=(HttpURLConnection)urlConnection;
+            httpURLConnection.connect();
+            if (httpURLConnection.getResponseCode()== HttpURLConnection.HTTP_OK){
+                InputStream inputStream=httpURLConnection.getInputStream();
+
+                bufferedImage= ImageIO.read(inputStream);
+                //参数二设置保存图片的格式
+                //参数三设置图片保存地址
+                //ImageIO.write(bufferedImage,"png",new File("D:\\out.png")); 下载到本地固定路径
+                //ImageIO.write(bufferedImage,"png",new File(DigitUtil.generatorLongId() + ".png")); 下载到项目下
+                ImageIO.write(bufferedImage,"png",new File(DigitUtil.generatorLongId() + ".png"));
+
+                // flush buffered files
+                bufferedImage.flush();
+                return ResultGenerator.genSuccessResult();
+            }else {
+                System.out.println("连接失败");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private static byte[] readInputStream(InputStream inStream) throws Exception {

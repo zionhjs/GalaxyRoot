@@ -3,6 +3,7 @@ package com.galaxy.upload.module.service;
 import com.galaxy.common.core.response.Result;
 import com.galaxy.common.core.service.Service;
 import com.galaxy.upload.module.model.Images;
+import com.galaxy.upload.module.param.ZipParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -38,4 +39,6 @@ public interface UploadImagesService extends Service<Images> {
     Result batchUploadImages(MultipartFile[] multipartFile, String title, String description, String suffix, String level, Integer status, String statusName);
 
     Result detail(Long id);
+
+    Result downloadZip(List<ZipParam> param);
 }

@@ -54,7 +54,7 @@ spring:
 
 ##远程自定义配置
 galaxy:
-  notCheckLoginUrl: /login,/register,/logout,/detail,/findByModal,/findBackPasswor,/user/findByModal,/images/findByModal,/images/detail,/video/findByModal,/video/detail,/cms/team/detail,/cms/team/findByModal,/blog/homeFindByTitle,/email/sendQuery,/blog/findByModalOrderByTime,/url/redirect,/getInviteList,/getCategoryByParentId,/getUserListBySex,/error,/env/print,/swagger-ui.*,/static.*,/a2billing.*,/favicon.*,/webjars/springfox-swagger-ui.*,/v2/api-docs.*
+  notCheckLoginUrl: /login,/register,/logout,/detail,/findByModal,/findBackPasswor,/user/findByModal,/images/findByModal,/images/detail,/video/findByModal,/video/detail,/cms/team/detail,/cms/team/findByModal,/blog/homeFindByTitle,/email/sendQuery,/blog/findByModalOrderByTime,/url/redirect,/getInviteList,/getCategoryByParentId,/getUserListBySex,/error,/env/print,/swagger-ui.*,/static.*,/a2billing.*,/favicon.*,/webjars/springfox-swagger-ui.*,/v2/api-docs.*,/images/uploadImagesUrl
 
 server:
   port: 9400
