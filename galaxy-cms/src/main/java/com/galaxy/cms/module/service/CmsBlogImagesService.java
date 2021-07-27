@@ -13,4 +13,6 @@ import java.util.List;
 public interface CmsBlogImagesService extends Service<BlogImages> {
 
     Result batch(List<BlogImages> blogImagesList);
+
+    Result deleteByUrl(String url);
 }

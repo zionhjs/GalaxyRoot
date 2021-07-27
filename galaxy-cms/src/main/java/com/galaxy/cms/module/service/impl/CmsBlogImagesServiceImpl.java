@@ -36,4 +36,10 @@ public class CmsBlogImagesServiceImpl extends AbstractService<BlogImages> implem
         result.setData(blogImagesList);
         return result;
     }
+
+    @Override
+    public Result deleteByUrl(String url) {
+        cmsBlogImagesMapper.deleteByUrl(url);
+        return ResultGenerator.genSuccessResult();
+    }
 }

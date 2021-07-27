@@ -51,6 +51,12 @@ public class CmsBlogImagesController {
         return ResultGenerator.genSuccessResult();
     }
 
+    @ApiOperation(value = "根据url删除博客图片", notes = "根据url删除博客图片")
+    @RequestMapping(value = "/deleteByUrl", method = {RequestMethod.POST, RequestMethod.GET})
+    public Result deleteByUrl(@RequestParam String url) {
+        return cmsBlogImagesService.deleteByUrl(url);
+    }
+
     @ApiOperation(value = "修改博客图片", notes = "修改博客图片")
     @RequestMapping(value = "/update", method = {RequestMethod.POST, RequestMethod.GET})
     public Result update(@RequestBody BlogImages blogImages) {

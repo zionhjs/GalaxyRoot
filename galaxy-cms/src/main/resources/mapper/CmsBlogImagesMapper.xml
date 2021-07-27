@@ -17,6 +17,12 @@
     <result column="blog_id" jdbcType="BIGINT" property="blogId" />
   </resultMap>
 
+    <update id="deleteByUrl">
+        update t_blog_images
+        set is_delete = 1
+        where url = #{url}
+    </update>
+
     <update id="batchDeleteBlogImages">
         update t_blog_images
         set is_delete = 1
